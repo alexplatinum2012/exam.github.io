@@ -1,0 +1,43 @@
+div.promo {
+  width: 100%;
+  margin-bottom: 165px;
+  /*height: 486px;*/
+}
+p.promo-first-line {
+  display: block;
+  margin-top: 87px;
+  font-family: Supermolot;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 72px;
+  line-height: 63px;
+  color: #000000;
+}
+p.promo-second-line {
+  display: block;
+  font-family: Supermolot;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 72px;
+  line-height: 63px;
+  color: #000000;
+}
+p.promo-third-line {
+  display: block;
+  font-family: Supermolot;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+}
+.promo div.promo-look button {
+  font-family: Supermolot;
+  font-weight: normal;
+  font-size: 18px;
+  color: #ffffff;
+  height: 53px;
+  width: 244px;
+  border: 3px solid #ed1651;
+  margin-left: 270px;
+  margin-top: 6px;
+  background-color: transparent;
+}

@@ -1,0 +1,49 @@
+section.promo-line {
+  clear: both;
+  width: 100%;
+  height: 311px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.12);
+  -moz-box-shadow:    0px 3px 3px 0px rgba(50, 50, 50, 0.12);
+  box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.12);
+}
+.promo-line div > img {
+  z-index: 10;
+}
+.promo-line div > div.promo-title {
+  position: absolute;
+  bottom: 27px;
+  left: 19px;
+  z-index: 11px;
+}
+.promo-title p.first-line {
+  font-family: Supermolot;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 36px;
+}
+.promo-title p.second-line {
+  font-family: Supermolot;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 32px;
+  line-height: 36px;
+}
+div.first-promo, div.second-promo {
+  position: relative;
+  float: left;
+  width: 292px;
+  height: 100%;
+
+}
+div.third-promo {
+  position: relative;
+  float: left;
+  width: calc(100% - 584px);
+  max-width: 586px;
+  height: 100%;
+  overflow: hidden;
+  color: #ffffff;
+
+}

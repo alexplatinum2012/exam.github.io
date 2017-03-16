@@ -1,0 +1,10 @@
+div.frame {
+  width: 1170px;
+  height: 402px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+div.frame div.holder {
+  width: 99999px;
+  height: 402px;;
+}

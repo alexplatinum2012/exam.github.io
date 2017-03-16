@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div .img-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  z-index: 1;
+}
+ div .img-wrapper img {
+   width: 200px;
+ }

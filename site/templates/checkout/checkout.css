@@ -86,6 +86,64 @@
   color: #343434;
 }
 
+.checkout-body div.destination-addr {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 390px;
+  margin-bottom: 55px;
+  
+}
+.destination-addr div.house-apart {
+	position: relative;
+	width: 100%;
+}
+.house-apart div.house {
+	position: relative;
+	float: left;
+	width: 177px;
+}
+.house-apart div.apart {
+	position: relative;
+	float: left;
+	width: 177px;
+	margin-left: 36px;
+}
+.destination-addr button {
+  display: block;
+  position: relative;
+  float: left;
+  width: 154px;
+  height: 49px;
+  border: none;
+  background-color: #ed1651;
+
+  font-family: Supermolot;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.checkout-body div.delivery-type {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 243px;
+  margin-bottom: 55px;
+  margin-left: 55px;
+}
+
+.checkout-body div.comment {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 372px;
+  margin-bottom: 55px;
+  margin-left: 55px;
+  margin-right: 25px;
+}
+
 p.title-form {
   display: block;
   position: relative;
@@ -126,6 +184,49 @@ input {
   font-weight: lighter;
   font-size: 16px;
   color: #000000;
+}
+
+.radio {
+    display: none;
+}
+.radio-custom {
+    width: 15px;
+    height: 15px;
+    background-color: #cbcbcb;
+    position: relative;
+	border-radius: 100%;
+}
+.radio-custom,
+.label {
+    display: inline-block;
+	margin-bottom: 22px;
+    vertical-align: middle;
+}
+.label {
+	width: 200px;
+	margin-left: 13px;
+}
+.radio:checked + .radio-custom {
+	box-sizing: border-box;
+    border: 4px solid #17c7be;
+    border-radius: 100%;
+}
+.radio-custom:hover {
+    border: none;
+	border-radius: 100%;
+	background-color: #17c7be;
+}
+
+
+
+
+
+
+
+
+input[type='radio'].options {
+	background-color: transparent;
+	color: red;
 }
 
 .checkout-holder div.one, .checkout-holder div.two, .checkout-holder div.three {

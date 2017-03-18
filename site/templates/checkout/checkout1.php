@@ -7,18 +7,16 @@
     <p class="pre-input">Контактный телефон:</p>
     <input form="new-user" type="text" name="userPhone" value="">
     <p class="pre-input">E-mail:</p>
-    <input form="new-user" type="text" name="userEmail" value="">
+    <input form="new-user" type="email" name="userEmail" value="">
     <button form="new-user" type="submit" name="continue">Продолжить</button>
   </div>
   <div class="quick-enter">
     <form id="quick-enter" name="quick-enter" action="index.html" method="post"></form>
-    <p class="title-form">Для новых покупателей</p>
-    <p class="pre-input">Контактное лицо (ФИО):</p>
-    <input form="quick-enter" type="text" name="fio" value="">
-    <p class="pre-input">Контактный телефон:</p>
-    <input form="quick-enter" type="text" name="userPhone" value="">
-    <p class="pre-input">E-mail:</p>
-    <input form="quick-enter" type="text" name="userEmail" value="">
+    <p class="title-form">Быстрый вход</p>
+    <p class="pre-input">Ваш e-mail:</p>
+    <input form="quick-enter" type="email" name="fio" value="">
+    <p class="pre-input">пароль:</p>
+    <input form="quick-enter" type="password" name="userPhone" value="">
     <button form="quick-enter" type="submit" name="enter">Войти</button>
     <a href="#">Восстановить пароль</a>
   </div>

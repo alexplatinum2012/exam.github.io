@@ -1,26 +1,43 @@
 <section class="checkout-body">
-  <div class="new-user">
-    <form id="new-user" name="new-user" action="index.html" method="post"></form>
-    <p class="title-form">Для новых покупателей</p>
-    <p class="pre-input">Контактное лицо (ФИО):</p>
-    <input form="new-user" type="text" name="fio" value="">
-    <p class="pre-input">Контактный телефон:</p>
-    <input form="new-user" type="text" name="userPhone" value="">
-    <p class="pre-input">E-mail:</p>
-    <input form="new-user" type="text" name="userEmail" value="">
+  <div class="destination-addr">
+    <form id="destination-addr" name="destination-addr" action="index.html" method="post"></form>
+    <p class="title-form">Адрес доставки</p>
+    <p class="pre-input">Город:</p>
+    <input form="destination-addr" type="text" name="fio" value="">
+    <p class="pre-input">Улица:</p>
+    <input form="destination-addr" type="text" name="userPhone" value="">
+	<div class="house-apart">
+	  <div class="house">
+        <p class="pre-input">Дом:</p>
+        <input form="destination-addr" type="text" name="userEmail" value="">
+	  </div>
+	  <div class="apart">
+	    <p class="pre-input">Квартира:</p>
+	    <input form="destination-addr" type="text" name="userEmail" value="">
+	  </div>	
+	</div>
+	<div class="clearfix"></div>
     <button form="new-user" type="submit" name="continue">Продолжить</button>
   </div>
-  <div class="quick-enter">
-    <form id="quick-enter" name="quick-enter" action="index.html" method="post"></form>
-    <p class="title-form">Для новых покупателей</p>
-    <p class="pre-input">Контактное лицо (ФИО):</p>
-    <input form="quick-enter" type="text" name="fio" value="">
-    <p class="pre-input">Контактный телефон:</p>
-    <input form="quick-enter" type="text" name="userPhone" value="">
-    <p class="pre-input">E-mail:</p>
-    <input form="quick-enter" type="text" name="userEmail" value="">
-    <button form="quick-enter" type="submit" name="enter">Войти</button>
-    <a href="#">Восстановить пароль</a>
+  <div class="delivery-type">
+	<p class="title-form">Адрес доставки</p>
+	<label>
+	  <input form="destination-addr" class="radio" type="radio" name="deliveryType" checked="checked" value="1">
+	  <span class="radio-custom"></span>
+      <span class="label">Курьерская доставка с оплатой при получении</span>
+	</label>
+	<label>
+	  <input form="destination-addr" class="radio" type="radio" name="deliveryType" value="1">
+	  <span class="radio-custom"></span>
+      <span class="label">Почта Росссии с наложенным платежем</span>
+	</label>
+	<label>
+	  <input form="destination-addr" class="radio" type="radio" name="deliveryType" value="1">
+	  <span class="radio-custom"></span>
+      <span class="label">Доставка через терминалы QIWI Post</span>
+	</label>
   </div>
+  <div class="comment">Comment</div>
+  
   <div class="clearfix"></div>
 </section>

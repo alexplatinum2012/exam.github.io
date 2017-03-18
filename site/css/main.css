@@ -74,7 +74,7 @@ div.img-wrapper img {
     top: 27px;
     width: 100%;
     margin: 0px auto;/* 62px;*/
-    margin-bottom: 62px;
+    /*margin-bottom: 62px;*/
     z-index: 10;
   }
 }
@@ -82,7 +82,7 @@ div.img-wrapper img {
   div.wrapper {
     position: absolute;
     top: 27px;
-    margin: 0px 115px 62px;
+    margin: 0px auto;
     /*width: calc(100% - 230px);
     max-*/
     width: 1170px;

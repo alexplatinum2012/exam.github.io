@@ -37,7 +37,12 @@
       <span class="label">Доставка через терминалы QIWI Post</span>
 	</label>
   </div>
-  <div class="comment">Comment</div>
+  <div class="comment">
+    <p class="title-form">Комментарий к заказу</p>
+	<p class="pre-input">Введите Ваш комментарий:</p>
+	<textarea form="destination-addr" name="comment" placeholder="Текст комментария"></textarea>
   
+  </div>
+
   <div class="clearfix"></div>
 </section>

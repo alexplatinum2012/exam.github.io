@@ -87,10 +87,10 @@
    ?>
    </div>
    <div class="clearfix"></div>
-   <header class="products-header">
-     <p class="header-title"><?php if(isset($headerTitle)) echo $headerTitle; ?></p>
      <?php
        if($category) {?>
+   <header class="products-header">
+     <p class="header-title"><?php if(isset($headerTitle)) echo $headerTitle; ?></p>
          <div class="nav-pages">
            <p class="nav-text"></p>
            <ul class="nav-inline-list">

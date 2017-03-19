@@ -66,7 +66,8 @@
   </div>
   <div class="add-cat">
     <form name="add-cat">
-      <label><p>Добавить категорию:</p><input type="text" name="cat-name" value="" /><label>
+      <p>Добавить категорию:</p>
+	  <input type="text" name="cat-name" value="" />
 	  <div class="clearfix"></div>
 	  <a href="">добавить категорию</a>
 	</form>

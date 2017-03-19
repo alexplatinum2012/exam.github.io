@@ -36,7 +36,7 @@
 		  <p>01.01.2015 в 16:12</p>
 	    </td>
 	    <td class="view">
-		  <p>просмотр</p>
+		  <a href="order_information.php">просмотр</a>
 	    </td>
 	  </tr>
 	  <tr>
@@ -55,7 +55,7 @@
 		  <p>01.01.2015 в 16:12</p>
 	    </td>
 	    <td class="view">
-		  <p>просмотр</p>
+		  <a href="#">просмотр</a>
 	    </td>
 	  </tr>
 	  <tr>
@@ -74,7 +74,7 @@
 		  <p>01.01.2015 в 16:12</p>
 	    </td>
 	    <td class="view">
-		  <p>просмотр</p>
+		  <a href="#">просмотр</a>
 	    </td>
 	  </tr>
 	</table>

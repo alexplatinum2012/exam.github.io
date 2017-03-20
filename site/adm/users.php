@@ -6,6 +6,9 @@
 	  <?php include "templates/users_css_linker.php"; ?>
   </head>
   <body>
-  	<?php include "templates/users_body.php"; ?>
+  	<?php 
+	  $menuActive = 2;	
+	  include "templates/users_body.php"; 
+	?>
   </body>
 </html>

@@ -28,6 +28,9 @@ div.nav {
 	height: 48px;
 	margin-top: 20px;
 }
+.nav-list li.active {
+	background-color: #243342;	
+}
 .nav-list li.nav-list-item:hover {
 	background-color: #243342;
 }

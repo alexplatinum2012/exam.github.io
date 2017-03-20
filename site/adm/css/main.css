@@ -48,6 +48,7 @@ div.clearfix {
 div.w960 {
 	position:relative;
 	width: 960px;
+	height: 1024px;
 	margin: 43px auto 29px;
 	-webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.12);
 	-moz-box-shadow:    0px 3px 3px 0px rgba(50, 50, 50, 0.12);
@@ -58,7 +59,7 @@ div.nav {
 	position: relative;
 	float: left;
 	width: 19%;
-	height: 99vh;
+	height: 100%;
 }
 
 div.wrapper {
@@ -66,8 +67,11 @@ div.wrapper {
     float: left;
     box-sizing: border-box;
     width: 81%;
-    height: 99vh;
+    height: 100%;
     padding: 0px 20px 32px;
 	background-color: #ecf0f1;
 	
+}
+div.holder {
+	height: 100%;
 }

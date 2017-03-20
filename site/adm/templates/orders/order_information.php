@@ -66,7 +66,7 @@
 	</table>
   </div>
   <div class="info-holder">
-    <table><tr><th>ИНВОРМАЦИЯ О ЗАКАЗЕ</th></tr></table>
+    <table><tr><th>ИНФОРМАЦИЯ О ЗАКАЗЕ</th></tr></table>
 	<div class="l">
 	  <p class="pre-input">Контактное лицо (ФИО):</p>
 	  <input type="text" name="fio" value="123">

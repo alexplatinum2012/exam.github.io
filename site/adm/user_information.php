@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title><?php if(isset($pageTitle)) echo $pageTitle; else echo "CATEGORY"; ?></title>
-	  <?php include "templates/orders_css_linker.php"; ?>
+	  <?php include "templates/users_css_linker.php"; ?>
   </head>
   <body>
-  
-  	<?php
-      $menuActive = 1;	
-	  include "templates/orders_body.php"; 
+  	<?php 
+	  $menuActive = 2;	
+	  include "templates/user_information_body.php"; 
 	?>
   </body>
 </html>

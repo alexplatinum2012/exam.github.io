@@ -5,21 +5,21 @@
 </header>
 <div class="list">
   <ul class="nav-list">
-    <li class="nav-list-item">
-	  <img src="img/cart.png" alt=""/>
-	  <a href="#">ЗАКАЗЫ</a>
+    <li class="<?php if($menuActive === 1) { echo 'nav-list-item active';} else { echo 'nav-list-item';}?>">
+	  <img src="<?php if($menuActive === 1) { echo 'img/cart_active.png';} else { echo 'img/cart.png';}?>" alt=""/>
+	  <a href="orders.php">ЗАКАЗЫ</a>
 	</li>
-    <li class="nav-list-item">
-	  <img src="img/users.png" alt=""/>
-	  <a href="#">ПОЛЬЗОВАТЕЛИ</a>
+    <li class="<?php if($menuActive === 2) { echo 'nav-list-item active';} else { echo 'nav-list-item';}?>">
+	  <img src="<?php if($menuActive === 2) { echo 'img/users_active.png';} else { echo 'img/users.png';}?>" alt=""/>
+	  <a href="users.php">ПОЛЬЗОВАТЕЛИ</a>
 	</li>
-	<li class="nav-list-item">
-	  <img src="img/products.png" alt=""/>
-	  <a href="#">ТОВАРЫ</a>
+	<li class="<?php if($menuActive === 3) { echo 'nav-list-item active';} else { echo 'nav-list-item';}?>">
+	  <img src="<?php if($menuActive === 3) { echo 'img/products_active.png';} else { echo 'img/products.png';}?>" alt=""/>
+	  <a href="products.php">ТОВАРЫ</a>
 	</li>
-	<li class="nav-list-item">
-	  <img src="img/categories.png" alt=""/>
-	  <a href="#">КАТЕГОРИИ</a>
+	<li class="<?php if($menuActive === 4) { echo 'nav-list-item active';} else { echo 'nav-list-item';}?>">
+	  <img src="<?php if($menuActive === 4) { echo 'img/categories_active.png';} else { echo 'img/categories.png';}?>" alt=""/>
+	  <a href="categories.php">КАТЕГОРИИ</a>
 	</li>
   </ul>
 </div>
@@ -28,3 +28,4 @@
   <p>admin@mail.ru</p>
   <a href="#">Выйти</a>
 </div>
+<div class="clearfix"></div>

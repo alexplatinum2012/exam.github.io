@@ -1,4 +1,4 @@
-<?php $xxx = 4; ?>
+<?php $xxx = 2; ?>
 
 <!DOCTYPE html>
 <html>

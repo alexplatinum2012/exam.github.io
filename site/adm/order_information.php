@@ -6,6 +6,9 @@
 	  <?php include "templates/orders_css_linker.php"; ?>
   </head>
   <body>
-  	<?php include "templates/order_information_body.php"; ?>
+  	<?php
+      $menuActive = 1;		
+	  include "templates/order_information_body.php"; 
+	?>
   </body>
 </html>

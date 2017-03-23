@@ -228,6 +228,22 @@
 	line-height: 25px;
 	color: #ad0000;
 }
+.holder button.create-product {
+	display: block;
+	position: relative;
+	margin-top: 34px;
+	margin-bottom: 20px;
+	border: none;
+	background-color: inherit;
+
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 16px;
+	line-height: 25px;
+	color: #ad0000;
+	text-decoration: underline;
+}
 
 .holder div.this-cat-holder {
 	position: relative;

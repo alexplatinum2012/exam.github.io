@@ -4,7 +4,7 @@
   <iframe name="ifr4" id="ifr4" src="" width="" height=""></iframe>
   <iframe name="ifrVar" id="ifrVar" src="" width="" height=""></iframe>
 
-  <form name="form_productADD" id="form_productADD" action="sqlDBreq.php" method="post"></form>
+  <form name="form_productADD" id="form_productADD" action="script/createProduct.php" method="post"></form>
   <div class="category-title">
       <p class="category-title-text">СОЗДАНИЕ ТОВАРА</p>
   </div>
@@ -25,22 +25,22 @@
 	<div class="prod-info-r">
 	  <p class="pre-input">Название товара:</p>
 	  <label>
-	    <input form="form_productADD" class="radio" type="radio" name="deliveryType" checked="checked" value="1">
+	    <input form="form_productADD" class="radio" type="radio" name="corner" checked="checked" value="1">
 	    <span class="radio-custom"></span>
         <span class="label">Отсутствует</span>
 	  </label>
 	  <label>
-	    <input form="form_productADD" class="radio" type="radio" name="deliveryType" value="2">
+	    <input form="form_productADD" class="radio" type="radio" name="corner" value="2">
 	    <span class="radio-custom"></span>
         <span class="label">NEW</span>
 	  </label>
 	  <label>
-	    <input form="form_productADD" class="radio" type="radio" name="deliveryType" value="3">
+	    <input form="form_productADD" class="radio" type="radio" name="corner" value="3">
 	    <span class="radio-custom"></span>
         <span class="label">HOT</span>
 	  </label>
 	  <label>
-	    <input form="form_productADD" class="radio" type="radio" name="deliveryType" value="4">
+	    <input form="form_productADD" class="radio" type="radio" name="corner" value="4">
 	    <span class="radio-custom"></span>
         <span class="label">SALE</span>
 	  </label>
@@ -59,7 +59,7 @@
 	  </table>
 	  <div id="photo1" class="photo">
   		<div class="img"></div>
-      <form enctype="multipart/form-data" target="ifr1" action="test.php" method="post">
+      <form enctype="multipart/form-data" target="ifr1" action="script/changePHOTO.php" method="post">
         <input type="hidden" name="i" value="1">
         <label class="input-file"><input type="file" name="filex" value="">добавить</label>
       </form>
@@ -67,7 +67,7 @@
     <div id="photo2" class="photo">
       <div class="img">
       </div>
-      <form enctype="multipart/form-data" target="ifr2" action="test.php" method="post">
+      <form enctype="multipart/form-data" target="ifr2" action="script/changePHOTO.php" method="post">
         <input type="hidden" name="i" value="2">
         <label class="input-file"><input type="file" name="filex" value="">добавить</label>
       </form>
@@ -75,7 +75,7 @@
     <div id="photo3" class="photo">
       <div class="img">
       </div>
-      <form enctype="multipart/form-data" target="ifr3" action="test.php" method="post">
+      <form enctype="multipart/form-data" target="ifr3" action="script/changePHOTO.php" method="post">
         <input type="hidden" name="i" value="3">
         <label class="input-file"><input type="file" name="filex" value="">добавить</label>
       </form>
@@ -83,7 +83,7 @@
     <div id="photo4" class="photo">
       <div class="img">
       </div>
-      <form enctype="multipart/form-data" target="ifr4" action="test.php" method="post">
+      <form enctype="multipart/form-data" target="ifr4" action="script/changePHOTO.php" method="post">
         <input type="hidden" name="i" value="4">
         <label class="input-file"><input type="file" name="filex" value="">добавить</label>
       </form>
@@ -113,7 +113,7 @@
 	  </div>
     <div class="var-create">
       <div class="var-line">
-        <form name="var-create" id="var-create" target="ifrVar" class="" target="ifrVar" action="test2.php" method="post"></form>
+        <form name="var-create" id="var-create" target="ifrVar" class="" target="ifrVar" action="script/addVAR.php" method="post"></form>
         <input form="var-create" id="counter" type="hidden" name="counter" value="0" />
   	    <div class="var-l"><input form="var-create" type="text" name="name" value="" required /></div>
         <div class="var-c"><input form="var-create" type="number" min="1" step="1" name="count" value="1"></div>
@@ -122,7 +122,7 @@
     </div>
 	  <div class="clearfix"></div>
 	</div>
-    <a class="delete" href="#">Создать товар</a>
+    <button form="form_productADD" type="submit" class="create-product">Создать товар</button>
 	<div class="clearfix"></div>
 
 

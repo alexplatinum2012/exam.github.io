@@ -70,8 +70,12 @@ div.wrapper {
     height: 100%;
     padding: 0px 20px 32px;
 	background-color: #ecf0f1;
-	
+
 }
 div.holder {
 	height: 100%;
+}
+
+iframe {
+  display: none;
 }

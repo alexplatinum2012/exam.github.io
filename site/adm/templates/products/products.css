@@ -570,3 +570,8 @@ textarea {
 	border-radius: 100%;
 	background-color: #17c7be;
 }
+hr {
+	display: block;
+	position: relative;
+	width: 100%;
+}

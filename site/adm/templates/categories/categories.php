@@ -42,7 +42,7 @@
                   <a href="#">удалить</a>
                 </td>
                 <td class="view">
-                  <a href="#">просмотр</a>
+                  <a href="<?php echo 'products_in_category.php?cd='.$value['id'].'&cn='.$value['name']; ?>">просмотр</a>
                 </td>
               </tr>
 

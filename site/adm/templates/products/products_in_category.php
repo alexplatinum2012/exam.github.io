@@ -4,7 +4,7 @@
   <div class="this-cat-holder">
     <form id="catNameForm" name="catNameForm">
       <p>Текущая категория:</p>
-	  <input type="text" name="catName" value="Название категории 1" />
+	  <input type="text" name="catName" value="<?php echo $catName; ?>" />
 	  <a href="#">переименовать</a>
 	</form>
 	<div class="clearfix"></div>
@@ -22,16 +22,21 @@
 		  <p></p>
 	    </th>
 	  </tr>
-	  <tr>
-	    <td class="prod-name">
-		  <p>Название категории 1</p>
-	    </td>
-		<td class="cost">
-		  <p>194</p>
-	    </td>
-	    <td class="view">
-		  <a href="#">просмотр</a>
-	    </td>
-	  </tr>
+    <?php
+      foreach ($dbAnswer as $key => $value) {?>
+        <tr>
+    	    <td class="prod-name">
+    		  <p><?php echo $value['name']; ?></p>
+    	    </td>
+    		<td class="cost">
+    		  <p><?php echo $value['cost']; ?></p>
+    	    </td>
+    	    <td class="view">
+    		  <a href="<?php echo 'product_information.php?pid='.$value['id']; ?>">просмотр</a>
+    	    </td>
+    	  </tr>
+      <?php } ?>
+
+
 	</table>
   </div>

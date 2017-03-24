@@ -3,7 +3,7 @@
   $el = new db;
   $el->connect();
   if($el->database === false) echo "ERROR conect to DB";
-  $query = "SELECT id, name FROM prod_category";
+  $query = "SELECT id, name FROM prod_category ORDER BY name";
   $tmp = $el->query($query);
   $dbAnswer = $el->fetch($tmp);
 ?>

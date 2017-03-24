@@ -1,7 +1,8 @@
-<iframe name="ifr1" id="ifr1"></iframe>
-<iframe name="ifr2" id="ifr2"></iframe>
-<iframe name="ifr3" id="ifr3"></iframe>
-<iframe name="ifr4" id="ifr4"></iframe>
+<script type="text/javascript">
+  var loadFrame = function(e){}
+  var changing = function(e){}
+  var delBlock = function(e){}
+</script>
 <iframe name="ifrVar" id="ifrVar"></iframe>
 
   <form name="form_productUPD" id="form_productUPD" action="" method=""></form>
@@ -19,6 +20,8 @@
 	<div class="prod-info-l">
 	  <p class="pre-input">Название товара:</p>
 	  <input form="form_productUPD" type="text" name="name" value="<?php echo $product[0]['name']; ?>" />
+    <p class="pre-input">Цена товара:</p>
+    <input form="form_productADD" type="text" name="cost" value="<?php echo $product[0]['cost']; ?>" />
 	  <p class="pre-input">Описание товара:</p>
 	  <textarea form="form_productUPD" name="about"><?php echo $product[0]['about']; ?></textarea>
 	</div>
@@ -57,68 +60,48 @@
 	      </th>
 	    </tr>
 	  </table>
-    <?php
-      for($i = 0; $i < 4; $i++) {
-        if(isset($prodPhoto[$i]) && $prodPhoto[$i] != "") {?>
-          <div id="<?php echo 'photo'.($i+1); ?>" class="photo">
-            <input form='form_productUPD' type='hidden' name='<?php echo "photo".($i+1); ?>' value='<?php echo "../img/prod_photo/".$prodPhoto[$i]['name']; ?>' />
-            <div class="img">
-              <img src="<?php echo '../img/prod_photo/'.$prodPhoto[$i]['name']; ?>" alt='<?php echo "photo".($i+1); ?>' />
+    <div>
+      <?php
+        for($i = 0; $i <= count($prodPhoto); $i++) {
+          if($i == count($prodPhoto) && $i != 0) {?>
+            <iframe onload="loadFrame(this)" name="ifr<?php echo $i+1 ?>" id="ifr<?php echo $i+1 ?>"></iframe>
+            <div id="<?php echo 'photo'.$i+1;?>" class="photo">
+              <div class="img"></div>
+              <form enctype="multipart/form-data" target="ifr<?php echo $i+1; ?>" action="script/changePHOTO.php" method="post">
+                <input type="hidden" name="i" value="<?php echo $i+1; ?>" />
+                <input type="hidden" name="prid" value="<?php echo $product[0]['id']; ?>" />
+                <label class="input-file">
+                  <input type="file" name="filex" value="" onchange="changing(this)">
+                  добавить
+                </label>
+              </form>
             </div>
-            <form enctype="multipart/form-data" target="<?php echo 'ifr'.($i+1); ?>" action="script/changePHOTO.php" method="post">
-              <input type="hidden" name="i" value="<?php echo $i+1; ?>">
-              <label class="input-file">
-                <input type="file" name="filex" value="" onchange="changing(this)">
-                изменить
-              </label>
-            </form>
-            <a class="delete" target="<?php echo 'ifr'.($i+1); ?>" href="<?php echo 'script/changePHOTO.php?i='.($i+1).'&del='.$prodPhoto[$i]['name']; ?>">удалить</a>
-          </div>
-        <?php } else { ?>
-          <div id="<?php echo 'photo'.$i+1;?>" class="photo">
-            <div class="img"></div>
-            <form enctype="multipart/form-data" target="<?php echo 'ifr'.$i+1; ?>" action="script/changePHOTO.php" method="post">
-              <input type="hidden" name="i" value="<?php echo $i+1; ?>">
-              <label class="input-file">
-                <input type="file" name="filex" value="" onchange="changing(this)">
-                добавить
-              </label>
-            </form>
-          </div>
-        <?php }
-      }
-    ?>
-    <!--<div id="photo1" class="photo">
-  		<div class="img"></div>
-      <form enctype="multipart/form-data" target="ifr1" action="script/changePHOTO.php" method="post">
-        <input type="hidden" name="i" value="1">
-        <label class="input-file"><input type="file" name="filex" value="">добавить</label>
-      </form>
+          <?php } elseif(isset($prodPhoto[$i]) && $prodPhoto[$i] != "") {?>
+            <iframe onload="loadFrame(this)" name="ifr<?php echo $i+1; ?>" id="ifr<?php echo $i+1; ?>"></iframe>
+            <div id="photo<?php echo $i+1; ?>" class="photo">
+              <input form='form_productUPD' type='hidden' name='photo<?php echo $i+1; ?>' value="../img/prod_photo/<?php echo $prodPhoto[$i]['name']; ?>" />
+              <div class="img">
+                <img src="<?php echo '../img/prod_photo/'.$prodPhoto[$i]['name']; ?>" alt='<?php echo "photo".$i+1; ?>' />
+              </div>
+              <form enctype="multipart/form-data" target="ifr<?php echo $i+1; ?>" action="script/changePHOTO.php" method="post">
+                <input type="hidden" name="i" value="<?php echo $i+1; ?>">
+                <input type="hidden" name="pid" value="<?php echo $prodPhoto[$i]['id']; ?>">
+                <input type="hidden" name="del" value="<?php echo $prodPhoto[$i]['name']; ?>">
+                <input type="hidden" name="prid" value="<?php echo $prodPhoto[$i]['pr_id']; ?>" />
+                <label class="input-file">
+                  <input type="file" name="filex" value="" onchange="changing(this)">
+                  изменить
+                </label>
+              </form>
+              <a class="delete" target="ifr<?php echo $i+1; ?>" href="script/changePHOTO.php?pid=<?php echo $prodPhoto[$i]['id']; ?>&del=<?php echo $prodPhoto[$i]['name']; ?>" onclick="delBlock(this)">удалить</a>
+            </div>
+          <?php } else { ?>
+
+          <?php }
+        }
+      ?>
     </div>
-    <div id="photo2" class="photo">
-      <div class="img">
-      </div>
-      <form enctype="multipart/form-data" target="ifr2" action="script/changePHOTO.php" method="post">
-        <input type="hidden" name="i" value="2">
-        <label class="input-file"><input type="file" name="filex" value="">добавить</label>
-      </form>
-    </div>
-    <div id="photo3" class="photo">
-      <div class="img">
-      </div>
-      <form enctype="multipart/form-data" target="ifr3" action="script/changePHOTO.php" method="post">
-        <input type="hidden" name="i" value="3">
-        <label class="input-file"><input type="file" name="filex" value="">добавить</label>
-      </form>
-    </div>
-    <div id="photo4" class="photo">
-      <div class="img">
-      </div>
-      <form enctype="multipart/form-data" target="ifr4" action="script/changePHOTO.php" method="post">
-        <input type="hidden" name="i" value="4">
-        <label class="input-file"><input type="file" name="filex" value="">добавить</label>
-      </form>
-    </div>-->
+
 
 	  <div class="clearfix"></div>
 	</div>
@@ -169,50 +152,47 @@
 
 
 <script type="text/javascript">
-$iframe1 = document.getElementById('ifr1');
-$iframe2 = document.getElementById('ifr2');
-$iframe3 = document.getElementById('ifr3');
-$iframe4 = document.getElementById('ifr4');
 $iframeVar = document.getElementById('ifrVar');
-$divPhoto1 = document.getElementById('photo1');
-$divPhoto2 = document.getElementById('photo2');
-$divPhoto3 = document.getElementById('photo3');
-$divPhoto4 = document.getElementById('photo4');
 $divVar = document.getElementById('var');
 $bCounter = document.getElementById('button-counter');
 $counter = document.getElementById('counter');
 $input = document.querySelectorAll("input[type='file']");
 
-for(var i=0; i<$input.length; i++) {
-  $input[i].onchange = function(e) {
-    e.target.parentNode.parentNode.submit();
-  }
+function delBlock(el) {
+  el.parentNode.parentNode.removeChild(el.parentNode);
 }
 function changing(e) {
+  var el = e.parentNode.parentNode.parentNode.previousElementSibling;
+  if(el.contentDocument.body.childNodes.length == 0) {
+    var reg = /\D+/ig;
+    var cloneIframe = el.cloneNode(true);
+    cloneIframe.name = 'ifr' + (+el.name.replace(reg, '') + 1);
+    cloneIframe.id = 'ifr' + (+el.id.replace(reg, '') + 1);
+    var cloneDiv = el.nextElementSibling.cloneNode(true);
+    cloneDiv.id = 'photo' + (+el.nextElementSibling.id.replace(reg, '') + 1);
+    el.parentNode.appendChild(cloneIframe);
+    el.parentNode.appendChild(cloneDiv);
+    var form = cloneDiv.querySelector('form');
+    form.setAttribute('target', cloneIframe.id);
+    var input = cloneDiv.querySelector('input');
+    input.value = +el.id.replace(reg, '') + 1;
+  }
   e.parentNode.parentNode.submit();
 }
-$iframe1.onload = function(e) {
-  $divPhoto1.innerHTML = this.contentDocument.body.innerHTML;
+function loadFrame(el) {
+  if(el.contentDocument.body.innerHTML == "") return;
+  el.nextElementSibling.innerHTML = el.contentDocument.body.innerHTML;
 }
-$iframe2.onload = function(e) {
-  $divPhoto2.innerHTML = this.contentDocument.body.innerHTML;
+function delParent(e) {
+  $delElem = e.parentNode;
+  $delElem.parentNode.removeChild($delElem);
+  return false;
 }
-$iframe3.onload = function(e) {
-  $divPhoto3.innerHTML = this.contentDocument.body.innerHTML;
-}
-$iframe4.onload = function(e) {
-  $divPhoto4.innerHTML = this.contentDocument.body.innerHTML;
-}
+
 $iframeVar.onload = function(e) {
   $divVar.innerHTML += this.contentDocument.body.innerHTML;
 }
 $bCounter.onclick = function(e) {
   $counter.value = +$counter.value + 1;
-}
-
-function delParent(e) {
-  $delElem = e.parentNode;
-  $delElem.parentNode.removeChild($delElem);
-  return false;
 }
 </script>

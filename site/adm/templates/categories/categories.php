@@ -39,10 +39,10 @@
                   <p><?php echo $countOfProducts; ?></p>
                 </td>
                 <td class="del">
-                  <a href="#">удалить</a>
+                  <a href="<?php echo 'script/delCat.php?cid='.$value['id']; ?>">удалить</a>
                 </td>
                 <td class="view">
-                  <a href="<?php echo 'products_in_category.php?cd='.$value['id'].'&cn='.$value['name']; ?>">просмотр</a>
+                  <a href="<?php echo 'products_in_category.php?cd='.$value['id']; ?>">просмотр</a>
                 </td>
               </tr>
 

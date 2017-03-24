@@ -1,14 +1,17 @@
 <?php
 
-if(isset($_GET['cd']) && isset($_GET['cn'])) {
+if(isset($_GET['cd'])) {
   include "script/DB_operations.php";
-  $catName = $_GET['cn'];
   $el = new db;
   $el->connect();
   if($el->database === false) echo "ERROR conect to DB";
-  $prod = "SELECT id, name, cost from products where cat_id = '".$_GET['cd']."'";
+  $prod = "SELECT id, name, cost from products where cat_id = '".$_GET['cd']."' order by name";
+  $cat = "SELECT name from prod_category where id = '".$_GET['cd']."'";
   $tmp = $el->query($prod);
   $dbAnswer = $el->fetch($tmp);
+  $tmp = $el->query($cat);
+  $cat = $el->fetch($tmp);
+  $catName = $cat[0]['name'];
   $el->close();
 }
 ?>

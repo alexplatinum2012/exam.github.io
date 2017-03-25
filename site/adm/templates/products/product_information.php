@@ -2,10 +2,11 @@
   var loadFrame = function(e){}
   var changing = function(e){}
   var delBlock = function(e){}
+  var dou = function(str){}
 </script>
 <iframe name="ifrVar" id="ifrVar"></iframe>
 
-  <form name="form_productUPD" id="form_productUPD" action="" method=""></form>
+  <form name="form_productADD" id="form_productADD" action="" method="post"></form>
   <div class="category-title">
       <p class="category-title-text">ПРОСМОТР ТОВАРА</p>
   </div>
@@ -13,22 +14,24 @@
     <table>
 	  <tr>
 	    <th class="cat-name">
-		  <p>НАЗВАНИЕ КАТЕГОРИИ</p>
+		  <p>ТОВАР</p>
 	    </th>
 	  </tr>
 	</table>
 	<div class="prod-info-l">
+    <input form="form_productADD" type="hidden" name="pid" value="<?php echo $product[0]['id']; ?>">
+    <input form="form_productADD" type="hidden" name="catID" value="<?php echo $product[0]['cat_id']; ?>">
 	  <p class="pre-input">Название товара:</p>
-	  <input form="form_productUPD" type="text" name="name" value="<?php echo $product[0]['name']; ?>" />
+	  <input form="form_productADD" type="text" name="name" value="<?php echo $product[0]['name']; ?>" />
     <p class="pre-input">Цена товара:</p>
     <input form="form_productADD" type="text" name="cost" value="<?php echo $product[0]['cost']; ?>" />
 	  <p class="pre-input">Описание товара:</p>
-	  <textarea form="form_productUPD" name="about"><?php echo $product[0]['about']; ?></textarea>
+	  <textarea form="form_productADD" name="about"><?php echo $product[0]['about']; ?></textarea>
 	</div>
 	<div class="prod-info-r">
 	  <p class="pre-input">Название товара:</p>
 	  <label>
-	    <input form="form_productUPD" class="radio" type="radio" name="corner" <?php if(isset($product[0]['corner']) && $product[0]['corner'] == 1) echo 'checked="checked"'; ?> value="1">
+	    <input form="form_productADD" class="radio" type="radio" name="corner" <?php if(isset($product[0]['corner']) && $product[0]['corner'] == 1) echo 'checked="checked"'; ?> value="1">
 	    <span class="radio-custom"></span>
         <span class="label">Отсутствует</span>
 	  </label>
@@ -65,7 +68,7 @@
         for($i = 0; $i <= count($prodPhoto); $i++) {
           if($i == count($prodPhoto) && $i != 0) {?>
             <iframe onload="loadFrame(this)" name="ifr<?php echo $i+1 ?>" id="ifr<?php echo $i+1 ?>"></iframe>
-            <div id="<?php echo 'photo'.$i+1;?>" class="photo">
+            <div id="photo<?php echo $i+1;?>" class="photo">
               <div class="img"></div>
               <form enctype="multipart/form-data" target="ifr<?php echo $i+1; ?>" action="script/changePHOTO.php" method="post">
                 <input type="hidden" name="i" value="<?php echo $i+1; ?>" />
@@ -79,7 +82,7 @@
           <?php } elseif(isset($prodPhoto[$i]) && $prodPhoto[$i] != "") {?>
             <iframe onload="loadFrame(this)" name="ifr<?php echo $i+1; ?>" id="ifr<?php echo $i+1; ?>"></iframe>
             <div id="photo<?php echo $i+1; ?>" class="photo">
-              <input form='form_productUPD' type='hidden' name='photo<?php echo $i+1; ?>' value="../img/prod_photo/<?php echo $prodPhoto[$i]['name']; ?>" />
+              <input form='form_productADD' type='hidden' name='photo<?php echo $i+1; ?>' value="../img/prod_photo/<?php echo $prodPhoto[$i]['name']; ?>" />
               <div class="img">
                 <img src="<?php echo '../img/prod_photo/'.$prodPhoto[$i]['name']; ?>" alt='<?php echo "photo".$i+1; ?>' />
               </div>
@@ -126,8 +129,8 @@
       </div>
       <?php foreach ($prodVar as $key => $value): $i = 0;?>
         <div class="var-line">
-          <div class="var-l"><input form="form_productUPD" type="text" name="<?php echo 'var'.$i.'[]'; ?>" value="<?php echo $value['var']; ?>" /></div>
-          <div class="var-c"><input form="form_productUPD" type="number" min="1" step="1" name="<?php echo 'var'.$i.'[]'; ?>" value="<?php echo $value['count']; ?>"></div>
+          <div class="var-l"><input form="form_productADD" type="text" name="<?php echo 'var'.$i.'[]'; ?>" value="<?php echo $value['var']; ?>" /></div>
+          <div class="var-c"><input form="form_productADD" type="number" min="1" step="1" name="<?php echo 'var'.$i.'[]'; ?>" value="<?php echo $value['count']; ?>"></div>
           <a class="not-link" onclick="delParent(this)">Удалить</a>
         </div>
 
@@ -146,7 +149,9 @@
     </div>
 	  <div class="clearfix"></div>
 	</div>
-    <a class="delete" href="#">Удалить товар</a>
+    <input type="hidden" name="dou" value="">
+    <button form="form_productADD" class="dou" type="submit" onclick="dou('update')">Изменить товар</a>
+    <button form="form_productADD" class="dou" type="submit" onclick="dou('delete')">Удалить товар</a>
 	<div class="clearfix"></div>
 
 
@@ -159,7 +164,11 @@ $counter = document.getElementById('counter');
 $input = document.querySelectorAll("input[type='file']");
 
 function delBlock(el) {
-  el.parentNode.parentNode.removeChild(el.parentNode);
+  var ifr = el.parentNode.previousElementSibling;
+  var div = el.parentNode;
+  var par = el.parentNode.parentNode;
+  //par.removeChild(ifr);
+  par.removeChild(div);
 }
 function changing(e) {
   var el = e.parentNode.parentNode.parentNode.previousElementSibling;
@@ -187,6 +196,10 @@ function delParent(e) {
   $delElem = e.parentNode;
   $delElem.parentNode.removeChild($delElem);
   return false;
+}
+function dou(str) {
+  var form = document.getElementById("form_productADD");
+  form.setAttribute('action', 'script/' + str + '_product.php')
 }
 
 $iframeVar.onload = function(e) {

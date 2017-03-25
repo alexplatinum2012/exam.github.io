@@ -1,3 +1,13 @@
+<?php
+include "script/DB_operations.php";
+$el = new db;
+$el->connect();
+if($el->database === false) echo "ERROR conect to DB";
+$query = "SELECT id, name FROM prod_category ORDER BY name";
+$query = $el->query($query);
+$dbAnswer = $el->fetch($query);
+?>
+
 <header class="header">
   <div class="header-logo">
     <p class="logo-first-line">SUPER</p>
@@ -5,10 +15,10 @@
   </div>
   <div class="header-menu">
     <ul class="inline-list">
-      <li class="inline-list-item"><a href="#">КАТЕГОРИЯ 1</a></li>
-      <li class="inline-list-item"><a href="#">КАТЕГОРИЯ 2</a></li>
-      <li class="inline-list-item"><a href="#">КАТЕГОРИЯ 3</a></li>
-      <li class="inline-list-item"><a href="#">КАТЕГОРИЯ 4</a></li>
+    <?php
+      foreach ($dbAnswer as $key => $value) {?>
+        <li class="inline-list-item"><a href="category.php?cid=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></li>
+      <?php } ?>
     </ul>
   </div>
   <div class="header-right">
@@ -17,8 +27,12 @@
         <img src="img/header_user_icon.png" alt="user_icon">
       </div>
       <ul class="inline-list">
-        <li><a href="#">Войти</a></li>
-        <li><a href="#">Регистрация</a></li>
+        <?php if(isset($_SESSION['user_id']) && isset($_SESSION['user_name']))
+                echo "<li><a href='account.php?uid=".$_SESSION['user_id']."'>".$_SESSION['user_name']."</a></li>";
+              else
+                echo "<li><a href='login.php'>Войти</a></li>
+                      <li><a href='register.php'>Регистрация</a></li>";
+        ?>
       </ul>
     </div>
     <div class="right-cart">

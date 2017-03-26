@@ -1,17 +1,20 @@
 <?php
-include "script/DB_operations.php";
-$el = new db;
+session_start();
+include_once "script/DB_operations.php";
+$el = new dba;
 $el->connect();
 if($el->database === false) echo "ERROR conect to DB";
 $query = "SELECT id, name FROM prod_category ORDER BY name";
 $query = $el->query($query);
 $dbAnswer = $el->fetch($query);
+$el->close();
 ?>
 
 <header class="header">
   <div class="header-logo">
     <p class="logo-first-line">SUPER</p>
     <p class="logo-second-line">SHOP</p>
+    <a href="index.php"></a>
   </div>
   <div class="header-menu">
     <ul class="inline-list">
@@ -27,11 +30,20 @@ $dbAnswer = $el->fetch($query);
         <img src="img/header_user_icon.png" alt="user_icon">
       </div>
       <ul class="inline-list">
-        <?php if(isset($_SESSION['user_id']) && isset($_SESSION['user_name']))
-                echo "<li><a href='account.php?uid=".$_SESSION['user_id']."'>".$_SESSION['user_name']."</a></li>";
+        <?php if(isset($_SESSION['id'])) {
+                $el = new dba;
+                $el->connect();
+                if($el->database === false) echo "ERROR conect to DB";
+                $query = "SELECT * FROM users WHERE id = '".$_SESSION['id']."'";
+                $query = $el->query($query);
+                $user = $el->fetch($query);
+                $fio = explode(' ', $user[0]['fio']);
+                echo "<li><a href='account.php?uid=".$user[0]['id']."'>".$fio[1]."</a></li>";
+                echo "<li><a id='logout' href='index.php'>Выйти</a></li>";
+              }
               else
                 echo "<li><a href='login.php'>Войти</a></li>
-                      <li><a href='register.php'>Регистрация</a></li>";
+                      <li><a href='logout.php'>Регистрация</a></li>";
         ?>
       </ul>
     </div>

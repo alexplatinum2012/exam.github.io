@@ -40,74 +40,33 @@
   }
 
 
-
-
-
 * {
   margin: 0;
   padding: 0;
 }
-
 body {
   background-color: #e4e0d6;
 }
-
-/*MOTOBYKER*/
 div.img-wrapper {
-    z-index: 1;
+  z-index: 1;
 	width: 1400px;
 	margin: 0px auto;
 }
 div.img-wrapper img {
   width: 100%;
-  /*max-width: 1400px;*/
 }
-/*END MOTOBYKER*/
 .clearfix {
   clear: both;
   height: 1px;
 }
-/*WRAPPER*/
-@media (max-width: 1299px) {
-  div.wrapper {
-    position: absolute;
-    top: 27px;
-    width: 100%;
-    margin: 0px auto;/* 62px;*/
-    /*margin-bottom: 62px;*/
-    z-index: 10;
-  }
+div.wrapper {
+  position: absolute;
+  top: 27px;
+  left: calc((100% - 1170px) / 2);
+  margin: 27px auto;
+  width: 1170px;
+  z-index: 10;
 }
-@media (min-width: 1300px) {
-  div.wrapper {
-    position: absolute;
-    top: 27px;
-    margin: 0px auto;
-    /*width: calc(100% - 230px);
-    max-*/
-    width: 1170px;
-    z-index: 10;
-  }
-}
-/*               include header.css        */
-
-
-/*               include main_promo.css        */
-
-
-/*               include main_promo_line.css        */
-
-
-
-
-
-/*               include main_about.css
-
-
-/*END WRAPPER*/
-
-
-
 div.category-title {
   position: relative;
   height: 159px;

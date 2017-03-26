@@ -1,9 +1,15 @@
 <?php
-  include "DB_info.php";
+  include_once "DB_info.php";
 
 
-  class db {
+  class dba {
     var $database;
+
+    /*function db() {
+      $tmp = pg_connect("host=".host." dbname=".dbName." user=".user." password=".password);
+      if($tmp !== false)
+        $this->database = $tmp;
+    }*/
 
     function connect() {
       $tmp = pg_connect("host=".host." dbname=".dbName." user=".user." password=".password);

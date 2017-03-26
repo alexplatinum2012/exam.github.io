@@ -29,6 +29,15 @@ p.logo-second-line {
   font-size: 41px;
   line-height: 36px;
 }
+.header-logo a {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+}
 
 div.header-menu {
   position: relative;

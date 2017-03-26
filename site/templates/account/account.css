@@ -26,17 +26,20 @@
 }
 .user-data div.delivery-addr {
 	position: relative;
+  z-index: 10000;
 }
 .delivery-addr div.house {
 	position: relative;
 	float: left;
 	width: 237px;
+  z-index: 10000;
 }
 .delivery-addr div.apart {
 	position: relative;
 	float: left;
 	width: 237px;
 	margin-left: 46px;
+  z-index: 10000;
 }
 
 .account-body div.user-orders {
@@ -54,7 +57,7 @@
 }
 .orders-list td.left-cell {
 	/*width: 184px;*/
-	
+
 	font-family: Supermolot;
 	font-style: normal;
 	font-weight: lighter;
@@ -88,7 +91,7 @@
 	display: block;
 	position: relative;
 	float: right;
-	
+
 	font-family: Supermolot;
 	font-style: lighter;
 	font-weight: normal;
@@ -107,6 +110,7 @@ p.title-form {
   font-weight: bold;
   font-size: 24px;
   color: #000000;
+  z-index: 1000;
 }
 p.pre-input {
   display: block;
@@ -153,4 +157,7 @@ button {
   font-weight: lighter;
   font-size: 18px;
   color: #ffffff;
+}
+iframe {
+  display: none;
 }

@@ -1,7 +1,7 @@
 <?php
   if(isset($_GET['uid'])) {
-    include "script/DB_operations.php";
-    $el = new db;
+    include_once "script/DB_operations.php";
+    $el = new dba;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";
     $query = "SELECT * FROM users WHERE id = '".$_GET['uid']."'";

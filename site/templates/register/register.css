@@ -101,11 +101,14 @@ a.button {
   padding: 11px 19px;
   box-sizing: border-box;
   background-color: #ed1651;
-  
+
   font-family: Supermolot;
   font-style: normal;
   font-weight: lighter;
   font-size: 18px;
   text-decoration: none;
   color: #ffffff;
+}
+iframe {
+  display: none;
 }

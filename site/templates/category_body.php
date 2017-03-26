@@ -2,7 +2,13 @@
 <a href="test.php?cat=1" target="buffer-iframe">LINK</a>
 <iframe name="buffer-iframe" id="buffer-iframe">
   <?php
-
+    if(isset($_GET['cid'])) {
+      include_once "DB_operations.php";
+      $el = new dba;
+      $el->connect();
+      if($el->database === false) echo "ERROR conect to DB";
+      $sql = 
+    }
   ?>
 </iframe>
 <div class="wrapper">

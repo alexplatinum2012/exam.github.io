@@ -14,6 +14,7 @@ $selProdID = "SELECT id FROM products WHERE name like '".$strName."'";
 $selProdID = $el->query($selProdID);
 $selProdID = $el->fetch($selProdID);
 
+//                                             elephant
 foreach ($_POST as $key => $value) {
   if(strpos($key, 'photo') !== false) {
     $addPhoto = "INSERT INTO prod_photo (pr_id, name) VALUES ('".$selProdID[0]['id']."', '".$value."')";

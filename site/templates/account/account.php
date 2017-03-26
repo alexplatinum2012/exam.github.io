@@ -29,9 +29,9 @@
 	<div class="pass-change">
 	  <p class="title-form">Изменение пароля</p>
 	  <p class="pre-input">Введите новый пароль:</p>
-      <input form="user-data" type="password" name="password" value="" />
-      <p class="pre-input">Повторите новый пароль:</p>
-      <input form="user-data" type="password" name="re-password" value="" onchange="check(this)" disabled="true" />
+    <input form="user-data" type="password" name="password" value="" />
+    <p class="pre-input">Повторите новый пароль:</p>
+    <input form="user-data" type="password" name="re-password" value="" onchange="check(this)" disabled="true" />
 	</div>
 	<button form="user-data" type="submit" name="user-data-change">Сохранить</button>
   <iframe name="ifrEmail" id="ifrEmail"></iframe>

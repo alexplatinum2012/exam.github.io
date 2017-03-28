@@ -88,3 +88,6 @@ div.category-title {
   line-height: 60px;
   color: #999999;
 }
+iframe {
+  display: none;
+}

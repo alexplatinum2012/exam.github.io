@@ -15,10 +15,11 @@
         <div class="nav-pages">
           <p class="nav-text">Страницы</p>
           <ul class="nav-inline-list">
-            <li class="nav-inline-list-item"><a href="#">1</a></li>
+            <li class="nav-inline-list-item"><a href="<?php echo 'script/cat_out.php?cid='.$catId.'&page=1&l='.$limit; ?>" target="ifr-cat">1</a></li>
             <?php
-              for($i = 1; $i < ceil(count($products) / 17); $i++) {?>
-                <li class="nav-inline-list-item"><a href="<?php echo $_SERVER['SERVER_ADDR'].$_SERVER['PHP_SELF']."?page=".$i; ?>"><?php echo $i+1; ?></a></li>
+              for($i = 1; $i < ($countOfProducts / $limit); $i++) {
+                $p = $i + 1; ?>
+                <li class="nav-inline-list-item"><a href='<?php echo "script/cat_out.php?cid=$catId&page=$p&l=$limit"; ?>' target="ifr-cat"><?php echo $i+1; ?></a></li>
               <?php }
             ?>
           </ul>
@@ -30,14 +31,14 @@
   <?php
     if($cat) {?>
     <div class="category-logo">
-      <img src="<?php if(isset($value['category_logo_img'])) echo $value['category_logo_img']; ?>" alt="category_logo_img">
-      <p class="category-logo-title"><?php if(isset($value['category_title'])) echo $value['category_title']; ?></p>
-      <p class="category-logo-description"><?php if(isset($value['category_description'])) echo $value['category_description']; ?></p>
+      <img src="<?php if(isset($v['category_logo_img'])) echo $v['category_logo_img']; ?>" alt="category_logo_img">
+      <p class="category-logo-title"><?php if(isset($catName)) echo $catName; ?></p>
+      <p class="category-logo-description"><?php if(isset($catAbout)) echo $catAbout; ?></p>
     </div>
   <?php }
-    if(isset($products)) {
+    if(isset($result)) {
       $i = 0;
-      foreach ($products as $key => $value) {
+      foreach ($result as $key => $value) {
         if($i == 3) { ?>
           <div class="category-promo">
             <img src="" alt="category_promo">
@@ -47,8 +48,8 @@
         <div class="product-preview">
 		  <div class="corner">
           <?php
-          if(isset($value['corner']) && $value['corner'] != "") {
-            $status = $value['corner']; ?>
+          if(isset($value['prodcorner']) && $value['prodcorner'] != "") {
+            $status = $value['prodcorner']; ?>
               <img src="<?php
                             if($status == '4') echo 'img/sale_triangle.png';
                             else if ($status == '3') echo 'img/hot_triangle.png';
@@ -57,14 +58,14 @@
           <?php } ?>
           </div>
           <div class="product-img">
-            <img src="<?php if(isset($value['product_image'])) echo $value['product_image']; ?>" alt="Изображение товара">
+            <img src="img/prod_photo/<?php if(isset($value['prodphoto'])) echo $value['prodphoto']; ?>" alt="Изображение товара">
           </div>
           <div class="product-description">
-            <p class="product-name"><?php if(isset($value['name'])) echo $value['name']; ?></p>
+            <p class="product-name"><?php if(isset($value['prodname'])) echo $value['prodname']; ?></p>
 			<div class="price-holder">
   			  <div class="product-price">
 			    <p class="curr"><?php if(isset($curr)) echo $curr; ?></p>
-			    <p class="product-price"><?php if(isset($value['cost'])) echo $value['cost']; ?></p>
+			    <p class="product-price"><?php if(isset($value['prodcost'])) echo $value['prodcost']; ?></p>
 			  </div>
 
 			  <?php

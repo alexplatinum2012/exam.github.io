@@ -1,8 +1,4 @@
-iframe#buffer-iframe {
-  position: relative;
-  display: block;
-  z-index: 1000;
-}
+
 
 section.products {
   margin-bottom: 20px;

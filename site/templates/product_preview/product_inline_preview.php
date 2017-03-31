@@ -14,10 +14,10 @@
         <div class="nav-pages">
           <p class="nav-text">Страницы</p>
           <ul class="nav-inline-list">
-            <li class="nav-inline-list-item"><a href="#">1</a></li>
+            <li class="nav-inline-list-item"><a class="page">1</a></li>
             <?php
               for($i = 1; $i < ceil(count($db_answer) / 17); $i++) {?>
-                <li class="nav-inline-list-item"><a href="<?php echo $_SERVER['SERVER_ADDR'].$_SERVER['PHP_SELF']."?page=".$i; ?>"><?php echo $i+1; ?></a></li>
+                <li class="nav-inline-list-item"><a class="page" href="<?php echo $_SERVER['SERVER_ADDR'].$_SERVER['PHP_SELF']."?page=".$i; ?>"><?php echo $i+1; ?></a></li>
               <?php }
             ?>
           </ul>

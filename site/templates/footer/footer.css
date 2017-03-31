@@ -16,9 +16,11 @@ footer.footer {
 }
 .right-block a {
   display: block;
-  position: relative;
-  float: left;
-
+  position: absolute;
+  right: 0px;
+  width: 81px;
+  z-index: 10000;
+  
   font-family: Supermolot;
   font-style: normal;
   font-weight: lighter;

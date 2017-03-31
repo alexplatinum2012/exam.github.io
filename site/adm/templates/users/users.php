@@ -17,47 +17,25 @@
 		  <p></p>
 	    </th>
 	  </tr>
-	  <tr>
-	    <td class="name">
-		  <p>Иванов Иван</p>
-	    </td>
-		<td class="email">
-		  <a href="mailto:users@mail.ru">users@mail.ru</a>
-	    </td>
-		<td class="tel">
-		  <p>8 800 999 99 99</p>
-	    </td>
-	    <td class="view">
-		  <a href="#">просмотр</a>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td class="name">
-		  <p>Иванов Иван</p>
-	    </td>
-		<td class="email">
-		  <a href="mailto:users@mail.ru">users@mail.ru</a>
-	    </td>
-		<td class="tel">
-		  <p>8 800 999 99 99</p>
-	    </td>
-	    <td class="view">
-		  <a href="#">просмотр</a>
-	    </td>
-	  </tr>
-	  	  <tr>
-	    <td class="name">
-		  <p>Иванов Иван</p>
-	    </td>
-		<td class="email">
-		  <a href="mailto:users@mail.ru">users@mail.ru</a>
-	    </td>
-		<td class="tel">
-		  <p>8 800 999 99 99</p>
-	    </td>
-	    <td class="view">
-		  <a href="#">просмотр</a>
-	    </td>
-	  </tr>
+    <?php
+      if($result) {
+        foreach ($result as $key => $value) { ?>
+          <tr>
+      	    <td class="name">
+      		  <p><?php echo $value['fio']; ?></p>
+      	    </td>
+      		<td class="email">
+      		  <a href="mailto:users@mail.ru"><?php echo $value['email']; ?></a>
+      	    </td>
+      		<td class="tel">
+      		  <p><?php echo $value['phone']; ?></p>
+      	    </td>
+      	    <td class="view">
+      		  <a href="user_information.php?uid=<?php echo $value['id']; ?>">просмотр</a>
+      	    </td>
+      	  </tr>
+        <?php }
+      }
+    ?>
 	</table>
   </div>

@@ -13,6 +13,13 @@
     $query = "SELECT * FROM user_login WHERE u_id = '".$_GET['uid']."'";
     $query = $el->query($query);
     $login = $el->fetch($query);
+    if(!$login) {
+      header("refresh:0;url=index.php");
+      exit();
+    }
+  } else {
+    header("refresh:0;url=index.php");
+    exit();
   }
 
 ?>

@@ -30,7 +30,7 @@ $el->close();
         <img src="img/header_user_icon.png" alt="user_icon">
       </div>
       <ul class="inline-list">
-        <?php if(isset($_SESSION['id'])) {
+        <?php if(isset($_SESSION['id']) && $_SESSION['id'] != "") {
                 $el = new dba;
                 $el->connect();
                 if($el->database === false) echo "ERROR conect to DB";
@@ -39,11 +39,10 @@ $el->close();
                 $user = $el->fetch($query);
                 $fio = explode(' ', $user[0]['fio']);
                 echo "<li><a href='account.php?uid=".$user[0]['id']."'>".$fio[1]."</a></li>";
-                echo "<li><a id='logout' href='index.php'>Выйти</a></li>";
-              }
-              else
-                echo "<li><a href='login.php'>Войти</a></li>
-                      <li><a href='logout.php'>Регистрация</a></li>";
+                echo "<li><a id='logout' href='script/logout.php'>Выйти</a></li>";
+              }  else
+                  echo "<li><a href='login.php'>Войти</a></li>
+                        <li><a href='register.php'>Регистрация</a></li>";
         ?>
       </ul>
     </div>

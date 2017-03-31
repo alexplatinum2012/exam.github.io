@@ -6,21 +6,27 @@ if($_POST['password'] === $_POST['re-password']) {
   $el = new dba;
   $el->connect();
   if($el->database === false) echo "ERROR conect to DB";
-  // checking for duplicate e-mail
-  $dupEMAIL = "SELECT * FROM user_login WHERE email like '".$_POST['e-mail']."'";
+  $dupEMAIL = "SELECT *
+               FROM user_login
+               WHERE email like '".$_POST['e-mail']."'";
   $dupEMAIL = $el->query($dupEMAIL);
   $dupEMAIL = $el->fetch($dupEMAIL);
   if($dupEMAIL === false) {
-    $query = "INSERT INTO users (fio) VALUES ('".$_POST['fio']."')";
+    $query = "INSERT INTO users (fio)
+              VALUES ('".$_POST['fio']."')";
     $el->query($query);
-    $query = "SELECT id FROM users where fio like '".$_POST['fio']."'";
+    $query = "SELECT id
+              FROM users
+              WHERE fio like '".$_POST['fio']."'";
     $query = $el->query($query);
     $uid = $el->fetch($query);
-    $_POST['fio'] = $uid[0]['fio'];
+    //$_POST['fio'] = $uid[0]['fio'];
     $uid = $uid[0]['id'];
-    $query = "INSERT INTO user_login (u_id, email, password) VALUES ('".$uid."', '".$_POST['e-mail']."', '".$pass."')";
+    $query = "INSERT INTO user_login (u_id, email, password)
+              VALUES ('".$uid."', '".$_POST['e-mail']."', '".$pass."')";
     $el->query($query);
     $el->close();
+
     header("refresh: 0; url=../account.php?uid=".$uid);
   } else {
     $el->close();

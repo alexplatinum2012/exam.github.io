@@ -5,24 +5,24 @@
     <table><tr><th>ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ</th></tr></table>
 	<div class="l">
 	  <p class="pre-input">Контактное лицо (ФИО):</p>
-	  <input type="text" name="fio" value="123">
+	  <input type="text" name="fio" value="<?php echo $result[0]['fio']; ?>">
 	  <p class="pre-input">Контактный телефон:</p>
-	  <input type="text" name="tel" value="123">
+	  <input type="text" name="tel" value="<?php echo $result[0]['phone']; ?>">
 	  <p class="pre-input">E-mail:</p>
-	  <input type="email" name="e-mail" value="123">
+	  <input type="email" name="e-mail" value="<?php echo $result[0]['email']; ?>">
 	</div>
 	<div class="c">
 	  <p class="pre-input">Город:</p>
-	  <input type="text" name="city" value="123">
+	  <input type="text" name="city" value="<?php echo $result[0]['city']; ?>">
 	  <p class="pre-input">Улица:</p>
-	  <input type="text" name="street" value="123">
+	  <input type="text" name="street" value="<?php echo $result[0]['street']; ?>">
 	  <div class="c-house">
 	    <p class="pre-input">Дом:</p>
-	    <input type="text" name="house" value="123">
+	    <input type="text" name="house" value="<?php echo $result[0]['house']; ?>">
 	  </div>
 	  <div class="c-apart">
 	    <p class="pre-input">Квартира:</p>
-	    <input type="text" name="apart" value="123">
+	    <input type="text" name="apart" value="<?php echo $result[0]['apart']; ?>">
 	  </div>
 	</div>
 	<div class="clearfix"></div>
@@ -87,4 +87,4 @@
 	  </tr>
 	</table>
   </div>
-  <a class="del-user" href="#">Удалить пользователя</a>
+  <a class="del-user" href="script/delete.user.php?duid=<?php echo $_GET['uid']; ?>">Удалить пользователя</a>

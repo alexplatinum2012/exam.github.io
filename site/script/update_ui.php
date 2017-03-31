@@ -25,7 +25,8 @@ if($el->database === false) echo "ERROR conect to DB";
 $query = "UPDATE users
           SET fio = '".$fio."',
               phone = '".$phone."',
-              city = '".$city."'";
+              city = '".$city."'
+          WHERE id = '".$uid."'";
 
 $el->query($query);
 

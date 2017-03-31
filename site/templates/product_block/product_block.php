@@ -4,7 +4,9 @@
 </form>
 <div class="product-block">
   <div class="photo">
-    <iframe id="photo-view"></iframe>
+    <div class="photo-view">
+      <img src="img/prod_photo/<?php echo $product[0]['photo']; ?>" />
+    </div>
     <div class="photo-list">
 
         <div class="arrow-left">
@@ -12,16 +14,10 @@
         </div>
         <div class="carousel">
           <ul class="carousel-list">
-
-            <li class="carousel-list-item">1</li>
-            <li class="carousel-list-item">2</li>
-            <li class="carousel-list-item">3</li>
-            <li class="carousel-list-item">4</li>
-            <li class="carousel-list-item">5</li>
-            <li class="carousel-list-item">6</li>
             <?php
-
-            ?>
+              foreach ($product as $key => $value) { ?>
+                <li class="carousel-list-item"><img src="img/prod_photo/<?php echo $value['photo']; ?>" onclick="ptff(this)" /></li>
+              <?php } ?>
           </ul>
         </div>
         <div class="arrow-right">
@@ -32,20 +28,21 @@
 
   <div class="description">
     <div class="product-name">
-      <p>Название товара</p>
+      <p><?php echo $product[0]['name']; ?></p>
     </div>
-    <p class="product-description">Описание товара</p>
+    <p class="product-description"><?php echo $product[0]['about']; ?></p>
     <div class="select">
       <p>Выберите вариант:</p>
       <div class="select-holder">
         <select form="product" class="options" name="">
-          <option value="1">Размер 1</option>
-          <option value="2">Размер 2</option>
-          <option value="3">Размер 3</option>
-          <option value="4">Размер 4</option>
-          <option value="5">Размер 5</option>
-          <option value="6">Размер 6</option>
-          <option value="7">Размер 7</option>
+          <?php
+            $i = 1;
+            foreach ($types as $key => $value) {
+              if($value['count'] > 0) { ?>
+              <option value="<?php echo $i++; ?>"><?php echo $value['var']; ?></option>
+              <?php }
+            }
+          ?>
         </select>
         <div class="down-arrow">
           <img src="img/down_arrow.png" alt="down_arrow">
@@ -56,7 +53,7 @@
   <div class="price-delivery">
     <div class="product-price-area">
       <p class="old-price">9 990</p>
-      <p class="current-price"> 4 650</p>
+      <p class="current-price"><?php echo $product[0]['cost']; ?></p>
       <div class="product-status-block">
         <img src="img/in_stock.png" alt="in_stock">
         <p class="product-status">Есть в наличии</p>
@@ -102,3 +99,12 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+   var div = document.querySelector('div.photo-view');
+
+   function ptff(el) {
+     var src = el.getAttribute('src');
+     div.innerHTML = "<img src='" + src + "' />";
+   }
+
+</script>

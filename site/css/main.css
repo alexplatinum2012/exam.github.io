@@ -49,7 +49,7 @@ body {
 }
 div.img-wrapper {
   z-index: 1;
-	width: 1400px;
+	width: 1170px;
 	margin: 0px auto;
 }
 div.img-wrapper img {
@@ -59,13 +59,28 @@ div.img-wrapper img {
   clear: both;
   height: 1px;
 }
-div.wrapper {
-  position: absolute;
-  top: 27px;
-  left: calc((100% - 1170px) / 2);
-  margin: 27px auto;
-  width: 1170px;
-  z-index: 10;
+@media only screen and (max-width: 1170px) {
+  div.wrapper {
+    position: absolute;
+    top: 27px;
+    margin-top: 27px;
+    margin-bottom: 27px;
+    width: 100%;
+    z-index: 10;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  div.wrapper {
+    position: absolute;
+    top: 27px;
+    left: calc((100% - 1170px) / 2);
+    right: calc((100% - 1170px) / 2);
+    margin-top: 27px;
+    margin-bottom: 27px;
+    width: 1170px;
+    z-index: 10;
+  }
+
 }
 div.category-title {
   position: relative;

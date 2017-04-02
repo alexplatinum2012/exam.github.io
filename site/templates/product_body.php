@@ -7,6 +7,14 @@
     <p class="products-count"><a>Вернуться в каталог</a></p>
 </div>
 <?php
+  function getKoeff($countElemInRow, $countOfRows, $countOfElements, $widthOfBlock) {
+    if($countOfRows == 1) {
+      $part = (($countOfElements % ($countElemInRow * $countOfRows)) >= ($countElemInRow)) ? 1 : (1 / 4) * ($countOfElements % ($countElemInRow * $countOfRows));
+    } else {
+        $part = (($countOfElements % ($countElemInRow * $countOfRows)) >= ($countElemInRow * 2 - 1)) ? 1 : (1 / 4) * ceil($countOfElements % ($countElemInRow * $countOfRows) / 2);
+      }
+    return $widthOfBlock * (floor($countOfElements / ($countElemInRow * $countOfRows)) + $part);
+  }
   include_once "script/DB_operations.php";
   $el = new dba;
   $el->connect();
@@ -19,6 +27,7 @@
                   t1.id = '".$_GET['pid']."'";
   $query = $el->query($query);
   $product = $el->fetch($query);
+  $width = getKoeff(4, 1, count($product), 300);
 
   $query = "SELECT var, count
             FROM prod_types
@@ -30,14 +39,7 @@
 ?>
 <div class="frame">
 <?php
-  function getKoeff($countElemInRow, $countOfRows, $countOfElements, $widthOfBlock) {
-    if($countOfRows == 1) {
-      $part = (($countOfElements % ($countElemInRow * $countOfRows)) >= ($countElemInRow)) ? 1 : (1 / 4) * ($countOfElements % ($countElemInRow * $countOfRows));
-    } else {
-        $part = (($countOfElements % ($countElemInRow * $countOfRows)) >= ($countElemInRow * 2 - 1)) ? 1 : (1 / 4) * ceil($countOfElements % ($countElemInRow * $countOfRows) / 2);
-      }
-    return $widthOfBlock * (floor($countOfElements / ($countElemInRow * $countOfRows)) + $part);
-  }
+
   $headerTitle = "";
   $curr = "руб.";
   include_once "script/DB_operations.php";

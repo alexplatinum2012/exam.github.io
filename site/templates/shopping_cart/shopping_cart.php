@@ -83,7 +83,7 @@
             var total = document.querySelector('td.total-' + position + ' div');
             var cost = document.querySelector('td.price-' + position);
             var costName = cost.getAttribute('name');
-            cost = parseInt(costName);
+            cost = parseInt(costName)88888888888888888888888;
             switch(el.className) {
               case 'minus' :
                 if(ext > 1) {

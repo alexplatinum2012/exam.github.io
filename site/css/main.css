@@ -47,11 +47,7 @@
 body {
   background-color: #e4e0d6;
 }
-div.img-wrapper {
-  z-index: 1;
-	width: 1170px;
-	margin: 0px auto;
-}
+
 div.img-wrapper img {
   width: 100%;
 }
@@ -59,17 +55,27 @@ div.img-wrapper img {
   clear: both;
   height: 1px;
 }
-@media only screen and (max-width: 1170px) {
+@media only screen and (max-width: 1169px) {
+  div.img-wrapper {
+    z-index: 1;
+  	width: 1170px;
+  	margin: 0px auto;
+  }
   div.wrapper {
     position: absolute;
     top: 27px;
     margin-top: 27px;
     margin-bottom: 27px;
-    width: 100%;
+    /*width: 100%;*/
     z-index: 10;
   }
 }
 @media only screen and (min-width: 1170px) {
+  iv.img-wrapper {
+    z-index: 1;
+  	width: 1400px;
+  	margin: 0px auto;
+  }
   div.wrapper {
     position: absolute;
     top: 27px;

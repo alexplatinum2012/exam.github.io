@@ -1,5 +1,45 @@
 <?php
 session_start();
+function delCartByTime ($uid) {
+  include_once "script/DB_operations.php";
+  $el = new dba;
+  $el->connect();
+  if($el->database === false) echo "ERROR conect to DB";
+  $query = "DELETE
+            FROM cart
+            WHERE u_id = '".$uid."'";
+  $query = $el->query($query);
+}
+define('SESSION_LIFE_TIME', '1800');
+date_default_timezone_set('Europe/Moscow');
+
+if(isset($_SESSION['tmpLim'])) {
+  $now = date("dHis");
+  $targ = $_SESSION['tmpLim'];
+  if($now > $targ) {
+    delCartByTime($_SESSION['tmp']);
+    unset($_SESSION['tmpLim']);
+    unset($_SESSION['tmp']);
+    header("refresh:0;url=index.php");
+    exit();
+  } else {
+    $_SESSION['tmpLim'] = date('dHis', time() + SESSION_LIFE_TIME);
+
+  }
+}
+if(isset($_SESSION['idLim'])) {
+  $now = date("dHis");
+  $targ = $_SESSION['idLim'];
+  if($now > $targ) {
+    delCartByTime($_SESSION['id']);
+    unset($_SESSION['idLim']);
+    unset($_SESSION['id']);
+    header("refresh:0;url=index.php");
+    exit();
+  } else {
+    $_SESSION['idLim'] = date('dHis', time() + SESSION_LIFE_TIME);
+  }
+}
 include_once "script/DB_operations.php";
 $el = new dba;
 $el->connect();
@@ -46,15 +86,45 @@ $el->close();
         ?>
       </ul>
     </div>
-    <div class="right-cart">
+    <iframe id="cart-frame" name="cart-frame"></iframe>
+    <div id="right-cart" class="right-cart">
+      <?php
+        if(isset($_SESSION['id']) && $_SESSION['id'] != "" || isset($_SESSION['tmp']) && $_SESSION['tmp'] != "") {
+          ?>
+          <a class="cart-link" href="cart.php?uid=<?php if(isset($_SESSION['tmp'])) echo $_SESSION['tmp']; elseif(isset($_SESSION['id'])) echo $_SESSION['id']; ?>"></a>
+          <?php
+          if(!isset($_SESSION['id']) && isset($_SESSION['tmp']))  $uid = $_SESSION['tmp'];
+          if(isset($_SESSION['id'])) $uid = $_SESSION['id'];
+          include_once "script/DB_operations.php";
+          $el = new dba;
+          $el->connect();
+          if($el->database === false) echo "ERROR conect to DB";
+          $query = "SELECT SUM (t1.cost),
+                           COUNT (t2.id)
+                    FROM products as t1,
+                         cart as t2
+                    WHERE t2.pr_id = t1.id AND
+                          t2.u_id = '".$uid."'";
+          $query = $el->query($query);
+          $cartInfo = $el->fetch($query);
+          $summ = $cartInfo[0]['sum'];
+          $count = $cartInfo[0]['count'];
+          if($count < 1 || $count > 4)  $countText = $count." предметов";
+          elseif($count == 1)           $countText = $count.' предмет';
+          else                          $countText = $count.' предмета';
+          $el->close();
+        }
+      ?>
       <div class="cart-price">
-        <p class="sum-price">46 900</p><p class="sum-curr">руб.</p>
-        <p class="count-products">2 предмета</p>
+        <p class="sum-price"><?php if(isset($summ)) echo number_format($summ, 0, ',', ' '); else echo 0; ?></p><p class="sum-curr">руб.</p>
+        <p class="count-products"><?php if(isset($countText)) echo $countText; else echo '0 предметов'; ?></p>
       </div>
       <div class="cart-icon">
-        <img src="img/cart_icon.png" alt="cart_icon">
+        <img src="<?php if(isset($count) && $count > 0) echo 'img/cart_icon_active.png'; else echo 'img/cart_icon.png'; ?>" alt="cart_icon">
       </div>
+      <div class="clearfix"></div>
     </div>
+
 
   </div>
 </header>

@@ -130,15 +130,25 @@ div.user-icon {
 
 div.right-cart {
   width: 100%;
-  height: 57px;
+  min-height: 57px;
   background-color: #021563;
+}
+.right-cart a.cart-link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 61px;
+  width: 100%;
+  height: calc(100% - 61px);
+  z-index: 10000;
+  background: transparent;
 }
 div.cart-price {
   position: relative;
   float: left;
   box-sizing: border-box;
   padding-left: 18px;
-  padding-top: 16px;
+  padding-top: 10px;
   height: 100%;
   width: 131px;
   color: #ffffff;
@@ -146,6 +156,7 @@ div.cart-price {
 .cart-price p.sum-price {
   position: relative;
   float: left;
+
   font-family: Supermolot;
   font-weight: bold;
   font-size: 20px;
@@ -154,6 +165,8 @@ div.cart-price {
 .cart-price p.sum-curr {
   position: relative;
   float: left;
+  margin-top: 5px;
+
   font-family: Supermolot;
   font-weight: normal;
   font-size: 14px;

@@ -29,7 +29,7 @@
   $product = $el->fetch($query);
   $width = getKoeff(4, 1, count($product), 300);
 
-  $query = "SELECT var, count
+  $query = "SELECT id, var, count
             FROM prod_types
             WHERE pr_id = '".$_GET['pid']."'";
   $query = $el->query($query);

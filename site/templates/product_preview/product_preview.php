@@ -107,7 +107,7 @@
 			<div class="price-holder">
   			  <div class="product-price">
 			    <p class="curr"><?php if(isset($curr)) echo $curr; ?></p>
-			    <p class="product-price"><?php if(isset($value['prodcost'])) echo $value['prodcost']; ?></p>
+			    <p class="product-price"><?php if(isset($value['prodcost'])) echo number_format($value['prodcost'], 0, ',', ' '); ?></p>
 			  </div>
 
 			  <?php
@@ -115,7 +115,7 @@
 			  ?>
 			  <div class="product-old-price">
 			    <p class="curr"><?php if(isset($curr)) echo $curr; ?></p>
-			    <p class="product-old-price"><?php echo $value['product_old_price']; ?></p>
+			    <p class="product-old-price"><?php echo number_format($value['product_old_price'], 0, ',', ' '); ?></p>
 			  </div>
 			  <?php } ?>
 

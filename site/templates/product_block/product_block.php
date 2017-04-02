@@ -1,6 +1,5 @@
-<form name="product" id="product" action="index.html" method="post">
-  <input type="hidden" name="productID" value="<?php echo $productID; ?>">
-
+<form name="product" id="product" target="cart-frame" action="script/header_cart.php" method="post">
+  <input form="product" type="hidden" name="pid" value="<?php echo $product[0]['id']; ?>"
 </form>
 <div class="product-block">
   <div class="photo">
@@ -86,12 +85,11 @@
     <div class="select">
       <p>Выберите вариант:</p>
       <div class="select-holder">
-        <select form="product" class="options" name="">
+        <select form="product" class="options" name="varId">
           <?php
-            $i = 1;
             foreach ($types as $key => $value) {
               if($value['count'] > 0) { ?>
-              <option value="<?php echo $i++; ?>"><?php echo $value['var']; ?></option>
+              <option value="<?php echo $value['id']; ?>"><?php echo $value['var']; ?></option>
               <?php }
             }
           ?>
@@ -105,7 +103,7 @@
   <div class="price-delivery">
     <div class="product-price-area">
       <p class="old-price">9 990</p>
-      <p class="current-price"><?php echo $product[0]['cost']; ?></p>
+      <p class="current-price"><?php echo number_format($product[0]['cost'], 0, ',', ' '); ?></p>
       <div class="product-status-block">
         <img src="img/in_stock.png" alt="in_stock">
         <p class="product-status">Есть в наличии</p>
@@ -149,6 +147,14 @@
         </li>
       </ul>
     </div>
+    <script type="text/javascript">
+      var frame = document.getElementById('cart-frame');
+      var divCart = document.getElementById('right-cart');
+
+      frame.onload = function() {
+        divCart.innerHTML = this.contentDocument.body.innerHTML;
+      }
+    </script>
   </div>
 </div>
 <script type="text/javascript">

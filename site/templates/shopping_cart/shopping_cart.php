@@ -1,5 +1,6 @@
 
     <div class="cart-holder">
+      <iframe name="ifr-cart" id="ifr-cart"></iframe>
       <table>
         <tr>
           <th colspan="2">Товар</th>
@@ -8,42 +9,100 @@
           <th>Колличество</th>
           <th colspan="2">Итого</th>
         </tr>
-        <tr>
-          <td class="img-col"><div><img src="products/Двухколесные скейты/1_1.jpg" alt=""></div></td>
-          <td class="name-col">Название товара</td>
-          <td class="availability-col">Есть в наличии</td>
-          <td class="price-col"><div>4 560</div><p class="curr">руб.</p></td>
-          <td class="quantity-col"><div class="minus"><p>-</p></div><div class="count"><p>1</p></div><div class="plus"><p>+</p></div></td>
-          <td class="total-col"><div>4 650</div><p class="curr">руб.</p></td>
-          <td class="delete-col"><a href="#"><img src="img/delete.png" alt="delete"></a></td>
-        </tr>
-        <tr>
-          <td class="img-col"><div><img src="products/Двухколесные скейты/1_1.jpg" alt=""></div></td>
-          <td class="name-col">Название товара</td>
-          <td class="availability-col">Есть в наличии</td>
-          <td class="price-col"><div>4 560</div><p class="curr">руб.</p></td>
-          <td class="quantity-col"><div class="minus"></div><div class="count"></div><div class="plus"></div></td>
-          <td class="total-col"><div>4 650</div><p class="curr">руб.</p></td>
-          <td class="delete-col">7</td>
-        </tr>
-        <tr>
-          <td class="img-col"><div><img src="products/Двухколесные скейты/1_1.jpg" alt=""></div></td>
-          <td class="name-col">Название товара</td>
-          <td class="availability-col">Есть в наличии</td>
-          <td class="price-col"><div>4 560</div><p class="curr">руб.</p></td>
-          <td class="quantity-col"><div class="minus"></div><div class="count"></div><div class="plus"></div></td>
-          <td class="total-col"><div>4 650</div><p class="curr">руб.</p></td>
-          <td class="delete-col">7</td>
-        </tr>
-        <tr>
-          <td class="img-col"><div><img src="products/Двухколесные скейты/1_1.jpg" alt=""></div></td>
-          <td class="name-col">Название товара</td>
-          <td class="availability-col">Есть в наличии</td>
-          <td class="price-col"><div>4 560</div><p class="curr">руб.</p></td>
-          <td class="quantity-col"><div class="minus"></div><div class="count"></div><div class="plus"></div></td>
-          <td class="total-col"><div>4 650</div><p class="curr">руб.</p></td>
-          <td class="delete-col">7</td>
-        </tr>
+        <?php
+          $i = 1;
+          foreach ($resultCart as $key => $value) { ?>
+          <tr>
+            <td class="img-col">
+              <div><img src="img/prod_photo/<?php echo $value['prodphoto']; ?>" alt="">
+              </div>
+            </td>
+            <td class="name-col"><?php echo $value['prodname']; ?></td>
+            <td class="availability-col"><?php if($value['prodcount'] > 0) echo 'Есть в наличии'; else echo 'нет в наличии' ?></td>
+            <td class="price-col price-<?php echo $i ?>" name="<?php echo $value['prodcost']; ?>">
+              <div><?php echo number_format($value['prodcost'], 0, ',', ' '); ?></div>
+              <p class="curr">руб.</p>
+            </td>
+            <td class="quantity-col">
+              <div class="minus" onclick="operate(this, <?php echo $i; ?>)">
+                <p>-</p>
+              </div>
+              <div name="count-<?php echo $value['prodcount']; ?>" class="count count-<?php echo $i ?>">
+                <p>1</p>
+              </div>
+              <div class="plus" onclick="operate(this, <?php echo $i; ?>)">
+                <p>+</p>
+              </div>
+            </td>
+            <td class="total-col total-<?php echo $i ?>">
+              <div>4 650</div>
+              <p class="curr">руб.</p>
+            </td>
+            <td class="delete-col">
+              <a href="#"><img src="img/delete.png" alt="delete"></a>
+            </td>
+          </tr>
+        <?php
+          $i++;
+        }
+        ?>
+        <script type="text/javascript">
+          function number_format(number, decimals, dec_point, thousands_sep) {
+            number = (number + '')
+              .replace(/[^0-9+\-Ee.]/g, '');
+            var n = !isFinite(+number) ? 0 : +number,
+              prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+              sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+              dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+              s = '',
+              toFixedFix = function(n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + (Math.round(n * k) / k)
+                  .toFixed(prec);
+              };
+            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
+              .split('.');
+            if (s[0].length > 3) {
+              s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+            }
+            if ((s[1] || '')
+              .length < prec) {
+              s[1] = s[1] || '';
+              s[1] += new Array(prec - s[1].length + 1)
+                .join('0');
+            }
+            return s.join(dec);
+          }
+          function operate(el, position) {
+            var divCounter = document.querySelector('div.count-' + position);
+            var max = divCounter.getAttribute('name');
+            max = parseInt(max.substring(6));
+            var min = 1;
+            var ext = parseInt(divCounter.firstElementChild.innerHTML);
+            var total = document.querySelector('td.total-' + position + ' div');
+            var cost = document.querySelector('td.price-' + position);
+            var costName = cost.getAttribute('name');
+            cost = parseInt(costName);
+            switch(el.className) {
+              case 'minus' :
+                if(ext > 1) {
+                  divCounter.firstElementChild.innerHTML = --ext;
+                  var result = cost * parseInt(divCounter.firstElementChild.innerHTML);
+                  result = number_format(result, 0, ',', ' ');
+                  total.innerHTML = result;
+                }
+                break;
+              case 'plus' :
+                if(ext < max) {
+                  divCounter.firstElementChild.innerHTML = ++ext;
+                  var result = cost * parseInt(divCounter.firstElementChild.innerHTML);
+                  result = number_format(result, 0, ',', ' ');
+                  total.innerHTML = result;
+                }
+            }
+          }
+        </script>
       </table>
 
       <div class="checkout">

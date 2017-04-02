@@ -32,6 +32,7 @@ if(isset($_GET['del'])) {
       $path = $_SERVER['DOCUMENT_ROOT']."/exam/site/img/prod_photo/";
       unlink($path.$_POST['del']);
     }
+    date_default_timezone_set('Europe/Moscow');
     $number = $_POST['i'];
     $path = $_SERVER['DOCUMENT_ROOT']."/exam/site/img/prod_photo/";
     $pathIMG = "../img/prod_photo/";

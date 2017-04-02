@@ -125,7 +125,9 @@ div.product-block {
   display: block;
   position: relative;
   width: 100%;
+  max-height: 300px;
   margin-bottom: 31px;
+  overflow-y: scroll;
   font-family: Supermolot;
   font-style: normal;
   font-weight: lighter;

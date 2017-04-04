@@ -154,6 +154,10 @@ tr td.delete-col {
   overflow-y: hidden;
   padding-right: 29px;
 }
+.delete-col a {
+  display: block;
+  z-index: 10000;
+}
 
 
 .cart-holder div.checkout {

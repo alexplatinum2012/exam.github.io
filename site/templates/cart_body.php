@@ -24,6 +24,7 @@
     $quer = $el->query($quer);
     $cartResult = $el->fetch($quer);
     $resultCart = array();
+    $totalAmount = 0;
     if($cartResult) {
       foreach ($cartResult as $key => $value) {
         $quer = "SELECT t1.id AS prodId,
@@ -41,10 +42,13 @@
         $quer = $el->query($quer);
         $tmp = $el->fetch($quer);
         $resultCart[]=$tmp[0];
+        $totalAmount += $tmp[0]['prodcost'];
       }
       $el->close();
     }
   }
+
+
 
   ?>
   <div class="wrapper">

@@ -2,6 +2,7 @@
 session_start();
 date_default_timezone_set('Europe/Moscow');
 if(isset($_POST['email']) && isset($_POST['password'])) {
+
   $email = $_POST['email'];
   $password = $_POST['password'];
   include_once "DB_operations.php";
@@ -12,10 +13,12 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
   $query = $el->query($query);
   $query = $el->fetch($query);
   if($query === false) {
+      echo "tut"; exit();
     $el->close();
     header("refresh:0; url=../login.php?e=".$email);
     exit();
   } elseif(count($query) > 1) {
+      echo "tut"; exit();
     $el->close();
     header("refresh:0; url=../login?err=0");
     exit();
@@ -33,6 +36,10 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
       $_SESSION['idLim'] = date("dHis", time() + 1800);
       $el->close();
       header("refresh:0; url=../index.php");
+      exit();
+    } else {
+      $el->close();
+      header("refresh:0; url=../login.php?e=".$email."&p=0");
       exit();
     }
   }

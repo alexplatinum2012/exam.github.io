@@ -1,4 +1,5 @@
 <?php
+  @@session_start();
   if(isset($_GET['uid']) && isset($_SESSION['id']) && $_SESSION['id'] == $_GET['uid']) {
     include_once "script/DB_operations.php";
     $el = new dba;

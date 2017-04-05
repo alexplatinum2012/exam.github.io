@@ -147,14 +147,7 @@
         </li>
       </ul>
     </div>
-    <script type="text/javascript">
-      var frame = document.getElementById('cart-frame');
-      var divCart = document.getElementById('right-cart');
-
-      frame.onload = function() {
-        divCart.innerHTML = this.contentDocument.body.innerHTML;
-      }
-    </script>
+<!-- ksbdkjbsdjkfbsjfdbfsbgjdfbgbj -->
   </div>
 </div>
 <script type="text/javascript">

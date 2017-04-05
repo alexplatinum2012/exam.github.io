@@ -41,6 +41,8 @@
                   ORDER BY t1.name";
         $quer = $el->query($quer);
         $tmp = $el->fetch($quer);
+        $tmp[0]['prodvarid'] = $value['var_id'];
+        $tmp[0]['ccc'] = 1;
         $resultCart[]=$tmp[0];
         $totalAmount += $tmp[0]['prodcost'];
       }

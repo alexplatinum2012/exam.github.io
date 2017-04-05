@@ -1,7 +1,7 @@
 <?php
-session_start();
+@@session_start();
 function delCartByTime ($uid) {
-  include_once "script/DB_operations.php";
+  @@include_once "script/DB_operations.php";
   $el = new dba;
   $el->connect();
   if($el->database === false) echo "ERROR conect to DB";
@@ -127,4 +127,12 @@ $el->close();
 
 
   </div>
+  <script type="text/javascript">
+    var frame = document.getElementById('cart-frame');
+    var divCart = document.getElementById('right-cart');
+
+    frame.onload = function() {
+      divCart.innerHTML = this.contentDocument.body.innerHTML;
+    }
+  </script>
 </header>

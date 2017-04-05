@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  @@session_start();
   date_default_timezone_set('Europe/Moscow');
   if(!isset($_SESSION['id'])) {
     if(!isset($_SESSION['tmp'])) {
@@ -16,7 +16,7 @@
       $uid = $_SESSION['id'];
       $_SESSION['idLim'] = date("dHis", time() + 1800);
     }
-    include_once "DB_operations.php";
+    @@include_once "DB_operations.php";
     $el = new dba;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";

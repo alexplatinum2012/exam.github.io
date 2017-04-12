@@ -14,7 +14,14 @@
     $query = "SELECT * FROM user_login WHERE u_id = '".$_GET['uid']."'";
     $query = $el->query($query);
     $login = $el->fetch($query);
-    if(!$login) {
+
+    $query = "SELECT id, date, time, status, sum
+              FROM orders
+              WHERE u_id = '".$_SESSION['id']."'";
+    $query = $el->query($query);
+    $allOrders = $el->fetch($query);
+
+    if(!$login || $login[0] == "") {
       header("refresh:0;url=index.php");
       exit();
     }

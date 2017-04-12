@@ -20,62 +20,29 @@
 		  <p></p>
 	    </th>
 	  </tr>
-	  <tr>
-	    <td class="order-number">
-		  <p class="l">№4831</p>
-		  <p class="c">от</p>
-		  <p class="r">user@mail.ru</p>
-	    </td>
-		<td class="status">
-		  <a href="#">отгружен</a>
-	    </td>
-		<td class="summ">
-		  <p>48 597 руб.</p>
-	    </td>
-		<td class="order-time">
-		  <p>01.01.2015 в 16:12</p>
-	    </td>
-	    <td class="view">
-		  <a href="order_information.php">просмотр</a>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td class="order-number">
-		  <p class="l">№4831</p>
-		  <p class="c">от</p>
-		  <p class="r">user@mail.ru</p>
-	    </td>
-		<td class="status">
-		  <a href="#">отгружен</a>
-	    </td>
-		<td class="summ">
-		  <p>48 597 руб.</p>
-	    </td>
-		<td class="order-time">
-		  <p>01.01.2015 в 16:12</p>
-	    </td>
-	    <td class="view">
-		  <a href="#">просмотр</a>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td class="order-number">
-		  <p class="l">№4831</p>
-		  <p class="c">от</p>
-		  <p class="r">user@mail.ru</p>
-	    </td>
-		<td class="status">
-		  <a href="#">отгружен</a>
-	    </td>
-		<td class="summ">
-		  <p>48 597 руб.</p>
-	    </td>
-		<td class="order-time">
-		  <p>01.01.2015 в 16:12</p>
-	    </td>
-	    <td class="view">
-		  <a href="#">просмотр</a>
-	    </td>
-	  </tr>
+    <?php
+    foreach ($orders as $key => $value) { ?>
+      <tr>
+        <td class="order-number">
+          <p class="l">№<?php echo $value['id']; ?></p>
+          <p class="c">от</p>
+          <p class="r"><?php echo $value['email']; ?></p>
+        </td>
+        <td class="status">
+          <a href="#"><?php echo $value['status']; ?></a>
+        </td>
+        <td class="summ">
+          <p><?php echo number_format($value['sum'], 0, ',', ' '); ?>руб.</p>
+        </td>
+        <td class="order-time">
+          <p><?php echo date("d.m.Y в H:i",strtotime($value['date'].' '.$value['time'])); ?></p>
+        </td>
+        <td class="view">
+          <a href="order_information.php?oid=<?php echo $value['id']; ?>">просмотр</a>
+        </td>
+      </tr>
+
+    <?php } ?>
+
 	</table>
   </div>

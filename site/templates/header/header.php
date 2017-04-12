@@ -20,7 +20,7 @@ if(isset($_SESSION['tmpLim'])) {
     delCartByTime($_SESSION['tmp']);
     unset($_SESSION['tmpLim']);
     unset($_SESSION['tmp']);
-    header("refresh:0;url=index.php");
+    header("refresh:0;url=login.php");
     exit();
   } else {
     $_SESSION['tmpLim'] = date('dHis', time() + SESSION_LIFE_TIME);
@@ -34,7 +34,7 @@ if(isset($_SESSION['idLim'])) {
     delCartByTime($_SESSION['id']);
     unset($_SESSION['idLim']);
     unset($_SESSION['id']);
-    header("refresh:0;url=index.php");
+    header("refresh:0;url=login.php");
     exit();
   } else {
     $_SESSION['idLim'] = date('dHis', time() + SESSION_LIFE_TIME);

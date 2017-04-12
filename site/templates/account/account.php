@@ -44,48 +44,23 @@
     <p class="title-form">Ваши заказы</p>
 
 	<table class="orders-list">
-	  	  <tr>
-	    <td class="left-cell">
-		  <p class="num">№4655</p>
-		  <div class="sum">
-		    <p class="s">(45 468</p>
-			<p class="curr">руб.)</p>
-		  </div>
-		  <div class="clearfix"></div>
-		  <p class="data-time">01.03.2015 в 17:54</p>
-		</td>
-		<td class="right-cell">
-		  <p>Ожидает доставки</p>
-		</td>
-	  </tr>
-	  	  	  <tr>
-	    <td class="left-cell">
-		  <p class="num">№4655</p>
-		  <div class="sum">
-		    <p class="s">(45 468</p>
-			<p class="curr">руб.)</p>
-		  </div>
-		  <div class="clearfix"></div>
-		  <p class="data-time">01.03.2015 в 17:54</p>
-		</td>
-		<td class="right-cell">
-		  <p>Доставлен</p>
-		</td>
-	  </tr>
-	  	  <tr>
-	    <td class="left-cell">
-		  <p class="num">№4655</p>
-		  <div class="sum">
-		    <p class="s">(45 468</p>
-			<p class="curr">руб.)</p>
-		  </div>
-		  <div class="clearfix"></div>
-		  <p class="data-time">01.03.2015 в 17:54</p>
-		</td>
-		<td class="right-cell">
-		  <p>Доставлен</p>
-		</td>
-	  </tr>
+    <?php
+    foreach ($allOrders as $key => $value) { ?>
+      <tr>
+        <td class="left-cell">
+          <p class="num">№<?php echo $value['id']; ?></p>
+        <div class="sum">
+          <p class="s">(<?php echo number_format($value['sum'], 0, ',', ' '); ?></p>
+          <p class="curr">руб.)</p>
+        </div>
+        <div class="clearfix"></div>
+          <p class="data-time"><?php echo date("d.m.Y в H:i",strtotime($value['date'].' '.$value['time'])); ?></p>
+        </td>
+        <td class="right-cell">
+          <p><?php echo $value['status']; ?></p>
+        </td>
+      </tr>
+    <?php } ?>
 	</table>
 
   </div>

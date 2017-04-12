@@ -1,5 +1,8 @@
 <iframe name="framer" id="framer"></iframe>
-    <form name="to-order" id="to-order" action="checkout.php" method="post"></form>
+    <form name="to-order" id="to-order" action="checkout.php" method="post">
+      <input type="hidden" name="page-num" value="<?php if(isset($_SESSION['id'])) echo 2; else 1; ?>">
+      <input type="hidden" name="status" value="created">
+    </form>
     <div class="cart-holder">
       <iframe name="ifr-cart" id="ifr-cart"></iframe>
       <table>
@@ -47,7 +50,7 @@
                 </div>
                 <div name="count-<?php echo $value['prodcount']; ?>" class="count count-<?php echo $i ?>">
                   <p><?php echo $value['ccc']; ?></p>
-                  <input form="to-order" type="hidden" name="<?php echo 'created|'.$session.'|'.$value['prodid'].'|'.$value['prodvarid']; ?>" value="<?php echo $value['ccc']; ?>">
+                  <input form="to-order" type="hidden" name="<?php echo 'arr|'.$value['prodid'].'|'.$value['prodvarid']; ?>" value="<?php echo $value['ccc']; ?>">
                 </div>
                 <div class="plus" onclick="operate(this, <?php echo $i; ?>)">
                   <p>+</p>
@@ -82,6 +85,7 @@
           <div class="inform-pay">
             <p class="txt">Итого</p>
             <p class="summ"><?php echo number_format($totalAmount, 0, ',', ' '); ?></p>
+            <input form="to-order" type="hidden" name="sum" value="<?php echo $totalAmount; ?>">
             <p class="curr">руб.</p>
           </div>
           <div class="button-pay">
@@ -150,6 +154,7 @@
                 result = number_format(result, 0, ',', ' ');
                 total.innerHTML = result;
                 totalAmountPrice -= cost;
+                totalAmount.nextElementSibling.value = totalAmountPrice;
                 totalAmount.innerHTML = number_format(totalAmountPrice, 0, ',', ' ');
               }
               break;
@@ -161,6 +166,7 @@
                 result = number_format(result, 0, ',', ' ');
                 total.innerHTML = result;
                 totalAmountPrice += cost;
+                totalAmount.nextElementSibling.value = totalAmountPrice;
                 totalAmount.innerHTML = number_format(totalAmountPrice, 0, ',', ' ');
               }
           }

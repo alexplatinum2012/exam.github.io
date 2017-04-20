@@ -71,7 +71,8 @@ div.img-wrapper img {
   }
 }
 @media only screen and (min-width: 1170px) {
-  iv.img-wrapper {
+
+  div.img-wrapper {
     z-index: 1;
   	width: 1400px;
   	margin: 0px auto;

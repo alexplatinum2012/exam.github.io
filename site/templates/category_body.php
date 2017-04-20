@@ -1,5 +1,23 @@
 <?php
   if(isset($_GET['cid']) && $_GET['cid'] != "") {
+    function confirm_count($arr) {
+      $el = new dba;
+      $el->connect();
+      if($el->database === false) echo "ERROR conect to DB";
+      $mas = array();
+      for ($i=0; $i < count($arr); $i++) {
+        $query = "SELECT SUM(count)
+                  FROM prod_types
+                  WHERE pr_id = '".$arr[$i]['prodid']."'";
+        $query = $el->query($query);
+        $query = $el->fetch($query);
+        if($query[0]['sum'] == 0) $mas[] = $i;
+      }
+      foreach ($mas as $key => $value) {
+        unset($arr[$value]);
+      }
+      return $arr;
+    }
     $catId = $_GET['cid'];
     include_once "script/DB_operations.php";
     $el = new dba;
@@ -11,31 +29,34 @@
     $catName = $categoryInfo[0]['name'];
     $catAbout = $categoryInfo[0]['about'];
 
-    $query = "SELECT id
+    $query = "SELECT id as prodid
               FROM products
               WHERE cat_id = '".$catId."'";
     $query = $el->query($query);
     $products = $el->fetch($query);
+    $products = confirm_count($products);
     $countOfProducts = count($products);
     $limit = 17;
     $offset = 0;
     $page = 1;
 
-    $query = "select t1.id as prodId,
-                     t1.name as prodName,
-                     t1.about as prodAbout,
-                     t1.cost as prodCost,
-                     t1. corner as prodCorner,
-                     t2.name as prodPhoto
-              from products as t1,
-                   prod_photo as t2
-              where t1.cat_id = '".$catId."' and
-                    t2.id in (select distinct pr_id from prod_photo where pr_id = t1.id)
-              order by t1.id
-              limit '".$limit."'
-              offset '".$offset."'";
+    $query = "SELECT t1.id AS prodId,
+                     t1.name AS prodName,
+                     t1.about AS prodAbout,
+                     t1.cost AS prodCost,
+                     t1. corner AS prodCorner,
+                     t2.name AS prodPhoto
+              FROM products AS t1,
+                   prod_photo AS t2
+              WHERE t1.cat_id = '".$catId."' AND
+                    t2.id in (SELECT DISTINCT pr_id FROM prod_photo WHERE pr_id = t1.id) AND
+                    (SELECT SUM(count) FROM prod_types WHERE pr_id = t1.id) > 0
+              ORDER BY t1.id
+              LIMIT '".$limit."'
+              OFFSET '".$offset."'";
       $query = $el->query($query);
       $result = $el->fetch($query);
+      //$result = confirm_count($result);
       $el->close();
 
   }

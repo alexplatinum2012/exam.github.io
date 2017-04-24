@@ -15,24 +15,7 @@
       }
     return $widthOfBlock * (floor($countOfElements / ($countElemInRow * $countOfRows)) + $part);
   }
-  function confirm_count($arr) {
-    $el = new dba;
-    $el->connect();
-    if($el->database === false) echo "ERROR conect to DB";
-    $mas = array();
-    for ($i=0; $i < count($arr); $i++) {
-      $query = "SELECT SUM(count)
-                FROM prod_types
-                WHERE pr_id = '".$arr[$i]['prodid']."'";
-      $query = $el->query($query);
-      $query = $el->fetch($query);
-      if($query[0]['sum'] == 0) $mas[] = $i;
-    }
-    foreach ($mas as $key => $value) {
-      unset($arr[$value]);
-    }
-    return $arr;
-  }
+
   include_once "script/DB_operations.php";
   $el = new dba;
   $el->connect();
@@ -78,11 +61,14 @@
                   t1.id <> '".$_GET['pid']."' AND
                   t2.id IN (SELECT DISTINCT pr_id
                             FROM prod_photo
-                            WHERE pr_id = t1.id)
+                            WHERE pr_id = t1.id) AND
+                  (SELECT SUM(count)
+                   FROM prod_types
+                   WHERE pr_id = t1.id) > 0
             ORDER BY t1.id";
   $query = $el->query($query);
   $result = $el->fetch($query);
-  $result = confirm_count($result);
+  //$result = confirm_count($result);
   $el->close();
   $width = getKoeff(4, 1, count($result), 1170);
   include "templates/product_preview/product_preview.php";

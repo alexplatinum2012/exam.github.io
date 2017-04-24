@@ -118,7 +118,7 @@
     </div>
     <div class="info">
       <ul class="info-options-list">
-        <li class="info-options-list-item-delivery">
+        <li class="info-options-list-item">
           <div class="img-holder">
             <img src="img/delivery.png" alt="">
           </div>
@@ -127,7 +127,7 @@
             <p>по всей России</p>
           </div>
         </li>
-        <li class="info-options-list-item-hotline">
+        <li class="info-options-list-item">
           <div class="img-holder">
             <img src="img/hot_line.png" alt="">
           </div>
@@ -136,7 +136,7 @@
             <p><a href="tel: 880000000">880000000</a></p>
           </div>
         </li>
-        <li class="info-options-list-item-gift">
+        <li class="info-options-list-item">
           <div class="img-holder">
             <img src="img/gift.png" alt="">
           </div>

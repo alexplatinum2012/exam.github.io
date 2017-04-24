@@ -28,15 +28,17 @@
     if($cartResult) {
       foreach ($cartResult as $key => $value) {
         $quer = "SELECT t1.id AS prodId,
-                         t1.name AS prodName,
-                         t1.cost AS prodCost,
-                         t2.name AS prodPhoto,
-                         t3.count AS prodCount
+                        t1.name AS prodName,
+                        t1.cost AS prodCost,
+                        t2.name AS prodPhoto,
+                        t3.count AS prodCount
                   FROM products AS t1,
                        prod_photo AS t2,
                        prod_types AS t3
-                  WHERE t1.id = '".$value['pr_id']."' and
-                        t2.id in (select distinct pr_id from prod_photo where pr_id = t1.id) AND
+                  WHERE t1.id = '".$value['pr_id']."' AND
+                        t2.id in (SELECT DISTINCT pr_id
+                                  FROM prod_photo
+                                  WHERE pr_id = t1.id) AND
                         t3.id = '".$value['var_id']."'
                   ORDER BY t1.name";
         $quer = $el->query($quer);

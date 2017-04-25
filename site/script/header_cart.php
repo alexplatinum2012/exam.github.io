@@ -13,18 +13,9 @@
     } elseif(!isset($_SESSION['id']) && isset($_SESSION['tmp'])) {
       $uid = $_SESSION['tmp'];
     }
-    echo "TUT ENTER";
 
-    echo "<br />START<br />";
-
-    echo "<p style='color:white'>COOKIE = ".isset($_COOKIE['cart'])."<br /> SESSION = ".isset($_SESSION['cart'])."</p>";
-
-
-
-
-    if(isset($_COOKIE['cart']) && isset($_SESSION['cart'])) {
-      echo "TUT1";
-      $cartCookie = unserialize($_COOKIE['cart']);
+    if(isset($_COOKIE['cart']) && isset($_SESSION['cart']) || isset($_SESSION['cart'])) {
+      $cartCookie = unserialize($_SESSION['cart']);
       if($cartCookie['id'] != $uid) {
         $cartCookie['id'] = $uid;
         $cartCookie['info'] = array(array(
@@ -35,7 +26,6 @@
                                     );
       } elseif ($cartCookie['id'] == $uid) {
           $flag = false;
-          //echo $cartCookie['info'];
           for($i = 0; $i < count($cartCookie['info']); $i++) {
             if($cartCookie['info'][$i]['prid'] == $_POST['pid'] && $cartCookie['info'][$i]['varid'] == $_POST['varId']) {
               $cartCookie['info'][$i]['count']++;
@@ -52,9 +42,7 @@
       }
       setcookie("cart", serialize($cartCookie));
       $_SESSION['cart'] = serialize($cartCookie);
-    }
-    if(!isset($_COOKIE['cart']) && !isset($_SESSION['cart'])) {
-      echo "TUT2";
+    } elseif(!isset($_COOKIE['cart']) && !isset($_SESSION['cart'])) {
         $cartCookie = array();
         $cartCookie['id'] = $uid;
         $cartCookie['info'] = array(array(
@@ -66,41 +54,26 @@
         setcookie("cart", serialize($cartCookie));
         $_SESSION['cart'] = serialize($cartCookie);
       }
-      if(!isset($_COOKIE['cart']) && isset($_SESSION['cart'])) {
-        echo "TUT3";
-        $cartCookie = array();
-        $cartCookie['id'] = $uid;
-        $cartCookie['info'] = array(array(
-                                          'prid' => $_POST['pid'],
-                                          'varid' => $_POST['varId'],
-                                          'count' => 1
-                                          )
-                                    );
-        $_SESSION['cart'] = serialize($cartCookie);
-      }
+
     @@include_once "DB_operations.php";
     $el = new dba;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";
-    // $cart = (isset($_COOKIE['cart'])) ?
-    //                                     unserialize($_COOKIE['cart']) :
-    //                                     (isset($_SESSION['cart'])) ?
-    //                                                                 unserialize($_SESSION['cart']) :
-    //                                                                 0;
-    if(isset($_COOKIE['cart']))  $cart = unserialize($_COOKIE['cart']);
-    elseif(isset($_SESSION['cart'])) $cart = unserialize($_SESSION['cart']);
+    if(isset($_SESSION['cart']))  $cart = unserialize($_SESSION['cart']);
+    elseif(!isset($_SESSION['cart']) && isset($_COOKIE['cart'])) $cart = unserialize($_COOKIE['cart']);
     else  $cart = 0;
-    //echo "234324324234342342423 - ".$cart; exit();
     $summ = 0;
     $count = 0;
-    foreach ($cart['info'] as $key => $value) {
-      $query = "SELECT cost
-                FROM products
-                WHERE id = '".$value['prid']."'";
-      $query = $el->query($query);
-      $query = $el->fetch($query);
-      $summ += ($query[0]['cost'] * $value['count']);
-      $count += $value['count'];
+    if($cart != 0) {
+      foreach ($cart['info'] as $key => $value) {
+        $query = "SELECT cost
+                  FROM products
+                  WHERE id = '".$value['prid']."'";
+        $query = $el->query($query);
+        $query = $el->fetch($query);
+        $summ += ($query[0]['cost'] * $value['count']);
+        $count += $value['count'];
+      }
     }
     $el->close();
     if($count < 1 || $count > 4)  $countText = $count." предметов";

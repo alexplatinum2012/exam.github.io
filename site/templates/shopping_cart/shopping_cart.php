@@ -1,6 +1,6 @@
 <iframe name="framer" id="framer"></iframe>
     <form name="to-order" id="to-order" action="checkout.php" method="post">
-      <input type="hidden" name="page-num" value="<?php if(isset($_SESSION['id'])) echo 2; else 1; ?>">
+      <input type="hidden" name="page-num" value="<?php if(isset($_SESSION['id'])) echo 2; else echo 1; ?>">
       <input type="hidden" name="status" value="created">
     </form>
     <div class="cart-holder">

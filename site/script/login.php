@@ -13,12 +13,12 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
   $query = $el->query($query);
   $query = $el->fetch($query);
   if($query === false) {
-      echo "tut"; exit();
+      //echo "tut"; exit();
     $el->close();
     header("refresh:0; url=../login.php?e=".$email);
     exit();
   } elseif(count($query) > 1) {
-      echo "tut"; exit();
+      //echo "tut"; exit();
     $el->close();
     header("refresh:0; url=../login?err=0");
     exit();
@@ -26,14 +26,17 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     if(password_verify($password, $query[0]['password'])) {
       $_SESSION['id'] = $query[0]['u_id'];
       if(isset($_SESSION['tmp'])) {
-        $query = "UPDATE cart
-                  SET u_id = '".$_SESSION['id']."'
-                  WHERE u_id = '".$_SESSION['tmp']."'";
-        $query = $el->query($query);
+        // $query = "UPDATE cart
+        //           SET u_id = '".$_SESSION['id']."'
+        //           WHERE u_id = '".$_SESSION['tmp']."'";
+        // $query = $el->query($query);
         unset($_SESSION['tmp']);
-        unset($_SESSION['tmpLim']);
+        $tmp = unserialize($_SESSION['cart']);
+        $tmp['id'] = $_SESSION['id'];
+        $_SESSION['cart'] = serialize($tmp);
+        setcookie('cart', serialize($tmp));
       }
-      $_SESSION['idLim'] = date("dHis", time() + 1800);
+      //$_SESSION['idLim'] = date("dHis", time() + 1800);
       $el->close();
       header("refresh:0; url=../index.php");
       exit();

@@ -1,16 +1,16 @@
 <?php
 @@session_start();
-function delCartByTime ($uid) {
-  @@include_once "script/DB_operations.php";
-  $el = new dba;
-  $el->connect();
-  if($el->database === false) echo "ERROR conect to DB";
-  $query = "DELETE
-            FROM cart
-            WHERE u_id = '".$uid."'";
-  $query = $el->query($query);
-}
-define('SESSION_LIFE_TIME', '1800');
+// function delCartByTime ($uid) {
+//   @@include_once "script/DB_operations.php";
+//   $el = new dba;
+//   $el->connect();
+//   if($el->database === false) echo "ERROR conect to DB";
+//   $query = "DELETE
+//             FROM cart
+//             WHERE u_id = '".$uid."'";
+//   $query = $el->query($query);
+// }
+//define('SESSION_LIFE_TIME', '1800');
 date_default_timezone_set('Europe/Moscow');
 
 /*if(isset($_SESSION['tmpLim'])) {
@@ -88,17 +88,17 @@ $el->close();
     </div>
     <iframe id="cart-frame" name="cart-frame"></iframe>
     <div id="right-cart" class="right-cart">
-      <?php //include_once "script/header_cart.php"; ?>
       <?php
         if(isset($_SESSION['id']) && $_SESSION['id'] != "" || isset($_SESSION['tmp']) && $_SESSION['tmp'] != "") {
           ?>
-          <a class="cart-link" href="cart.php?uid=<?php if(isset($_SESSION['tmp'])) echo $_SESSION['tmp']; elseif(isset($_SESSION['id'])) echo $_SESSION['id']; ?>"></a>
+          <a class="cart-link" href="cart.php?uid=<?php if(isset($_SESSION['tmp']))
+                                                          echo $_SESSION['tmp'];
+                                                        elseif(isset($_SESSION['id']))
+                                                          echo $_SESSION['id']; ?>"></a>
         <?php
            if(!isset($_SESSION['id']) && isset($_SESSION['tmp']))  $uid = $_SESSION['tmp'];
            if(isset($_SESSION['id'])) $uid = $_SESSION['id'];
-           //echo "HREN"; exit();
            if(!isset($_COOKIE['cart']) && isset($_SESSION['cart'])) {
-             echo "HREN1";
              $cart = unserialize($_SESSION['cart']);
              if($cart['id'] == $uid) {
                @@include_once "DB_operations.php";
@@ -122,9 +122,8 @@ $el->close();
                else                          $countText = $count.' предмета';
              }
            }
-           elseif(isset($_COOKIE['cart'])) {
-             echo "HREN2";
-             $cart = unserialize($_COOKIE['cart']);
+           elseif(isset($_COOKIE['cart']) && isset($_SESSION['cart'])) {
+             $cart = unserialize($_SESSION['cart']);
              if($cart['id'] == $uid) {
                @@include_once "DB_operations.php";
                $el = new dba;

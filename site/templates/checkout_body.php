@@ -1,4 +1,19 @@
 <?php session_start(); ?>
+
+<?php
+function prnt($q) {
+  if(is_array($q)) {
+    echo "<br />----------------------------<br />";
+    foreach ($q as $key => $value) {
+      echo "$key";
+      prnt($value);
+      echo "<br />";
+    }
+  } else {
+    echo " = ".$q."<br />";
+  }
+}
+?>
 <div class="wrapper">
   <?php include "templates/header/header.php" ?>
 
@@ -6,51 +21,36 @@
       <p class="category-title-text">ОФОРМЛЕНИЕ ЗАКАЗА</p>
   </div>
   <?php
-  if(isset($_POST['page-num']) && $_POST['page-num'] != "") {
+  //echo $_SERVER['HTTP_REFERER'];
+  if(stripos($_SERVER['HTTP_REFERER'], 'login') !== false) {
+    $xxx = 1;
+    //echo $_SERVER['HTTP_REFERER'];
+    //exit();
+  }
+  else if(isset($_POST['page-num']) && $_POST['page-num'] != "") {
     $xxx = $_POST['page-num'];
     if($xxx == 1) {
-      function prnt($q) {
-        if(is_array($q)) {
-          echo "<br />----------------------------<br />";
-          foreach ($q as $key => $value) {
-            echo "$key";
-            prnt($value);
-            echo "<br />";
-          }
-        } else {
-          echo " = ".$q."<br />";
-        }
-      }
 
-
-
-
-      $u_ss = unserialize($_SESSION['cart']);
-      $u_sess = $u_ss['info'];
-      foreach ($_POST as $key => $value) {
-        if(stripos($key, 'arr') !== false) {
-          $arr = explode('|', $key);
-          $prId = $arr[1];
-          $varId = $arr[2];
-          $varCount = $value;
-          for ($i = 0; $i < count($u_sess); $i++) {
-            if($u_sess[$i]['prid'] == $prId && $u_sess[$i]['varid'] == $varId) {
-              $u_sess[$i]['count'] = $varCount;
+      //if(stripos('login', $_SERVER['HTTP_REFERER']) === false) {
+        $u_ss = unserialize($_SESSION['cart']);
+        $u_sess = $u_ss['info'];
+        foreach ($_POST as $key => $value) {
+          if(stripos($key, 'arr') !== false) {
+            $arr = explode('|', $key);
+            $prId = $arr[1];
+            $varId = $arr[2];
+            $varCount = $value;
+            for ($i = 0; $i < count($u_sess); $i++) {
+              if($u_sess[$i]['prid'] == $prId && $u_sess[$i]['varid'] == $varId) {
+                $u_sess[$i]['count'] = $varCount;
+              }
             }
           }
         }
-      }
-      $u_ss['info'] = $u_sess;
-      $_SESSION['cart'] = serialize($u_ss);
-      setcookie('cart', $_SESSION['cart']);
-
-      // prnt(unserialize($_SESSION['cart']));
-      // exit();
-
-
-
-
-
+        $u_ss['info'] = $u_sess;
+        $_SESSION['cart'] = serialize($u_ss);
+        setcookie('cart', $_SESSION['cart']);
+    //  }
     }
     if($xxx > 1) {
       include_once "script/DB_operations.php";
@@ -58,20 +58,48 @@
       $el->connect();
       if($el->database === false) echo "ERROR conect to DB";
       if($xxx == 2) {
-        $query = "SELECT t1.city, t2.street, t2.house, t2.apart
-        FROM users as t1, user_addr as t2
-        WHERE t2.u_id = t1.id AND
-        t1.id = '".$_SESSION['id']."'";
-        $query = $el->query($query);
-        $query = $el->fetch($query);
-        $city = $query[0]['city'];
-        $street = $query[0]['street'];
-        $house = $query[0]['house'];
-        $apart = $query[0]['apart'];
+        if(isset($_SESSION['id'])) {
+          $query = "SELECT t1.city, t2.street, t2.house, t2.apart
+          FROM users as t1, user_addr as t2
+          WHERE t2.u_id = t1.id AND
+          t1.id = '".$_SESSION['id']."'";
+          $query = $el->query($query);
+          $query = $el->fetch($query);
+          $city = $query[0]['city'];
+          $street = $query[0]['street'];
+          $house = $query[0]['house'];
+          $apart = $query[0]['apart'];
+        } else {
+          $city = '';
+          $street = '';
+          $house = '';
+          $apart = '';
+        }
+
+        $u_ss = unserialize($_SESSION['cart']);
+        $u_sess = $u_ss['info'];
+        foreach ($_POST as $key => $value) {
+          if(stripos($key, 'arr') !== false) {
+            $arr = explode('|', $key);
+            $prId = $arr[1];
+            $varId = $arr[2];
+            $varCount = $value;
+            for ($i = 0; $i < count($u_sess); $i++) {
+              if($u_sess[$i]['prid'] == $prId && $u_sess[$i]['varid'] == $varId) {
+                $u_sess[$i]['count'] = $varCount;
+              }
+            }
+          }
+        }
+        $u_ss['info'] = $u_sess;
+        $_SESSION['cart'] = serialize($u_ss);
+        setcookie('cart', $_SESSION['cart']);
       } elseif($xxx == 3) {
         $tmpUniqueId = date("is").rand();
+        $uid = unserialize($_SESSION['cart']);
+        $uid = $uid['id'];
         $query = "INSERT INTO orders (u_id, status, city, street, house, apart, delivery_type, comment, tmp_unique_id, sum)
-        VALUES ('".$_SESSION['id']."',
+        VALUES ('".$uid."',
         '".$_POST['status']."',
         '".$_POST['city']."',
         '".$_POST['street']."',
@@ -103,7 +131,7 @@
             $query = $el->query($query);
           }
         }
-
+// Вопрос в том что запрос ниже запрашивает инфу из таблиц юзера, а при временном юзере записи в этих таблицая отсутствуют!!!
         $query = "SELECT t1.id AS orderid,
         t1.city AS city,
         t1.street AS street,
@@ -130,6 +158,7 @@
         t1.id = '".$IDorder."'";
         $query = $el->query($query);
         $infoOrder = $el->fetch($query);
+        prnt($infoOrder);
       } elseif($xxx == 4) {
         $idOrder = $_POST['order-id'];
         foreach ($_POST as $key => $value) {

@@ -1,6 +1,3 @@
-
-
-
 <div class="wrapper">
   <?php include "templates/header/header.php" ?>
 
@@ -18,7 +15,8 @@
             inpEmail.style.backgroundColor = "rgba(255, 0, 0, 0.47)";
             setTimeout(function(){inpEmail.style.backgroundColor = "#e9e9e9";}, 3000);
             var div = document.createElement('div');
-            div.setAttribute('style','position: fixed; top: 50%; left: 40%; z-index: 1111; width: 217px; background-color: #ffffff; text-align: center; font-size: 24px; box-shadow: 0px 0px 15px red; border-radius: 10px;');
+            var boundEmail = inpEmail.getBoundingClientRect();
+            div.setAttribute('style','position: fixed; top: '+boundEmail.top+'px; left: '+(boundEmail.right + 10)+'px; z-index: 1111; width: 217px; background-color: #ffffff; text-align: center; font-size: 24px; box-shadow: 0px 0px 15px red; border-radius: 10px;');
             div.innerHTML = 'Пользователь с таким e-mail не зарегистрирован!';
             div = document.body.appendChild(div);
             setTimeout(function(){document.body.removeChild(div);}, 3000);
@@ -31,7 +29,7 @@
               setTimeout(function(){inpEmail.style.backgroundColor = "#e9e9e9";}, 3000);
               var div = document.createElement('div');
               div.setAttribute('style','position: fixed; top: 50%; left: 40%; z-index: 1111; width: 217px; background-color: #ffffff; text-align: center; font-size: 24px; box-shadow: 0px 0px 15px red; border-radius: 10px;');
-              div.innerHTML = 'Извените, произошла непредвиденная ошибка!<br />Попробуйте еще раз.';
+              div.innerHTML = 'Извините, произошла непредвиденная ошибка!<br />Попробуйте еще раз.';
               div = document.body.appendChild(div);
               setTimeout(function(){document.body.removeChild(div);}, 3000);
             </script>
@@ -45,7 +43,8 @@
           inpEmail.style.backgroundColor = "rgba(255, 0, 0, 0.47)";
           setTimeout(function(){inpEmail.style.backgroundColor = "#e9e9e9";}, 3000);
           var div = document.createElement('div');
-          div.setAttribute('style','position: fixed; top: 55%; left: 45%; z-index: 1111; width: 217px; background-color: #ffffff; text-align: center; font-size: 24px; box-shadow: 0px 0px 15px red; border-radius: 10px;');
+          var boundEmail = inpEmail.getBoundingClientRect();
+          div.setAttribute('style','position: fixed; top:'+boundEmail.top+'px; left: '+(boundEmail.right + 10)+'px; z-index: 1111; width: 217px; background-color: #ffffff; text-align: center; font-size: 24px; box-shadow: 0px 0px 15px red; border-radius: 10px;');
           div.innerHTML = 'Пароль неверен!';
           div = document.body.appendChild(div);
           setTimeout(function(){document.body.removeChild(div);}, 3000);

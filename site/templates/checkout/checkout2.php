@@ -9,7 +9,7 @@
     </form>
     <p class="title-form">Адрес доставки</p>
     <p class="pre-input">Город:</p>
-    <input form="create-order" type="text" name="city" value="<?php echo $city; ?>">
+    <input form="create-order" type="text" name="city" value="<?php echo $city; ?>" required="required">
     <p class="pre-input">Улица:</p>
     <input form="create-order" type="text" name="street" value="<?php echo $street; ?>">
 	<div class="house-apart">

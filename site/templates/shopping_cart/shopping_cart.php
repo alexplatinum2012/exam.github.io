@@ -78,7 +78,7 @@
       <div class="checkout">
         <div class="backward">
           <div class="button-a">
-            <a href="#">Вернуться к покупкам</a>
+            <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Вернуться к покупкам</a>
           </div>
         </div>
         <div class="pay-out">

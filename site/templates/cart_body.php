@@ -46,7 +46,7 @@
           if(isset($_COOKIE['cart'])) {
             unset($sss['info'][$i]);
             $_SESSION['cart'] = serialize($sss);
-            setcookie('cart', serialize($sss));
+            setcookie('cart', $_SESSION['cart']);
           } else {
             unset($sss['info'][$i]);
             $_SESSION['cart'] = serialize($sss);
@@ -58,7 +58,7 @@
             $tmp[0]['ccc'] = $tmp[0]['prodcount'];
             if(isset($_COOKIE['cart'])) {
               $_SESSION['cart'] = serialize($sss);
-              setcookie('cart', serialize($sss));
+              setcookie('cart', $_SESSION['cart']);
             } else {
               $_SESSION['cart'] = serialize($sss);
             }

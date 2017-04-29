@@ -12,15 +12,17 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
   $query = "SELECT * FROM user_login WHERE email like '".$email."'";
   $query = $el->query($query);
   $query = $el->fetch($query);
+  $path = explode("?", $_SERVER['HTTP_REFERER']);
+  $path = $path[0];
   if($query === false) {
       //echo "tut"; exit();
     $el->close();
-    header("refresh:0; url=../login.php?e=".$email);
+    header("refresh:0; url=".$path."?e=".$email);
     exit();
   } elseif(count($query) > 1) {
       //echo "tut"; exit();
     $el->close();
-    header("refresh:0; url=../login?err=0");
+    header("refresh:0; url=".$path."?err=0");
     exit();
   } else {
     if(password_verify($password, $query[0]['password'])) {
@@ -38,11 +40,15 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
       }
       //$_SESSION['idLim'] = date("dHis", time() + 1800);
       $el->close();
+      if(stripos($path, 'checkout') !== false) {
+        header("refresh:0; url=../cart.php?uid=".$_SESSION['id']);
+        exit();
+      }
       header("refresh:0; url=../index.php");
       exit();
     } else {
       $el->close();
-      header("refresh:0; url=../login.php?e=".$email."&p=0");
+      header("refresh:0; url=".$path."?e=".$email."&p=0");
       exit();
     }
   }

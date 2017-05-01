@@ -6,30 +6,41 @@ if(isset($_GET['pid']) && $_GET['pid'] != "" && isset($_GET['vid']) && $_GET['vi
   $el = new dba;
   $el->connect();
   if($el->database === false) echo "ERROR conect to DB";
-  $query = "DELETE
-            FROM cart
-            WHERE pr_id = '".$_GET['pid']."' AND
-                  var_id = '".$_GET['vid']."' AND
-                  u_id = '".$uid."'";
-  $query = $el->query($query);
+//  $query = "DELETE
+//            FROM cart
+//            WHERE pr_id = '".$_GET['pid']."' AND
+//                  var_id = '".$_GET['vid']."' AND
+//                  u_id = '".$uid."'";
+//  $query = $el->query($query);
   //echo "pid = ".$_GET['pid']."; vid = ".$_GET['vid']."; uid = ".$uid.";";
-  $query = "SELECT SUM (t1.cost),
-                   COUNT (t2.id)
-            FROM products as t1,
-                 cart as t2
-            WHERE t2.pr_id = t1.id AND
-                  t2.u_id = '".$uid."'";
-  $query = $el->query($query);
-  $cartInfo = $el->fetch($query);
+  $delCart = unserialize($_SESSION['cart']);
+  $cartInfo = $delCart['info'];
+  for ($i = 0; $i < count($cartInfo); $i++) {
+      if($cartInfo[$i]['prid'] == $_GET['pid'] && $cartInfo[$i]['varid'] == $_GET['vid']) 
+          unset($cartInfo[$i]);
+  }
+  $summ = 0;
+  $count = 0;
+  foreach ($cartInfo as $key => $value) {
+    $query = "SELECT cost
+    FROM products
+    WHERE id = '".$value['prid']."'";
+    $query = $el->query($query);
+    $query = $el->fetch($query);
+    $summ += ($query[0]['cost'] * $value['count']);
+    $count += $value['count'];
+  }
   $el->close();
-  $summ = $cartInfo[0]['sum'];
-  $count = $cartInfo[0]['count'];
+  $delCart['info'] = $cartInfo;
+  $_SESSION['cart'] = serialize($delCart);
+  setcookie('cart', $_SESSION['cart']);
+  
   if($count < 1 || $count > 4)  $countText = $count." предметов";
   elseif($count == 1)           $countText = $count.' предмет';
   else                          $countText = $count.' предмета';
   ?>
     <div id="right-cart" class="right-cart">
-      <a class="cart-link" href="cart.php?uid=<?php echo $uid ?>"></a>
+      <a class="cart-link" <?php if($count > 0) echo "href = cart.php?uid=$uid"; else echo '';?>></a>
       <div class="cart-price">
         <p class="sum-price"><?php echo number_format($summ, 0, ',', ' '); ?></p><p class="sum-curr">руб.</p>
         <p class="count-products"><?php echo $countText; ?></p>
@@ -39,4 +50,5 @@ if(isset($_GET['pid']) && $_GET['pid'] != "" && isset($_GET['vid']) && $_GET['vi
       </div>
       <div class="clearfix"></div>
     </div>
+    
 <?php } ?>

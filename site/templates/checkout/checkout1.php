@@ -2,10 +2,12 @@
   <div class="new-user">
     <form id="new-user" name="new-user" action="" method="post">
       <?php
-        foreach ($_POST as $key => $value) {
-          if($key == 'page-num') $value = 2; ?>
-          <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
-        <?php } ?>
+        //foreach ($_POST as $key => $value) {
+          //if($key == 'page-num') $value = 2;
+        ?>
+        <input type="hidden" name="page-num" value="2" />
+          <!--input type="hidden" name="<?php //echo $key; ?>" value="<?php //echo $value; ?>"-->
+        <?php //} ?>
     </form>
     <p class="title-form">Для новых покупателей</p>
     <p class="pre-input">Контактное лицо (ФИО):</p>
@@ -14,7 +16,7 @@
     <input form="new-user" type="text" name="userPhone" value="">
     <p class="pre-input">E-mail:</p>
     <input form="new-user" type="email" name="userEmail" value="">
-    <button form="new-user" type="submit" name="new-user">Продолжить</button>
+    <button form="new-user" type="submit">Продолжить</button>
   </div>
   <div class="quick-enter">
     <form id="quick-enter" name="quick-enter" action="script/login.php" method="post"></form>
@@ -23,7 +25,7 @@
     <input form="quick-enter" type="email" name="email" value="">
     <p class="pre-input">пароль:</p>
     <input form="quick-enter" type="password" name="password" value="">
-    <button form="quick-enter" type="submit" name="quick-enter">Войти</button>
+    <button form="quick-enter" type="submit">Войти</button>
     <a href="#">Восстановить пароль</a>
   </div>
   <div class="clearfix"></div>
@@ -36,7 +38,7 @@
           setTimeout(function(){inpEmail.style.backgroundColor = "#e9e9e9";}, 3000);
           var div = document.createElement('div');
           var boundEmail = inpEmail.getBoundingClientRect();
-          div.setAttribute('style','position: fixed; top: '+boundEmail.top+'px; left: '+(boundEmail.right + 10)+'px; z-index: 1111; width: 217px; background-color: #ffffff; text-align: center; font-size: 24px; box-shadow: 0px 0px 15px red; border-radius: 10px;');
+          div.setAttribute('style','position: relative; top: '+boundEmail.top+'px; left: '+(boundEmail.right + 10)+'px; z-index: 1111; width: 217px; background-color: #ffffff; text-align: center; font-size: 24px; box-shadow: 0px 0px 15px red; border-radius: 10px;');
           div.innerHTML = 'Пользователь с таким e-mail не зарегистрирован!';
           div = document.body.appendChild(div);
           setTimeout(function(){document.body.removeChild(div);}, 3000);

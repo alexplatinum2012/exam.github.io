@@ -1,11 +1,7 @@
 <section class="checkout-body">
   <div class="destination-addr">
     <form id="create-order" name="destination-addr" action="" method="post">
-      <?php
-        foreach ($_POST as $key => $value) {
-          if($key == 'page-num') $value = 3; ?>
-          <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
-        <?php } ?>
+        <input type="hidden" name="page-num" value="3" />
     </form>
     <p class="title-form">Адрес доставки</p>
     <p class="pre-input">Город:</p>

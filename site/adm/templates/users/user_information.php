@@ -43,44 +43,31 @@
 		  <p></p>
 	    </th>
 	  </tr>
-	  <tr>
-	    <td class="order-number">
-		  <p>№8911</p>
-	    </td>
-		<td class="cost">
-		  <p>15 470 руб.</p>
-	    </td>
-		<td class="data">
-		  <p>01.01.2011 в 15:44</p>
-	    </td>
-	  </tr>
-	  	  <tr>
-	    <td class="order-number">
-		  <p>№8911</p>
-	    </td>
-		<td class="cost">
-		  <p>15 470 руб.</p>
-	    </td>
-		<td class="data">
-		  <p>01.01.2011 в 15:44</p>
-	    </td>
-	  </tr>
-	  	  <tr>
-	    <td class="order-number">
-		  <p>№8911</p>
-	    </td>
-		<td class="cost">
-		  <p>15 470 руб.</p>
-	    </td>
-		<td class="data">
-		  <p>01.01.2011 в 15:44</p>
-	    </td>
-	  </tr>
+          <?php
+                $total = 0;
+                if(isset($orderInfo) && is_array($orderInfo) && $orderInfo[0] != '') {
+                  foreach ($orderInfo as $key => $value) {
+                    $total += $value['ordersum'];
+          ?>
+            	      <tr>
+                      <td class="order-number">
+                          <p><a href="order_information.php?oid=<?php echo $value['orderid']; ?>">№<?php echo $value['orderid']; ?></a></p>
+                      </td>
+                          <td class="cost">
+                            <p><?php echo number_format($value['ordersum'], 0, ',', ' '); ?> руб.</p>
+                      </td>
+                          <td class="data">
+                            <p><?php echo date("d.m.Y в H:i",strtotime($value['orderdate'].' '.$value['ordertime'])); ?></p>
+                      </td>
+                    </tr>
+          <?php   }
+              }
+          ?>
 	  <tr class="last-line">
 	    <td class="last-line" colspan="3">
 		  <div>
 		    <p class="txt">ИТОГОВАЯ СУММА ЗАКАЗОВ</p>
-		    <p class="total">21 970</p>
+		    <p class="total"><?php echo number_format($total, 0, ',', ' '); ?></p>
 		    <p class="curr">руб.</p>
 		  </div>
 		</td>

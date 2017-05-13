@@ -24,7 +24,7 @@
 	position: relative;
 	float: left;
 	margin-right: 20px;
-	
+
 	font-size: 48px;
 	line-height: 66px;
 	/*letter-spacing: 25px;*/
@@ -35,19 +35,19 @@
 	position: relative;
 	float: left;
 	margin-right: 20px;
-	
+
 	font-size: 48px;
 	line-height: 66px;
 	/*letter-spacing: 25px;*/
 	color: #3498db;
 }
-.category-title-text a.order-status {	
+.category-title-text a.order-status {
 	display: block;
 	position: relative;
 	float: left;
 	margin-top: 24px;
 	border-bottom: 1px dashed #ad5a00;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: 500;
@@ -95,12 +95,12 @@ table th {
 }
 table th:first-child, table td:first-child {
 	padding-left: 28px;
-	
+
 	text-align: left;
 }
 table td {
 	height: 56px;
-	
+
 	text-align: center;
 }
 
@@ -110,7 +110,7 @@ table td.order-number p.l, table td.tov-name p {
 	float: left;
 	/*margin-left: 28px;*/
 	margin-right: 9px;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: normal;
@@ -124,7 +124,7 @@ table td.order-number p.c {
 	position: relative;
 	float: left;
 	margin-right: 9px;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: normal;
@@ -137,7 +137,7 @@ table td.order-number p.r {
 	display: block;
 	position: relative;
 	float: left;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: 500;
@@ -150,17 +150,15 @@ table td.order-number p.r {
 table td.status a {
 	display: block;
 	position: relative;
-	width: 61px;
-	border-bottom: 1px dashed #1ba254;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 18px;
-	/*letter-spacing: 25px;*/
 	color: #1ba254;
-	text-decoration: none;
+	text-decoration: underline;
+	text-decoration-style: dotted;
 }
 table td.cost p {
 	font-family: Proxima_Nova;
@@ -179,7 +177,7 @@ table td.tov-count p {
 	height: 28px;
 	padding-top: 5px;
 	border: 1px solid #dee1e2;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: normal;
@@ -212,7 +210,7 @@ table td.view a {
 	position: relative;
 	width: 61px;
 	border-bottom: 1px solid #8e44ad;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: 500;
@@ -229,7 +227,7 @@ table td.del a {
 	width: 112px;
 	right: 18px;
 	border-bottom: 1px solid #c73b3b;
-	
+
 	font-family: Proxima_Nova;
 	font-style: normal;
 	font-weight: 500;
@@ -295,7 +293,7 @@ table td.del a {
 	width: 100%;
 	box-sizing: border-box;
 	padding-left: 23px;
-    padding-bottom: 28px;	
+    padding-bottom: 28px;
 }
 
 .holder div.cancel-order {
@@ -353,4 +351,26 @@ textarea {
   font-weight: lighter;
   font-size: 18px;
   color: #0d0b0b;
+}
+
+div.popup-window {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	box-shadow: 2px 2px 2px #cccccc;
+	padding: 11px;
+	background-color: #ffffff;
+}
+.popup-window a {
+	display: block;
+	position: static;
+	box-sizing: border-box;
+
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 14px;
+	line-height: 21px;
+	color: #0d0b0b;
 }

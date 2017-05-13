@@ -3,23 +3,26 @@
   $el = new db;
   $el->connect();
   if($el->database === false) echo "ERROR conect to DB";
-  $query = "SELECT id, 
-                   date, 
-                   time, 
-                   status, 
-                   sum, 
-                   email
-            FROM orders";
-  $query = $el->query($query);
-  $orders = $el->fetch($query);
+  $prod = "SELECT id,
+                  name, 
+                  cost 
+           FROM products 
+           ORDER BY name";
+  $tmp = $el->query($prod);
+  $dbAnswer = $el->fetch($tmp);
+  $el->close();
 ?>
+
+
+
+
 <div class="w960">
   <div class="nav">
     <?php include "templates/nav/nav.php" ?>
   </div>
   <div class="wrapper">
     <div class="holder">
-      <?php include "templates/orders/orders.php"; ?>
+      <?php include "templates/products/products.php"; ?>
     </div>
   </div>
 </div>

@@ -148,14 +148,11 @@
       </div>
     </div>
 	  <div class="clearfix"></div>
-	</div>
     <input type="hidden" name="dou" value="">
     <button form="form_productADD" class="dou" type="submit" onclick="dou('update')">Изменить товар</a>
     <button form="form_productADD" class="dou" type="submit" onclick="dou('delete')">Удалить товар</a>
-	<div class="clearfix"></div>
-
-
-
+	</div>
+    
 <script type="text/javascript">
 $iframeVar = document.getElementById('ifrVar');
 $divVar = document.getElementById('var');

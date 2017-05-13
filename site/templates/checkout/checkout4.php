@@ -1,7 +1,7 @@
 <section class="checkout-body">
   <div class="order-fin">
 	<div class="order-status">
-	  <p class="order-number">Заказ № <?php echo $idOrder; ?></p>
+	  <p class="order-number">Заказ № <?php echo $IDorder; ?></p>
 	  <p class="order-ok">успешно оформлен</p>
 	</div>
 	<div class="clearfix"></div>

@@ -1,5 +1,5 @@
   <div class="category-title">
-      <p class="category-title-text">КАТЕГОРИИ</p>
+      <p class="category-title-text">НАСТРОЙКА КАТЕГОРИИ <?php echo $categoryName; ?></p>
   </div>
   <div class="table-holder">
     <table>
@@ -19,19 +19,15 @@
 	  </tr>
 
       <?php
-        $el = new db;
-        $el->connect();
         if(is_array($dbAnswer)) {
           foreach ($dbAnswer as $key => $value) {
             $countOfProducts = 0;
             foreach ($value as $k => $v) {
               if($k == 'id') {
-                $tmpQuery = "SELECT COUNT(id)
-                             FROM products
-                             WHERE cat_id = '".$v."'";
+                $tmpQuery = "SELECT id FROM products WHERE cat_id = '".$v."'";
                 $tmp = $el->query($tmpQuery);
-                $tmp = $el->fetch($tmp)[0];
-                $countOfProducts = (isset($tmp) && $tmp != 0) ? $tmp['count'] : 0;
+                $tmp = $el->fetch($tmp);
+                $countOfProducts = (isset($tmp) && $tmp[0] != "") ? count($tmp) : 0;
               }
             } ?>
               <tr>

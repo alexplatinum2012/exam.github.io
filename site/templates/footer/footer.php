@@ -1,5 +1,12 @@
-
 <footer class="footer">
+  <?php
+    if(isset($_SESSION['id']) &&
+       $_SESSION['id'] != '' &&
+       isset($_SESSION['role']) &&
+       $_SESSION['role'] == 'admin') {
+         echo "<a class='admin-panel' href='adm/orders.php'>admin panel</a>";
+       }
+  ?>
   footer
   <div class="right-block">
     <a href="#" onclick="return up()">Наверх</a>

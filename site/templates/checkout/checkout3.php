@@ -42,36 +42,36 @@
 	<p class="title-form">Доставка</p>
 	<div class="left">
 	  <p class="pre-input">Контактное лицо (ФИО):</p>
-	  <p class="mb31"><?php echo $infoOrder[0]['userfio']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['fio']; ?></p>
 	  <p class="pre-input">Контактный телефон:</p>
-	  <p class="mb31"><?php echo $infoOrder[0]['userphone']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['userphone']; ?></p>
 	  <p class="pre-input">E-mail:</p>
-	  <p class="mb31"><?php echo $infoOrder[0]['useremail']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['useremail']; ?></p>
 	</div>
 	<div class="center">
 	  <p class="pre-input">Город:</p>
-	  <p class="mb31"><?php echo $infoOrder[0]['city']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['city']; ?></p>
 	  <p class="pre-input">Улица:</p>
-	  <p class="mb31"><?php echo $infoOrder[0]['street']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['street']; ?></p>
 	  <div class="c-left">
 	    <p class="pre-input">Дом:</p>
-    	<p class="house mb31"><?php echo $infoOrder[0]['house']; ?></p>
+    	<p class="house mb31"><?php echo $scCart['u_info']['house']; ?></p>
 	  </div>
 	  <div class="c-right">
 	    <p class="apart pre-input">Квартира:</p>
-	    <p class="mb31"><?php echo $infoOrder[0]['apart']; ?></p>
+	    <p class="mb31"><?php echo $scCart['u_info']['apart']; ?></p>
 	  </div>
 	</div>
 	<div class="right">
 	  <p class="pre-input">Способ доставки:</p>
-      <p class="mb31"><?php if($infoOrder[0]['orderdelivery'] == 1) echo 'Курьерская доставка с оплатой при получении';
-                            if($infoOrder[0]['orderdelivery'] == 2) echo 'Почта Росссии с наложенным платежем';
-                            if($infoOrder[0]['orderdelivery'] == 3) echo 'Доставка через терминалы QIWI Post'; ?></p>
+      <p class="mb31"><?php if($scCart['u_info']['delivery'] == 1) echo 'Курьерская доставка с оплатой при получении';
+                            if($scCart['u_info']['delivery'] == 2) echo 'Почта Росссии с наложенным платежем';
+                            if($scCart['u_info']['delivery'] == 3) echo 'Доставка через терминалы QIWI Post'; ?></p>
 	  <p class="pre-input">Комментарий к заказу:</p>
-	  <p class="mb31"><?php echo $infoOrder[0]['ordercomment']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['comment']; ?></p>
 	</div>
 	<div class="clearfix"></div>
-    <button form="order-complite" type="submit" name="con">Продолжить</button>
+    <button form="order-complite" type="submit">Продолжить</button>
   </div>
 
   <div class="clearfix"></div>

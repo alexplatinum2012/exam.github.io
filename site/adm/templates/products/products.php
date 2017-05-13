@@ -1,17 +1,7 @@
   <div class="category-title">
-      <p class="category-title-text">ТОВАРЫ</p>
+      <p class="category-title-text">ВСЕ ТОВАРЫ</p>
   </div>
-  <div class="this-cat-holder">
-    <form id="changeCatNameForm" name="changeCatNameForm" action="script/changeCatName.php" method="post">
-      <p>Текущая категория:</p>
-	  <input type="text" name="catName" value="<?php echo $catName; ?>" />
-    <input type="hidden" name="catID" value="<?php echo $_GET['cd']; ?>" />
-	  <button class="rename-cat" type="submit">переименовать</button>
-    <a class="rename-cat" href="category_settings.php?cid=<?php echo $_GET['cd']; ?>">Настроить категорию</a>
-	</form>
-	<div class="clearfix"></div>
-  <a class="add-prod" href="<?php echo 'product_addition.php?cid='.$_GET['cd']; ?>">Добавить товар в категорию</a>
-  </div>
+
   <div class="table-holder">
     <table>
 	  <tr>

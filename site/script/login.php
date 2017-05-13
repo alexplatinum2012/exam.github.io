@@ -27,6 +27,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
   } else {
     if(password_verify($password, $query[0]['password'])) {
       $_SESSION['id'] = $query[0]['u_id'];
+      $_SESSION['role'] = $query[0]['role'];
       if(isset($_SESSION['tmp'])) {
         // $query = "UPDATE cart
         //           SET u_id = '".$_SESSION['id']."'
@@ -44,7 +45,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
         header("refresh:0; url=../cart.php?uid=".$_SESSION['id']);
         exit();
       }
-      header("refresh:0; url=../index.php");
+      header("refresh:0; url=../");
       exit();
     } else {
       $el->close();

@@ -13,14 +13,10 @@ function prnt($q) {
 }
   if(stripos($_SERVER['HTTP_REFERER'], 'login') !== false) {
     $xxx = 1;
-    //echo $_SERVER['HTTP_REFERER'];
-    //exit();
   }
   else if(isset($_POST['page-num']) && $_POST['page-num'] != "") {
     $xxx = $_POST['page-num'];
     if($xxx == 1) {
-
-      //if(stripos('login', $_SERVER['HTTP_REFERER']) === false) {
         $u_ss = unserialize($_SESSION['cart']);
         $u_sess = $u_ss['info'];
         foreach ($_POST as $key => $value) {
@@ -39,7 +35,6 @@ function prnt($q) {
         $u_ss['info'] = $u_sess;
         $_SESSION['cart'] = serialize($u_ss);
         setcookie('cart', $_SESSION['cart']);
-    //  }
     }
     if($xxx > 1) {
       include_once "script/DB_operations.php";
@@ -57,13 +52,18 @@ function prnt($q) {
             $uInfo[$key] = $value;
         }
         if(isset($_SESSION['id'])) {
-          $query = "SELECT t1.city, 
+          $query = "SELECT t1.city,
+                           t1.fio,
+                           t1.phone,
                            t2.street, 
                            t2.house, 
-                           t2.apart
+                           t2.apart,
+                           t3.email 
           FROM users as t1, 
-               user_addr as t2
+               user_addr as t2,
+               user_login as t3
           WHERE t2.u_id = t1.id AND
+                t3.u_id = t1.id AND
                 t1.id = '".$_SESSION['id']."'";
           
           $query = $el->query($query);
@@ -72,6 +72,9 @@ function prnt($q) {
           $street = $uInfo['street'] = $query[0]['street'];
           $house = $uInfo['house'] = $query[0]['house'];
           $apart = $uInfo['apart'] = $query[0]['apart'];
+          $uInfo['fio'] = $query[0]['fio'];
+          $uInfo['userphone'] = $query[0]['phone'];
+          $uInfo['useremail'] = $query[0]['email'];
         } else {
           $city = $uInfo['city'] = '';
           $street = $uInfo['street'] = '';
@@ -100,7 +103,6 @@ function prnt($q) {
         $scCart = (isset($_COOKIE['cart']) && $_COOKIE['cart'] === $_SESSION['cart']) ?
                     unserialize($_COOKIE['cart']) : 
                     unserialize($_SESSION['cart']);
-        //$scCart['u_info'] = array();
         $uInfo = $scCart['u_info'];
         foreach ($_POST as $key => $value) {
             if($key == 'page-num')                continue;
@@ -109,14 +111,64 @@ function prnt($q) {
         $scCart['u_info'] = $uInfo;
         $_SESSION['cart'] = serialize($scCart);
         setcookie('cart', $_SESSION['cart']);
-          prnt($_POST);
-          echo "!!!!!!!!!!!!!!!!!!!<br />";
-          prnt(unserialize($_SESSION['cart']));
-          exit();
-          //-----------------------------------------------------------------------
+
+        $infoOrder = array();
+        $prInfo = $scCart['info'];
+        for($i = 0; $i < count($prInfo); $i++) {
+            $q = "SELECT name AS prodname, 
+                         cost AS prodcost 
+                  FROM products 
+                  WHERE id = '".$prInfo[$i]['prid']."'";
+            $q = $el->query($q);
+            $q = $el->fetch($q);
+            $infoOrder[$i] = $q[0];
+            $infoOrder[$i]['varcount'] = $prInfo[$i]['count'];
+            $prInfo[$i]['cost'] = $q[0]['prodcost'];
+        }
+        $scCart['info'] = $prInfo;
+        $_SESSION['cart'] = serialize($scCart);
+        setcookie('cart', $_SESSION['cart']);
+
+      } elseif($xxx == 4) {
+        $scCart = (isset($_COOKIE['cart']) && $_COOKIE['cart'] === $_SESSION['cart']) ?
+                    unserialize($_COOKIE['cart']) : 
+                    unserialize($_SESSION['cart']);
+        $prInfo = $scCart['info'];
+        $chMas = array();
+        foreach ($prInfo as $key => $value) {
+            $q = "UPDATE prod_types
+                  SET count = count - '".$value['count']."'
+                  WHERE id = '".$value['varid']."' AND
+                        count >= '".$value['count']."'";
+            $q = $el->query($q);
+            if($el->fetch($q) !== false) {
+                unset($prInfo[$key]);
+            }
+            else {
+                $chMas[$key]['varid'] = $value['varid'];
+                $chmas[$key]['varcount'] = $value['count'];
+            }
+            
+        }
+        if(count($scCart['info']) != count($chMas)) {
+            foreach ($chMas as $key => $value) {
+                $q = "UPDATE prod_types
+                      SET count = count + '".$value['varcount']."'
+                      WHERE id = '".$value['varid']."'";
+            }
+            $scCart['info'] = $prInfo;
+            $_SESSION['cart'] = serialize($scCart);
+            setcookie('cart', $_SESSION['cart']);
+            header("Refresh:0;url=index.php");
+            exit();
+        }
+        
         $tmpUniqueId = date("is").rand();
-        $uidT = unserialize($_SESSION['cart']);
-        $uid = $uidT['id'];    
+        $uid = $scCart['id'];    
+        $sum = 0;
+        foreach ($scCart['info'] as $key => $value) {
+            $sum += $value['count'] * $value['cost'];
+        }
         $query = "INSERT INTO orders (u_id, 
                                       fio,
                                       phone,
@@ -131,98 +183,46 @@ function prnt($q) {
                                       tmp_unique_id, 
                                       sum)
                   VALUES ('".$uid."',
-                          '".$_POST['fio']."',
-                          '".$_POST['userPhone']."',
-                          '".$_POST['userEmail']."',
-                          '".$_POST['status']."',
-                          '".$_POST['city']."',
-                          '".$_POST['street']."',
-                          '".$_POST['house']."',
-                          '".$_POST['apart']."',
-                          '".$_POST['delivery']."',
-                          '".$_POST['comment']."',
+                          '".$scCart['u_info']['fio']."',
+                          '".$scCart['u_info']['userphone']."',
+                          '".$scCart['u_info']['useremail']."',
+                          'В обработке',
+                          '".$scCart['u_info']['city']."',
+                          '".$scCart['u_info']['street']."',
+                          '".$scCart['u_info']['house']."',
+                          '".$scCart['u_info']['apart']."',
+                          '".$scCart['u_info']['delivery']."',
+                          '".$scCart['u_info']['comment']."',
                           '".$tmpUniqueId."',
-                          '".$_POST['sum']."')";
+                          '".$sum."')";
         $query = $el->query($query);
-
+        
         $query = "SELECT id 
                   FROM orders 
                   WHERE tmp_unique_id = '".$tmpUniqueId."'";
         $query = $el->query($query);
         $query = $el->fetch($query);
         $IDorder = $query[0]['id'];
-
-        foreach ($_POST as $key => $value) {
-          if(stripos($key, 'arr') !== false) {
-            $arr = explode('|', $key);
-            $prId = $arr[1];
-            $varId = $arr[2];
-            $varCount = $value;
+        
+        foreach ($scCart['info'] as $key => $value) {
             $query = "INSERT INTO order_detail (order_id, 
                                                 pr_id, 
                                                 var_id,
                                                 cost,
-                                                prod_name,
                                                 var_count)
                       VALUES ('".$IDorder."',
-                              '".$prId."',
-                              '".$varId."',
-                              (SELECT cost 
-                               FROM products 
-                               WHERE id = '".$prId."'),
-                              (SELECT name 
-                               FROM products 
-                               WHERE id = '".$prId."'),
-                              '".$varCount."')";
+                              '".$value['prid']."',
+                              '".$value['varid']."',
+                              '".$value['cost']."',
+                              '".$value['count']."')";
             $query = $el->query($query);
-          }
         }
-// Вопрос в том что запрос ниже запрашивает инфу из таблиц юзера, а при временном юзере записи в этих таблицая отсутствуют!!!
-        $query = "SELECT t1.id AS orderid,
-                         t1.city AS city,
-                         t1.street AS street,
-                         t1.house AS house,
-                         t1.apart AS apart,
-                         t1.delivery_type AS orderdelivery,
-                         t1.comment AS ordercomment,
-                         t1.fio as userfio,
-                         t1.phone AS userphone,
-                         t1.email AS useremail,
-                         t2.prod_name AS prodname,
-                         t1.cost AS prodcost,
-                         t2.var_count AS varcount,
-                         t2.var_id AS varid
-                  FROM orders AS t1,
-                       users AS t2,
-                       user_login AS t3,
-                       products AS t4,
-                       order_detail AS t5
-                  WHERE t2.id = t1.u_id AND
-                        t1.id = '".$IDorder."'";
-        $query = $el->query($query);
-        $infoOrder = $el->fetch($query);
-      } elseif($xxx == 4) {
-          prnt($_POST);
-          exit();
-        $idOrder = $_POST['order-id'];
-        foreach ($_POST as $key => $value) {
-          if(stripos($key, 'varid') !== false) {
-            $tmp = explode("|", $key);
-            $query = "UPDATE prod_types
-                      SET count = count - '".$value."'
-                      WHERE id = '".$tmp[1]."' AND
-                            count >= $value";
-            $query = $el->query($query);
-            $query = $el->fetch($query);
-            if($query === false) {
-                
-            }
-          }
+        if(isset($_COOKIE['cart'])) {
+            unset($_COOKIE['cart']);
+            unset($_SESSION['cart']);
+        } else {
+            unset($_SESSION['cart']);
         }
-        $query = "UPDATE orders
-                  SET status = 'В обработке'
-                  WHERE id = '".$idOrder."'";
-        $query = $el->query($query);
       }
     }
   } else {

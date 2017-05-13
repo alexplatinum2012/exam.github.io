@@ -1,5 +1,15 @@
-
-
+<?php
+  include_once "script/DB_operations.php";
+  $el = new db;
+  $el->connect();
+  if($el->database === false) echo "ERROR conect to DB";
+  $mail = "SELECT email
+        FROM user_login
+        WHERE u_id = '".$_SESSION['id']."'";
+  $mail = $el->query($mail);
+  $mail = $el->fetch($mail)[0];
+  $el->close();
+?>
 <header class="header">
   <img src="img/shop_logo.png" alt="shop_logo" />
 </header>
@@ -25,7 +35,7 @@
 </div>
 <div class="clearfix"></div>
 <div class="nav-foot">
-  <p>admin@mail.ru</p>
-  <a href="#">Выйти</a>
+  <p><?php echo $mail['email']; ?></p>
+  <a href="../script/logout.php">Выйти</a>
 </div>
 <div class="clearfix"></div>

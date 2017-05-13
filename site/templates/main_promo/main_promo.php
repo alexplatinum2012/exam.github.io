@@ -1,5 +1,4 @@
-      
-	  
+
 	  <div class="promo">
         <p class="promo-first-line"><?php echo "НАЗВАНИЕ"; ?></p>
         <p class="promo-second-line"><?php echo "ПРОМО-ТОВАРА"; ?></p>

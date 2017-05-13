@@ -11,11 +11,11 @@
     </form>
     <p class="title-form">Для новых покупателей</p>
     <p class="pre-input">Контактное лицо (ФИО):</p>
-    <input form="new-user" type="text" name="fio" value="">
+    <input form="new-user" type="text" name="fio" value="<?php if(isset($u_ss['fio'])) echo $u_ss['fio']; else echo ''; ?>">
     <p class="pre-input">Контактный телефон:</p>
-    <input form="new-user" type="text" name="userPhone" value="">
+    <input form="new-user" type="text" name="userPhone" value="<?php if(isset($u_ss['userPhone'])) echo $u_ss['userPhone']; else echo ''; ?>">
     <p class="pre-input">E-mail:</p>
-    <input form="new-user" type="email" name="userEmail" value="">
+    <input form="new-user" type="email" name="userEmail" value="<?php if(isset($u_ss['userEmail'])) echo $u_ss['userEmail']; else echo ''; ?>">
     <button form="new-user" type="submit">Продолжить</button>
   </div>
   <div class="quick-enter">

@@ -43,7 +43,7 @@ function prnt($q) {
       if($el->database === false) echo "ERROR conect to DB";
       if($xxx == 2) {
         $scCart = (isset($_COOKIE['cart']) && $_COOKIE['cart'] === $_SESSION['cart']) ?
-                    unserialize($_COOKIE['cart']) : 
+                    unserialize($_COOKIE['cart']) :
                     unserialize($_SESSION['cart']);
         $scCart['u_info'] = array();
         $uInfo = $scCart['u_info'];
@@ -55,17 +55,17 @@ function prnt($q) {
           $query = "SELECT t1.city,
                            t1.fio,
                            t1.phone,
-                           t2.street, 
-                           t2.house, 
+                           t2.street,
+                           t2.house,
                            t2.apart,
-                           t3.email 
-          FROM users as t1, 
+                           t3.email
+          FROM users as t1,
                user_addr as t2,
                user_login as t3
           WHERE t2.u_id = t1.id AND
                 t3.u_id = t1.id AND
                 t1.id = '".$_SESSION['id']."'";
-          
+
           $query = $el->query($query);
           $query = $el->fetch($query);
           $city = $uInfo['city'] = $query[0]['city'];
@@ -101,7 +101,7 @@ function prnt($q) {
         setcookie('cart', $_SESSION['cart']);
       } elseif($xxx == 3) {
         $scCart = (isset($_COOKIE['cart']) && $_COOKIE['cart'] === $_SESSION['cart']) ?
-                    unserialize($_COOKIE['cart']) : 
+                    unserialize($_COOKIE['cart']) :
                     unserialize($_SESSION['cart']);
         $uInfo = $scCart['u_info'];
         foreach ($_POST as $key => $value) {
@@ -115,9 +115,9 @@ function prnt($q) {
         $infoOrder = array();
         $prInfo = $scCart['info'];
         for($i = 0; $i < count($prInfo); $i++) {
-            $q = "SELECT name AS prodname, 
-                         cost AS prodcost 
-                  FROM products 
+            $q = "SELECT name AS prodname,
+                         cost AS prodcost
+                  FROM products
                   WHERE id = '".$prInfo[$i]['prid']."'";
             $q = $el->query($q);
             $q = $el->fetch($q);
@@ -131,7 +131,7 @@ function prnt($q) {
 
       } elseif($xxx == 4) {
         $scCart = (isset($_COOKIE['cart']) && $_COOKIE['cart'] === $_SESSION['cart']) ?
-                    unserialize($_COOKIE['cart']) : 
+                    unserialize($_COOKIE['cart']) :
                     unserialize($_SESSION['cart']);
         $prInfo = $scCart['info'];
         $chMas = array();
@@ -148,7 +148,7 @@ function prnt($q) {
                 $chMas[$key]['varid'] = $value['varid'];
                 $chmas[$key]['varcount'] = $value['count'];
             }
-            
+
         }
         if(count($scCart['info']) != count($chMas)) {
             foreach ($chMas as $key => $value) {
@@ -162,30 +162,30 @@ function prnt($q) {
             header("Refresh:0;url=index.php");
             exit();
         }
-        
+
         $tmpUniqueId = date("is").rand();
-        $uid = $scCart['id'];    
+        $uid = $scCart['id'];
         $sum = 0;
         foreach ($scCart['info'] as $key => $value) {
             $sum += $value['count'] * $value['cost'];
         }
-        $query = "INSERT INTO orders (u_id, 
+        $query = "INSERT INTO orders (u_id,
                                       fio,
                                       phone,
                                       email,
                                       status, 
-                                      city, 
-                                      street, 
-                                      house, 
-                                      apart, 
-                                      delivery_type, 
-                                      comment, 
-                                      tmp_unique_id, 
+                                      city,
+                                      street,
+                                      house,
+                                      apart,
+                                      delivery_type,
+                                      comment,
+                                      tmp_unique_id,
                                       sum)
                   VALUES ('".$uid."',
                           '".$scCart['u_info']['fio']."',
-                          '".$scCart['u_info']['userphone']."',
-                          '".$scCart['u_info']['useremail']."',
+                          '".$scCart['u_info']['userPhone']."',
+                          '".$scCart['u_info']['userEmail']."',
                           'В обработке',
                           '".$scCart['u_info']['city']."',
                           '".$scCart['u_info']['street']."',
@@ -196,17 +196,17 @@ function prnt($q) {
                           '".$tmpUniqueId."',
                           '".$sum."')";
         $query = $el->query($query);
-        
-        $query = "SELECT id 
-                  FROM orders 
+
+        $query = "SELECT id
+                  FROM orders
                   WHERE tmp_unique_id = '".$tmpUniqueId."'";
         $query = $el->query($query);
         $query = $el->fetch($query);
         $IDorder = $query[0]['id'];
-        
+
         foreach ($scCart['info'] as $key => $value) {
-            $query = "INSERT INTO order_detail (order_id, 
-                                                pr_id, 
+            $query = "INSERT INTO order_detail (order_id,
+                                                pr_id,
                                                 var_id,
                                                 cost,
                                                 var_count)

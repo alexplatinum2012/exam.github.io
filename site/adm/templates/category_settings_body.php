@@ -1,20 +1,23 @@
 <?php
   if(isset($_GET['cid']) && $_GET['cid'] != "") {
-    include "script/DB_operations.php";
+    include_once "script/DB_operations.php";
     $el = new db;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";
-    $query = "SELECT *
-              FROM prod_category_settings"
-              WHERE id = '".$_GET['cid']."';
-    $tmp = $el->query($query);
-    $dbAnswer = $el->fetch($tmp)[0];
-    //$categoryName = $dbAnswer['name'];
-    if($dbAnswer) {
-      $categoryLogoImg = $dbAnswer['logo_img'];
-
+    $q = "SELECT *
+          FROM prod_category_settings
+          WHERE cat_id = '".$_GET['cid']."'";
+    $q = $el->query($q);
+    $catImgs = $el->fetch($q);
+    $catLogo = '';
+    $catPromo = '';
+    $path = $_SERVER['DOCUMENT_ROOT']."/exam/site/img/cat_img/";
+    if($catImgs[0] != '') {
+      foreach ($catImgs as $key => $value) {
+        if($value['type'] == 'logo')  $catLogo = $path.$value['link'];
+        if($value['type'] == 'promo')  $catPromo = $path.$value['link'];
+      }
     }
-
   }
 ?>
 
@@ -24,7 +27,7 @@
   </div>
   <div class="wrapper">
     <div class="holder">
-      <?php include "templates/categories/categories_settings.php"; ?>
+      <?php include "templates/categories/category_settings.php"; ?>
     </div>
   </div>
 </div>

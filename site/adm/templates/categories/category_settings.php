@@ -1,5 +1,6 @@
+  <iframe id="iframe" name="iframe" onload="loading(this)"></iframe>
   <div class="category-title">
-      <p class="category-title-text">НАСТРОЙКА КАТЕГОРИИ <?php echo $categoryName; ?></p>
+      <p class="category-title-text">НАСТРОЙКА КАТЕГОРИИ <?php //echo $categoryName; ?></p>
   </div>
   <div class="table-holder">
     <table>
@@ -17,39 +18,43 @@
 		  <p></p>
 	    </th>
 	  </tr>
-
-      <?php
-        if(is_array($dbAnswer)) {
-          foreach ($dbAnswer as $key => $value) {
-            $countOfProducts = 0;
-            foreach ($value as $k => $v) {
-              if($k == 'id') {
-                $tmpQuery = "SELECT id FROM products WHERE cat_id = '".$v."'";
-                $tmp = $el->query($tmpQuery);
-                $tmp = $el->fetch($tmp);
-                $countOfProducts = (isset($tmp) && $tmp[0] != "") ? count($tmp) : 0;
+    <tr>
+      <td class="cat-name">
+        <div id="cat_logo_img" class="logo-img">
+          <div class="image">
+            <?php //here understanding of availability of existing the image in DB if true $text = CHANGE else ADD
+              if($catLogo != '') {
+                echo "<img src='".$catLogo."' title='cat_logo_img' />";
+                $txt = 'Изменить';
+                $type = 'change';
               }
-            } ?>
-              <tr>
-                <td class="cat-name">
-                  <img src="img/folder.png" />
-                  <p><?php echo $value['name']; ?></p>
-                </td>
-                <td class="count">
-                  <p><?php echo $countOfProducts; ?></p>
-                </td>
-                <td class="del">
-                  <a href="<?php echo 'script/delCat.php?cid='.$value['id']; ?>">удалить</a>
-                </td>
-                <td class="view">
-                  <a href="<?php echo 'products_in_category.php?cd='.$value['id']; ?>">просмотр</a>
-                </td>
-              </tr>
+              else {
+                $txt = 'Добавить';
+                $type = 'add';
+              }
+            ?>
+          </div>
+          <form class="form" enctype="multipart/form-data" target="iframe" action="script/changeCATimg.php" method="post">
+            <input class="input" type="hidden" name="type" value="<?php echo $type; ?>">
+            <input class="input" type="hidden" name="typeOfImg" value="logo">
+            <input class="input" type="hidden" name="prid" value="<?php echo $_GET['cid']; ?>">
+            <label class="input-file"><input type="file" name="filex" value="" onchange="changing(this)" /><?php echo $txt; ?></label>
+          </form>
+        </div>
 
-        <?php  }
-        $el->close();
-      }
-      ?>
+      </td>
+      <td class="count">
+        <p><?php// echo $countOfProducts; ?></p>
+      </td>
+      <td class="del">
+        <a href="<?php //echo 'script/delCat.php?cid='.$value['id']; ?>">удалить</a>
+      </td>
+      <td class="view">
+        <a href="<?php //echo 'products_in_category.php?cd='.$value['id']; ?>">просмотр</a>
+      </td>
+    </tr>
+
+
 	</table>
   </div>
   <div class="add-cat">

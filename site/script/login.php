@@ -15,12 +15,10 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
   $path = explode("?", $_SERVER['HTTP_REFERER']);
   $path = $path[0];
   if($query === false) {
-      //echo "tut"; exit();
     $el->close();
     header("refresh:0; url=".$path."?e=".$email);
     exit();
   } elseif(count($query) > 1) {
-      //echo "tut"; exit();
     $el->close();
     header("refresh:0; url=".$path."?err=0");
     exit();
@@ -29,17 +27,12 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
       $_SESSION['id'] = $query[0]['u_id'];
       $_SESSION['role'] = $query[0]['role'];
       if(isset($_SESSION['tmp'])) {
-        // $query = "UPDATE cart
-        //           SET u_id = '".$_SESSION['id']."'
-        //           WHERE u_id = '".$_SESSION['tmp']."'";
-        // $query = $el->query($query);
         unset($_SESSION['tmp']);
         $tmp = unserialize($_SESSION['cart']);
         $tmp['id'] = $_SESSION['id'];
         $_SESSION['cart'] = serialize($tmp);
         setcookie('cart', serialize($tmp));
       }
-      //$_SESSION['idLim'] = date("dHis", time() + 1800);
       $el->close();
       if(stripos($path, 'checkout') !== false) {
         header("refresh:0; url=../cart.php?uid=".$_SESSION['id']);

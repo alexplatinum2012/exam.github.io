@@ -12,7 +12,7 @@
 		  <p>СОДЕРЖИМОЕ ЗАКАЗА</p>
 	    </th>
 	  </tr>
-          <?php 
+          <?php
             foreach ($orderProdInfo as $key => $value) { ?>
               <tr>
                 <td class="tov-name">
@@ -71,5 +71,5 @@
 	  <textarea name="comment" value=""><?php echo $orderInfo['ordercomment']; ?></textarea>
 	</div>
   </div>
-  <div class="cancel-order"><a href="#">Отменить заказ</a></div>
+  <div class="cancel-order"><a href="script/delOrder.php?<?php echo 'o='.$_GET['oid']; ?>">Отменить заказ</a></div>
   <div class="clearfix"></div>

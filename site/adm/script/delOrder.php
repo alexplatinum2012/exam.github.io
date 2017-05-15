@@ -23,13 +23,13 @@
                   FROM order_detail
                   WHERE order_id = '".$_GET['o']."'";
         $el->query($query);
-        $query = "DELETE 
-                  FROM oreders
+        $query = "DELETE
+                  FROM orders
                   WHERE id = '".$_GET['o']."'";
         $query = $el->query($query);
-        $el->close();  
-        
-        header("Refresh:0;url=orders.php");
-    }  
+        $el->close();
+        //exit();
+        header("Refresh:0;url=../orders.php");
+    }
     else  header("Refresh:0;url=".$_SERVER['HTTP_REFERER']);
 ?>

@@ -6,7 +6,9 @@ if(isset($_GET['del'])) {
     $el = new db;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";
-    $query = "DELETE FROM prod_photo WHERE id = '".$_GET['pid']."'";
+    $query = "DELETE
+              FROM prod_photo
+              WHERE id = '".$_GET['pid']."'";
     $el->query($query);
     $el->close();
   }
@@ -25,7 +27,9 @@ if(isset($_GET['del'])) {
         $el = new db;
         $el->connect();
         if($el->database === false) echo "ERROR conect to DB";
-        $query = "DELETE FROM prod_photo WHERE id = '".$_POST['pid']."'";
+        $query = "DELETE
+                  FROM prod_photo
+                  WHERE id = '".$_POST['pid']."'";
         $el->query($query);
         $el->close();
       }
@@ -44,9 +48,13 @@ if(isset($_GET['del'])) {
       $el = new db;
       $el->connect();
       if($el->database === false) echo "ERROR conect to DB";
-      $query = "INSERT INTO prod_photo (pr_id, name) VALUES('".$_POST['prid']."', '".$fileSelfName."')";
+      $query = "INSERT INTO prod_photo (pr_id, name)
+                VALUES('".$_POST['prid']."', '".$fileSelfName."')";
       $el->query($query);
-      $query = "SELECT id FROM prod_photo WHERE pr_id = '".$_POST['prid']."' and name like '".$fileSelfName."'";
+      $query = "SELECT id
+                FROM prod_photo
+                WHERE pr_id = '".$_POST['prid']."' AND
+                      name like '".$fileSelfName."'";
       $query = $el->query($query);
       $query = $el->fetch($query);
       $el->close();

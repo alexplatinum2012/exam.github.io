@@ -13,8 +13,9 @@
     } elseif(!isset($_SESSION['id']) && isset($_SESSION['tmp'])) {
       $uid = $_SESSION['tmp'];
     }
-
-    if(isset($_COOKIE['cart']) && isset($_SESSION['cart']) || isset($_SESSION['cart'])) {
+    if(isset($_COOKIE['cart']) && !isset($_SESSION['cart']))  unset($_COOKIE['cart']);
+    if((isset($_COOKIE['cart']) && isset($_SESSION['cart'])) || isset($_SESSION['cart'])) {
+      //echo  "TUT"; exit();
       $cartCookie = unserialize($_SESSION['cart']);
       if($cartCookie['id'] != $uid) {
         $cartCookie['id'] = $uid;
@@ -43,6 +44,7 @@
       setcookie("cart", serialize($cartCookie));
       $_SESSION['cart'] = serialize($cartCookie);
     } elseif(!isset($_COOKIE['cart']) && !isset($_SESSION['cart'])) {
+      //echo  "TUT"; exit();
         $cartCookie = array();
         $cartCookie['id'] = $uid;
         $cartCookie['info'] = array(array(
@@ -54,7 +56,7 @@
         setcookie("cart", serialize($cartCookie));
         $_SESSION['cart'] = serialize($cartCookie);
       }
-
+//echo  "TUT"; exit();
     @@include_once "DB_operations.php";
     $el = new dba;
     $el->connect();

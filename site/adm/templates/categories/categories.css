@@ -187,7 +187,10 @@ div#cat_logo_img {
     height: 150px;
     margin-bottom: 3px;
     overflow: hidden;
-    border: 1px solid #555555;
+}
+#cat_logo_img div.image img.load-img {
+	max-height: 100%;
+	max-width: 300px;
 }
 
 #cat_logo_img form label {

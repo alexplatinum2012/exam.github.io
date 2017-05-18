@@ -71,7 +71,7 @@
   <?php
     if($cat) {?>
     <div class="category-logo">
-      <img src="<?php if(isset($v['category_logo_img'])) echo $v['category_logo_img']; ?>" alt="category_logo_img">
+      <img src="<?php echo $catLogo; ?>" alt="category_logo_img">
       <p class="category-logo-title"><?php if(isset($catName)) echo $catName; ?></p>
       <p class="category-logo-description"><?php if(isset($catAbout)) echo $catAbout; ?></p>
     </div>
@@ -79,11 +79,13 @@
     if(isset($result) && $result[0] != "") {
       $i = 0;
       foreach ($result as $key => $value) {
-        if($cat && $i == 3) { ?>
-          <div class="category-promo">
-            <img src="" alt="category_promo">
-          </div>
+        if($cat && count($result) > 12) {
+          if($i == 11) { ?>
+            <div class="category-promo">
+              <img src="<?php echo $catPromo; ?>" alt="category_promo">
+            </div>
         <?php }
+        }
         $i++;
         ?>
         <div class="product-preview">

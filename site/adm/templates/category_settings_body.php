@@ -1,3 +1,6 @@
+<script type="text/javascript">
+  loading = function(t){};
+</script>
 <?php
   if(isset($_GET['cid']) && $_GET['cid'] != "") {
     include_once "script/DB_operations.php";
@@ -11,7 +14,7 @@
     $catImgs = $el->fetch($q);
     $catLogo = '';
     $catPromo = '';
-    $path = $_SERVER['DOCUMENT_ROOT']."/exam/site/img/cat_img/";
+    $path = "/exam/site/img/cat_img/";
     if($catImgs[0] != '') {
       foreach ($catImgs as $key => $value) {
         if($value['type'] == 'logo')  $catLogo = $path.$value['link'];
@@ -31,3 +34,16 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  function changing(formId, div) {
+    document.getElementById(div).classList.add("active");
+    document.getElementById(formId).submit();
+  }
+  function loading(t) {
+    var div = document.querySelector('div.image.active');
+    div.innerHTML = t.contentDocument.body.innerHTML;
+    div.classList.remove('active');
+  }
+</script>

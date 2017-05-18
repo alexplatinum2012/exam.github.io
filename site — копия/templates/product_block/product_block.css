@@ -1,0 +1,358 @@
+div.product-block {
+  width: 100%;
+  height: 578px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.12);
+  -moz-box-shadow:    0px 3px 3px 0px rgba(50, 50, 50, 0.12);
+  box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.12);
+}
+.product-block div.photo {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 470px
+}
+.photo div.photo-view {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 470px;
+  border: none;
+  background-color: #cccccc;
+  margin-bottom: 24px;
+}
+.photo-view img {
+  display: block;
+  height: 100%;
+  margin: 0px auto;
+}
+.photo div.photo-list {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+}
+.photo-list div.arrow-left {
+  position: relative;
+  float: left;
+  width: 8px;
+  margin-left: 68px;
+  margin-top: 22px;
+  margin-right: 15px;
+
+  font-weight: bold;
+  font-size: 12px;
+  color: #cccccc;
+}
+.photo-list div.carousel {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 284px;
+  height: 100%;
+  overflow: hidden;
+}
+.carousel ul.carousel-list {
+  display: block;
+  position: relative;
+  width: 999999px;
+  height: 100%;
+  list-style-type: none;
+}
+.carousel-list li.carousel-list-item {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 56px;
+  height: 56px;
+  margin-right: 15px;
+  border: 2px solid #ffffff;
+  background-color: #999999;
+}
+.carousel-list li.carousel-list-item:hover {
+  border-color: #dbdbdb;
+}
+.carousel-list-item img {
+  display: block;
+  margin: 0px auto;
+  height: 100%;
+}
+
+.photo-list div.arrow-right {
+  position: relative;
+  float: left;
+  width: 8px;
+  margin-right: 70px;
+  margin-top: 22px;
+  margin-left: 15px;
+
+  font-weight: bold;
+  font-size: 12px;
+  color: #cccccc;
+}
+
+
+.product-block div.description {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 397px;
+  padding-left: 29px;
+}
+.description div.product-name {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  margin-bottom: 17px;
+  border-bottom: 3px solid #ed1651;
+}
+.product-name p {
+  display: block;
+  position: relative;
+  font-family: Supermolot;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 36px;
+  line-height: 35px;
+  color: #000000;
+}
+.description p.product-description {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-height: 300px;
+  margin-bottom: 31px;
+  overflow-y: scroll;
+  font-family: Supermolot;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 14px;
+  line-height: 18px;
+  color: #555555;
+}
+.description div.select {
+  position: relative;
+  width: 100%;
+}
+.select p {
+  display: block;
+  position: relative;
+  float: left;
+  margin-top: 7px;
+  font-family: Supermolot;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 14px;
+  color: #333333;
+}
+.select div.select-holder {
+  position: relative;
+  float: left;
+  width: 229px;
+  height: 30px;
+  margin-left: 8px;
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+.select-holder div.down-arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  z-index: 100;
+  border-left: 2px solid #dadada;
+  background-color: inherit;
+}
+.down-arrow img {
+  display: block;
+  margin-top: 11px;
+  margin-left: 8px;
+  background-color: transparent;
+  width: 40%;
+}
+.select-holder select.options {
+  display: block;
+  position: absolute;
+  width: 229px;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  z-index: 111;
+}
+.select-holder select.options::-ms-expand {
+  width: 0px;
+  background: none;
+  border: none;
+}
+.options option {
+  width: 229px;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+.product-block div.price-delivery {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 301px;
+  padding-left: 27px;
+}
+.price-delivery div.product-price-area {
+  position: relative;
+  width: 219px;
+  box-sizing: border-box;
+  margin-left: 2px;
+  margin-top: 39px;
+  border: 1px solid #dbdbdb;
+}
+.product-price-area p.old-price {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 26px;
+  font-family: Supermolot;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 16px;
+  color: #333333;
+  text-align: center;
+  text-decoration: line-through;
+  color: #999999;
+}
+.product-price-area p.current-price {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  font-family: Supermolot;
+  font-weight: bold;
+  font-size: 26px;
+  color: #ed1651;
+  text-align: center;
+}
+.product-price-area div.product-status-block {
+  position: relative;
+  width: 100%;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+.product-status-block img {
+  display: block;
+  position: relative;
+  float: left;
+  margin-left: 59px;
+}
+.product-status-block p.product-status {
+  display: block;
+  position: relative;
+  float: left;
+  font-family: Supermolot;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 11px;
+  line-height: 14px;
+  color: #000000;
+  text-align: center;
+}
+
+
+
+.price-delivery div.product-buy-area {
+  position: relative;
+  width: 219px;
+  height: 69px;
+  box-sizing: border-box;
+  margin-left: 2px;
+  margin-bottom: 21px;
+  padding-top: 17px;
+  border: 1px solid #dbdbdb;
+  border-top: none;
+}
+.product-buy-area button {
+  display: block;
+  position: relative;
+  width: 129px;
+  height: 39px;
+  margin-left: 47px;
+  border: none;
+  background-color: #ed1651;
+  padding-left:
+}
+button img {
+  margin-right: 10px;
+}
+
+
+.price-delivery div.info {
+  position: relative;
+  width: 230px;
+}
+.info ul.info-options-list {
+  display: block;
+  position: relative;
+  width: 100%;
+  list-style-type: none;
+}
+.info-options-list li {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 19px;
+}
+.info-options-list li div.img-holder {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 40px;
+  height: 100%;
+  border: 3px solid #e9e9e9;
+  border-radius: 100%;
+}
+.img-holder img {
+  display: block;
+  margin: 8px auto;
+}
+.info-options-list li div.p-holder {
+  position: relative;
+  float: left;
+  max-width: 173px;
+  margin-left: 15px;
+}
+.p-holder p:first-child {
+  display: block;
+  position: relative;
+  font-family: Supermolot;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 15px;
+  color: #999999;
+}
+.p-holder p:last-child {
+  display: block;
+  position: relative;
+  font-family: Supermolot;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 14px;
+  line-height: 15px;
+  color: #999999;
+}
+.info-options-list li a {
+  text-decoration: none;
+  color: inherit;
+}

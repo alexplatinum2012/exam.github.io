@@ -47,18 +47,21 @@
                      t1.name AS prodName,
                      t1.about AS prodAbout,
                      t1.cost AS prodCost,
-                     t1.corner AS prodCorner,
-                     t2.name AS prodPhoto
-              FROM products AS t1,
-                   prod_photo AS t2
+                     t1.corner AS prodCorner
+              FROM products AS t1
               WHERE t1.cat_id = '".$catId."' AND
-                    t2.id in (SELECT DISTINCT pr_id FROM prod_photo WHERE pr_id = t1.id) AND
                     (SELECT SUM(count) FROM prod_types WHERE pr_id = t1.id) > 0
               ORDER BY t1.id
               LIMIT '".$limit."'
               OFFSET '".$offset."'";
       $query = $el->query($query);
       $result = $el->fetch($query);
+      foreach ($result as $key => $value) {
+        $q = "SELECT name FROM prod_photo WHERE pr_id = '".$value['prodid']."'";
+        $q = $el->query($q);
+        $q = $el->fetch($q)[0];
+        $result[$key]['prodphoto'] = $q['name'];
+      }
       //$result = confirm_count($result);
       $el->close();
     }?>

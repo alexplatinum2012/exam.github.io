@@ -1,0 +1,356 @@
+.holder div.category-title {
+	position: relative;
+	width: 100%;
+	height: 90px;
+	box-sizing: border-box;
+	padding-top: 22px;
+}
+.category-title p.category-title-text {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 48px;
+	line-height: 66px;
+	/*letter-spacing: 25px;*/
+	color: #34495e;
+}
+.category-title div.category-title-text {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: lighter;
+}
+.category-title-text p.order-title {
+	display: block;
+	position: relative;
+	float: left;
+	margin-right: 20px;
+	
+	font-size: 48px;
+	line-height: 66px;
+	/*letter-spacing: 25px;*/
+	color: #34495e;
+}
+.category-title-text p.order-number {
+	display: block;
+	position: relative;
+	float: left;
+	margin-right: 20px;
+	
+	font-size: 48px;
+	line-height: 66px;
+	/*letter-spacing: 25px;*/
+	color: #3498db;
+}
+.category-title-text a.order-status {	
+	display: block;
+	position: relative;
+	float: left;
+	margin-top: 24px;
+	border-bottom: 1px dashed #ad5a00;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 26px;
+	line-height: 27px;
+	/*letter-spacing: 25px;*/
+	color: #ad5a00;
+	text-decoration: none;
+}
+
+.holder div.table-holder {
+	position: relative;
+	width: 100%;
+	margin-bottom: 19px;
+	border: 1px solid #dee1e2;
+	border-radius: 5px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.12);
+	-moz-box-shadow:    0px 1px 1px 0px rgba(50, 50, 50, 0.12);
+	box-shadow:         0px 1px 1px 0px rgba(50, 50, 50, 0.12);
+}
+.table-holder table, table {
+	width: 100%;
+	border-collapse: collapse;
+}
+table tr:hover {
+	cursor: pointer;
+	background-color: #f6f8fc;
+}
+table tr:hover td:first-child {
+	border-left: 4px solid #8e44ad;
+	padding-left: 26px;
+}
+table th, table td {
+	border-bottom: 1px solid #dee1e2;
+}
+table th {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 66px;
+	/*letter-spacing: 25px;*/
+	color: #95a5a6;
+}
+table th:first-child, table td:first-child {
+	padding-left: 28px;
+	
+	text-align: left;
+}
+table td {
+	height: 56px;
+	
+	text-align: center;
+}
+
+table td.order-number p.l, table td.tov-name p {
+	display: block;
+	position: relative;
+	float: left;
+	/*margin-left: 28px;*/
+	margin-right: 9px;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #3498db;
+}
+table td.order-number p.c {
+	display: block;
+	position: relative;
+	float: left;
+	margin-right: 9px;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #7f8c8d;
+}
+table td.order-number p.r {
+	display: block;
+	position: relative;
+	float: left;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #2c3e50;
+}
+
+table td.status a {
+	display: block;
+	position: relative;
+	width: 61px;
+	border-bottom: 1px dashed #1ba254;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #1ba254;
+	text-decoration: none;
+}
+table td.cost p {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #34495e;
+}
+table td.tov-count p {
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	width: 35px;
+	height: 28px;
+	padding-top: 5px;
+	border: 1px solid #dee1e2;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #34495e;
+	text-align: center;
+}
+table td.summ p {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #34495e;
+}
+table td.order-time p {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #9c9c9c;
+}
+table td.view a {
+	display: block;
+	position: relative;
+	width: 61px;
+	border-bottom: 1px solid #8e44ad;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #8e44ad;
+	text-decoration: none;
+}
+table td.del a {
+	display: block;
+	position: relative;
+	float: right;
+	width: 112px;
+	right: 18px;
+	border-bottom: 1px solid #c73b3b;
+	
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 18px;
+	/*letter-spacing: 25px;*/
+	color: #c73b3b;
+	text-decoration: none;
+}
+
+.holder div.info-holder {
+	position: relative;
+	width: 100%;
+	margin-bottom: 27px;
+	border: 1px solid #dee1e2;
+	border-radius: 5px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.12);
+	-moz-box-shadow:    0px 1px 1px 0px rgba(50, 50, 50, 0.12);
+	box-shadow:         0px 1px 1px 0px rgba(50, 50, 50, 0.12);
+}
+.info-holder div.l {
+	position: relative;
+	float: left;
+	width: 242px;
+	margin : 23px 0px 0px 18px;
+}
+.info-holder div.c {
+	position: relative;
+	float: left;
+	width: 214px;
+	margin : 23px 0px 0px 23px;
+}
+.c div.c-house {
+	position: relative;
+	float: left;
+	width: 50px;
+}
+.c div.c-apart {
+	position: relative;
+	float: left;
+	margin-left: 31px;
+}
+.c-apart input {
+	width: 50px;
+}
+.info-holder div.r {
+	position: relative;
+	float: left;
+	width: 185px;
+	margin : 23px 27px 0px 27px;
+}
+.r p.delivery-type {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 16px;
+	color: #000000;
+}
+
+.info-holder div.comment-holder {
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	padding-left: 23px;
+    padding-bottom: 28px;	
+}
+
+.holder div.cancel-order {
+	position: relative;
+	float: right;
+	margin-right: 19px;
+}
+.cancel-order a {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 18px;
+	color: #ad0000;
+}
+
+p.pre-input {
+	font-family: Proxima_Nova;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 14px;
+	line-height: 18px;
+	color: #999999;
+}
+input {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 28px;
+  margin-bottom: 22px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border: 1.5px solid #dee1e2;
+  background-color: none;
+
+  font-family: Proxima_Nova;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 18px;
+  color: #0d0b0b;
+}
+textarea {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  width: 485px;
+  max-width: 90%;
+  height: 77px;
+  padding: 9px 6px;
+  border: 1.5px solid #dee1e2;
+  background-color: none;
+
+  font-family: Proxima_Nova;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 18px;
+  color: #0d0b0b;
+}

@@ -1,0 +1,115 @@
+@font-face {
+    font-family: Supermolot;
+    font-weight: normal;
+    src: url(../fonts/Supermolot.otf);
+   }
+@font-face {
+   font-family: Supermolot;
+   font-style: normal;
+   font-weight: lighter;
+   src: url(../fonts/Supermolot_Light.otf);
+  }
+@font-face {
+   font-family: Supermolot;
+   font-weight: bold;
+   src: url(../fonts/Supermolot_Bold.otf);
+  }
+@font-face {
+   font-family: Supermolot;
+   font-style: italic;
+   font-weight: bold;
+   src: url(../fonts/Supermolot_Bold_Italic.otf);
+  }
+@font-face {
+   font-family: Supermolot;
+   font-style: italic;
+   font-weight: lighter;
+   src: url(../fonts/Supermolot_Light_Italic.otf);
+  }
+@font-face {
+   font-family: Supermolot;
+   font-style: italic;
+   font-weight: normal;
+   src: url(../fonts/Supermolot_Italic.otf);
+  }
+@font-face {
+   font-family: Supermolot;
+   font-style: italic;
+   font-weight: thin;
+   src: url(../fonts/Supermolot_Thin_Italic.otf);
+  }
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #e4e0d6;
+}
+
+div.img-wrapper img {
+  width: 100%;
+}
+.clearfix {
+  clear: both;
+  height: 1px;
+}
+@media only screen and (max-width: 1169px) {
+  div.img-wrapper {
+    z-index: 1;
+  	width: 1170px;
+  	margin: 0px auto;
+  }
+  div.wrapper {
+    position: absolute;
+    top: 27px;
+    margin-top: 27px;
+    margin-bottom: 27px;
+    /*width: 100%;*/
+    z-index: 10;
+  }
+}
+@media only screen and (min-width: 1170px) {
+
+  div.img-wrapper {
+    z-index: 1;
+  	width: 1400px;
+  	margin: 0px auto;
+  }
+  div.wrapper {
+    position: absolute;
+    top: 27px;
+    left: calc((100% - 1170px) / 2);
+    right: calc((100% - 1170px) / 2);
+    margin-top: 27px;
+    margin-bottom: 27px;
+    width: 1170px;
+    z-index: 10;
+  }
+
+}
+div.category-title {
+  position: relative;
+  height: 159px;
+  box-sizing: border-box;
+  padding-top: 53px;
+}
+.category-title p.category-title-text {
+  font-family: Supermolot;
+  font-style: italic;
+  font-weight: thin;
+  font-size: 72px;
+  line-height: 60px;
+  color: #000000;
+}
+.category-title p.products-count {
+  font-family: Supermolot;
+  font-weight: lighter;
+  font-size: 14px;
+  line-height: 60px;
+  color: #999999;
+}
+iframe {
+  display: none;
+}

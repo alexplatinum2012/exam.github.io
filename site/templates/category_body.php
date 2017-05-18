@@ -1,4 +1,26 @@
 <?php
+// function delDbl ($mas) {
+//   $arrToDelIndex = Array();
+//   for ($i = 0; $i < count($mas); $i++) {
+//     $mas[$i]['toDel'] = 0;
+//   }
+//   for ($i = 0; $i < count($mas); $i++) {
+//     if($mas[$i]['toDel'] === 0) {
+//       for ($j = $i + 1; $j < count($mas); $j++) {
+//         if($mas[$j]['prodid'] == $mas[$i]['prodid']) $mas[$j]['toDel'] = 1;
+//       }
+//     }
+//   }
+//   for ($i = 0; $i < count($mas); $i++) {
+//     if($mas[$i]['toDel'] === 1) {
+//       unset($mas[$i]);
+//     }
+//     else {
+//       unset($mas[$i]['toDel']);
+//     }
+//   }
+//   return array_merge($mas);
+// }
   if(isset($_GET['cid']) && $_GET['cid'] != "") {
     function confirm_count($arr) {
       $el = new dba;
@@ -23,11 +45,26 @@
     $el = new dba;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";
-    $query = "SELECT name, about FROM prod_category WHERE id = '".$catId."'";
+    $query = "SELECT name, about
+              FROM prod_category
+              WHERE id = '".$catId."'";
     $query = $el->query($query);
     $categoryInfo = $el->fetch($query);
     $catName = $categoryInfo[0]['name'];
     $catAbout = $categoryInfo[0]['about'];
+
+    $query = "SELECT type, link
+              FROM prod_category_settings
+              WHERE cat_id = '".$_GET['cid']."'";
+    $query = $el->query($query);
+    $catImg = $el->fetch($query);
+    $path = "/exam/site/img/cat_img/";
+    $catLogo = '';
+    $catPromo = '';
+    foreach ($catImg as $key => $value) {
+      if($value['type'] == 'logo')  $catLogo = $path.$value['link'];
+      if($value['type'] == 'promo')  $catPromo = $path.$value['link'];
+    }
 
     $query = "SELECT id as prodid
               FROM products
@@ -44,20 +81,38 @@
                      t1.name AS prodName,
                      t1.about AS prodAbout,
                      t1.cost AS prodCost,
-                     t1. corner AS prodCorner,
-                     t2.name AS prodPhoto
-              FROM products AS t1,
-                   prod_photo AS t2
+                     t1. corner AS prodCorner
+              FROM products AS t1
               WHERE t1.cat_id = '".$catId."' AND
-                    t2.id in (SELECT DISTINCT pr_id FROM prod_photo WHERE pr_id = t1.id) AND
                     (SELECT SUM(count) FROM prod_types WHERE pr_id = t1.id) > 0
               ORDER BY t1.id
               LIMIT '".$limit."'
               OFFSET '".$offset."'";
       $query = $el->query($query);
       $result = $el->fetch($query);
-      //$result = confirm_count($result);
+      foreach ($result as $key => $value) {
+        $q = "SELECT name FROM prod_photo WHERE pr_id = '".$value['prodid']."'";
+        $q = $el->query($q);
+        $q = $el->fetch($q)[0];
+        $result[$key]['prodphoto'] = $q['name'];
+      }
       $el->close();
+
+
+        // function prnt($q) {
+        //   if(is_array($q)) {
+        //     echo "<br />----------------------------<br />";
+        //     foreach ($q as $key => $value) {
+        //       echo "$key";
+        //       prnt($value);
+        //       echo "<br />";
+        //     }
+        //   } else {
+        //     echo " = ".$q."<br />";
+        //   }
+        // }
+        // prnt($result);
+        // exit();
 
   }
 

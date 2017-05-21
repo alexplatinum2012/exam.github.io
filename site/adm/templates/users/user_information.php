@@ -1,3 +1,6 @@
+  <form id="changeUserInfo" name="changeUserInfo" action="script/changeUserInfo.php" method="post">
+    <input type="hidden" name="uid" value="<?php echo $_GET['uid']; ?>">
+  </form>
   <div class="category-title">
       <p class="category-title-text">ПОЛЬЗОВАТЕЛИ</p>
   </div>
@@ -5,25 +8,35 @@
     <table><tr><th>ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ</th></tr></table>
 	<div class="l">
 	  <p class="pre-input">Контактное лицо (ФИО):</p>
-	  <input type="text" name="fio" value="<?php echo $result[0]['fio']; ?>">
+	  <input form="changeUserInfo" type="text" name="fio" value="<?php echo $result[0]['fio']; ?>">
 	  <p class="pre-input">Контактный телефон:</p>
-	  <input type="text" name="tel" value="<?php echo $result[0]['phone']; ?>">
+	  <input form="changeUserInfo" type="text" name="phone" value="<?php echo $result[0]['phone']; ?>">
 	  <p class="pre-input">E-mail:</p>
-	  <input type="email" name="e-mail" value="<?php echo $result[0]['email']; ?>">
+	  <input form="changeUserInfo" type="email" name="e-mail" value="<?php echo $result[0]['email']; ?>">
 	</div>
 	<div class="c">
 	  <p class="pre-input">Город:</p>
-	  <input type="text" name="city" value="<?php echo $result[0]['city']; ?>">
+	  <input form="changeUserInfo" type="text" name="city" value="<?php echo $result[0]['city']; ?>">
 	  <p class="pre-input">Улица:</p>
-	  <input type="text" name="street" value="<?php echo $result[0]['street']; ?>">
+	  <input form="changeUserInfo" type="text" name="street" value="<?php echo $result[0]['street']; ?>">
 	  <div class="c-house">
 	    <p class="pre-input">Дом:</p>
-	    <input type="text" name="house" value="<?php echo $result[0]['house']; ?>">
+	    <input form="changeUserInfo" type="text" name="house" value="<?php echo $result[0]['house']; ?>">
 	  </div>
 	  <div class="c-apart">
 	    <p class="pre-input">Квартира:</p>
-	    <input type="text" name="apart" value="<?php echo $result[0]['apart']; ?>">
+	    <input form="changeUserInfo" type="text" name="apart" value="<?php echo $result[0]['apart']; ?>">
 	  </div>
+	</div>
+  <div class="r">
+	  <p class="pre-input">Тип пользователя:</p>
+    <select form="changeUserInfo" class="user-role" name="role">
+      <option value="admin" <?php if($result[0]['role'] == 'admin') echo 'style="color:lightgreen" selected'; ?>>Администратор</option>
+      <option value="seller" <?php if($result[0]['role'] == 'seller') echo 'style="color:lightgreen" selected'; ?>>Продавец</option>
+      <option value="user" <?php if($result[0]['role'] == 'user') echo 'style="color:lightgreen" selected'; ?>>Пользователь</option>
+    </select>
+    <div class="clearfix"></div>
+	  <button form="changeUserInfo" class="apply-change" type="submit" name="button">Применить изменения</button>
 	</div>
 	<div class="clearfix"></div>
   </div>

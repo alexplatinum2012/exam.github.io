@@ -28,6 +28,7 @@
                   t1.id = '".$_GET['pid']."'";
   $query = $el->query($query);
   $product = $el->fetch($query);
+  $catID = $product[0]['cat_id'];
   $width = getKoeff(4, 1, count($product), 300);
 
   $query = "SELECT id, var, count
@@ -51,23 +52,26 @@
                    t1.name as prodName,
                    t1.about as prodAbout,
                    t1.cost as prodCost,
-                   t1.corner as prodCorner,
-                   t2.name as prodPhoto
-            FROM products as t1,
-                 prod_photo as t2
-            WHERE t1.cat_id IN (SELECT cat_id
-                                FROM products
-                                WHERE id = '".$_GET['pid']."') AND
+                   t1.corner as prodCorner
+            FROM products as t1
+            WHERE t1.cat_id = '".$catID."' AND
                   t1.id <> '".$_GET['pid']."' AND
-                  t2.id IN (SELECT DISTINCT pr_id
-                            FROM prod_photo
-                            WHERE pr_id = t1.id) AND
                   (SELECT SUM(count)
                    FROM prod_types
                    WHERE pr_id = t1.id) > 0
             ORDER BY t1.id";
   $query = $el->query($query);
   $result = $el->fetch($query);
+  foreach ($result as $key => $value) {
+    $q = "SELECT name FROM prod_photo WHERE pr_id = '".$value['prodid']."'";
+    $q = $el->query($q);
+    $q = $el->fetch($q)[0];
+    $result[$key]['prodphoto'] = $q['name'];
+  }
+
+
+
+
   //$result = confirm_count($result);
   $el->close();
   $width = getKoeff(4, 1, count($result), 1170);

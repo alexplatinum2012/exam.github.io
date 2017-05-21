@@ -72,8 +72,8 @@
     if($cat) {?>
     <div class="category-logo">
       <img src="<?php echo $catLogo; ?>" alt="category_logo_img">
-      <p class="category-logo-title"><?php if(isset($catName)) echo $catName; ?></p>
-      <p class="category-logo-description"><?php if(isset($catAbout)) echo $catAbout; ?></p>
+      <p class="category-logo-title"><?php echo $logoTitle; ?></p>
+      <p class="category-logo-description"><?php echo $logoDescription; ?></p>
     </div>
   <?php }
     if(isset($result) && $result[0] != "") {
@@ -82,6 +82,16 @@
         if($cat && count($result) > 12) {
           if($i == 11) { ?>
             <div class="category-promo">
+              <a class="feeling" <?php if($prID > 0) echo 'href="product.php?pid='.$prID.'"'; ?>></a><!--//!!!!!!!! -->
+              <div class="promo">
+                  <p class="promo-first-line"><?php echo $promoTitle1; ?></p>
+                  <p class="promo-second-line"><?php echo $promoTitle2; ?></p>
+                  <p class="promo-third-line"><?php echo $prAbout; ?></p>
+                  <p class="promo-price"><?php echo number_format($prCost, 0, ',', ' ')." руб."; ?></p>
+                  <div class="promo-look">
+                    <button type="button" name="button">Посмотреть  +</button>
+                  </div>
+                </div>
               <img src="<?php echo $catPromo; ?>" alt="category_promo">
             </div>
         <?php }

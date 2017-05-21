@@ -1,26 +1,4 @@
 <?php
-// function delDbl ($mas) {
-//   $arrToDelIndex = Array();
-//   for ($i = 0; $i < count($mas); $i++) {
-//     $mas[$i]['toDel'] = 0;
-//   }
-//   for ($i = 0; $i < count($mas); $i++) {
-//     if($mas[$i]['toDel'] === 0) {
-//       for ($j = $i + 1; $j < count($mas); $j++) {
-//         if($mas[$j]['prodid'] == $mas[$i]['prodid']) $mas[$j]['toDel'] = 1;
-//       }
-//     }
-//   }
-//   for ($i = 0; $i < count($mas); $i++) {
-//     if($mas[$i]['toDel'] === 1) {
-//       unset($mas[$i]);
-//     }
-//     else {
-//       unset($mas[$i]['toDel']);
-//     }
-//   }
-//   return array_merge($mas);
-// }
   if(isset($_GET['cid']) && $_GET['cid'] != "") {
     function confirm_count($arr) {
       $el = new dba;
@@ -53,18 +31,27 @@
     $catName = $categoryInfo[0]['name'];
     $catAbout = $categoryInfo[0]['about'];
 
-    $query = "SELECT type, link
+    $query = "SELECT *
               FROM prod_category_settings
               WHERE cat_id = '".$_GET['cid']."'";
     $query = $el->query($query);
-    $catImg = $el->fetch($query);
+    $catSettings = $el->fetch($query)[0];
     $path = "/exam/site/img/cat_img/";
-    $catLogo = '';
-    $catPromo = '';
-    foreach ($catImg as $key => $value) {
-      if($value['type'] == 'logo')  $catLogo = $path.$value['link'];
-      if($value['type'] == 'promo')  $catPromo = $path.$value['link'];
-    }
+    $catLogo = $path.$catSettings['logo_link'];
+    $logoTitle = $catSettings['logo_title'];
+    $logoDescription = $catSettings['logo_description'];
+    $catPromo = $path.$catSettings['promo_link'];
+    $promoTitle1 = $catSettings['promo_title1'];
+    $promoTitle2 = $catSettings['promo_title2'];
+    $prID = $catSettings['promo_pr_id'];
+
+    $q = "SELECT about, cost
+          FROM products
+          WHERE id = '".$prID."'";
+    $q = $el->query($q);
+    $prINF = $el->fetch($q)[0];
+    $prAbout = $prINF['about'];
+    $prCost = $prINF['cost'];
 
     $query = "SELECT id as prodid
               FROM products
@@ -97,23 +84,6 @@
         $result[$key]['prodphoto'] = $q['name'];
       }
       $el->close();
-
-
-        // function prnt($q) {
-        //   if(is_array($q)) {
-        //     echo "<br />----------------------------<br />";
-        //     foreach ($q as $key => $value) {
-        //       echo "$key";
-        //       prnt($value);
-        //       echo "<br />";
-        //     }
-        //   } else {
-        //     echo " = ".$q."<br />";
-        //   }
-        // }
-        // prnt($result);
-        // exit();
-
   }
 
 

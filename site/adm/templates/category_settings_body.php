@@ -11,16 +11,24 @@
           FROM prod_category_settings
           WHERE cat_id = '".$_GET['cid']."'";
     $q = $el->query($q);
-    $catImgs = $el->fetch($q);
-    $catLogo = '';
-    $catPromo = '';
+    $catSettings = $el->fetch($q)[0];
     $path = "/exam/site/img/cat_img/";
-    if($catImgs[0] != '') {
-      foreach ($catImgs as $key => $value) {
-        if($value['type'] == 'logo')  $catLogo = $path.$value['link'];
-        if($value['type'] == 'promo')  $catPromo = $path.$value['link'];
-      }
-    }
+    $catLogo = ($catSettings['logo_link']) ? $path.$catSettings['logo_link'] : '';
+    $logoTitle = $catSettings['logo_title'];
+    $logoDescription = $catSettings['logo_description'];
+    $catPromo = ($catSettings['promo_link']) ? $path.$catSettings['promo_link'] : '';
+    $promoTitle1 = $catSettings['promo_title1'];
+    $promoTitle2 = $catSettings['promo_title2'];
+    $prID = $catSettings['promo_pr_id'];
+    $q = "SELECT id, name
+          FROM products
+          WHERE cat_id = '".$_GET['cid']."' AND
+          (SELECT SUM(count)
+           FROM prod_types
+           WHERE pr_id = products.id) > 0
+           ORDER BY id";
+    $q = $el->query($q);
+    $selectArr = $el->fetch($q);
   }
 ?>
 
@@ -44,6 +52,8 @@
   function loading(t) {
     var div = document.querySelector('div.image.active');
     div.innerHTML = t.contentDocument.body.innerHTML;
+    div.nextElementSibling.firstElementChild.value = 'change';
+    div.parentNode.querySelector('label.input-file').innerText = 'Изменить';
     div.classList.remove('active');
   }
 </script>

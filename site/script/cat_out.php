@@ -29,7 +29,10 @@
     $el = new dba;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";
-    $query = "SELECT name, about FROM prod_category WHERE id = '".$catId."'";
+    $query = "SELECT name,
+                     about
+              FROM prod_category
+              WHERE id = '".$catId."'";
     $query = $el->query($query);
     $categoryInfo = $el->fetch($query);
     $catName = $categoryInfo[0]['name'];
@@ -63,6 +66,17 @@
         $result[$key]['prodphoto'] = $q['name'];
       }
       //$result = confirm_count($result);
+      $query = "SELECT *
+                FROM prod_category_settings
+                WHERE cat_id = '".$catId."'";
+      $query = $el->query($query);
+      $catSettings = $el->fetch($query)[0];
+      $path = "/exam/site/img/cat_img/";
+      $catLogo = ($catSettings['logo_link']) ? $path.$catSettings['logo_link'] : '';
+      $logoTitle = $catSettings['logo_title'];
+      $logoDescription = $catSettings['logo_description'];
+      $catPromo = ($catSettings['promo_link']) ? $path.$catSettings['promo_link'] : '';
+      $prID = $catSettings['promo_pr_id'];
       $el->close();
     }?>
 

@@ -45,22 +45,25 @@
 
 	<table class="orders-list">
     <?php
-    foreach ($allOrders as $key => $value) { ?>
-      <tr>
-        <td class="left-cell">
-          <p class="num">№<?php echo $value['id']; ?></p>
-        <div class="sum">
-          <p class="s">(<?php echo number_format($value['sum'], 0, ',', ' '); ?></p>
-          <p class="curr">руб.)</p>
-        </div>
-        <div class="clearfix"></div>
-          <p class="data-time"><?php echo date("d.m.Y в H:i",strtotime($value['date'].' '.$value['time'])); ?></p>
-        </td>
-        <td class="right-cell">
-          <p><?php echo $value['status']; ?></p>
-        </td>
-      </tr>
-    <?php } ?>
+    if($allOrders[0] != '') {
+      foreach ($allOrders as $key => $value) { ?>
+        <tr>
+          <td class="left-cell">
+            <p class="num">№<?php echo $value['id']; ?></p>
+          <div class="sum">
+            <p class="s">(<?php echo number_format($value['sum'], 0, ',', ' '); ?></p>
+            <p class="curr">руб.)</p>
+          </div>
+          <div class="clearfix"></div>
+            <p class="data-time"><?php echo date("d.m.Y в H:i",strtotime($value['date'].' '.$value['time'])); ?></p>
+          </td>
+          <td class="right-cell">
+            <p><?php echo $value['status']; ?></p>
+          </td>
+        </tr>
+    <?php
+      }
+    } ?>
 	</table>
 
   </div>

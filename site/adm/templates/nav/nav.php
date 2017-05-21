@@ -30,6 +30,11 @@
 	<li class="<?php if($menuActive === 4) { echo 'nav-list-item active';} else { echo 'nav-list-item';}?>">
 	  <img src="<?php if($menuActive === 4) { echo 'img/categories_active.png';} else { echo 'img/categories.png';}?>" alt=""/>
 	  <a href="categories.php">КАТЕГОРИИ</a>
+    <hr/>
+	</li>
+  <li class="<?php if($menuActive === 5) { echo 'nav-list-item active';} else { echo 'nav-list-item';}?>">
+	  <!--img src="<?php //if($menuActive === 5) { echo 'img/settings_active.png';} else { echo 'img/settings.png';}?>" alt=""/-->
+	  <a href="settings.php" style="margin-left: 10%; width: 100%"> НАСТРОЙКИ САЙТА</a>
 	</li>
   </ul>
 </div>

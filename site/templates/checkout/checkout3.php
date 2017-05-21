@@ -42,9 +42,9 @@
 	  <p class="pre-input">Контактное лицо (ФИО):</p>
 	  <p class="mb31"><?php echo $scCart['u_info']['fio']; ?></p>
 	  <p class="pre-input">Контактный телефон:</p>
-	  <p class="mb31"><?php echo $scCart['u_info']['userPhone']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['userphone']; ?></p>
 	  <p class="pre-input">E-mail:</p>
-	  <p class="mb31"><?php echo $scCart['u_info']['userEmail']; ?></p>
+	  <p class="mb31"><?php echo $scCart['u_info']['useremail']; ?></p>
 	</div>
 	<div class="center">
 	  <p class="pre-input">Город:</p>

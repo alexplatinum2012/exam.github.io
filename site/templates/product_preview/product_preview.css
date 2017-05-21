@@ -119,10 +119,11 @@ div.category-logo {
   max-height: 100%;
 }
 .category-logo p.category-logo-title {
-  position: relative;
+  position: absolute;
   display: block;
-  margin-top: 82px;
-  margin-left: 44px;
+  top: 82px;
+  left: 44px;
+
   font-family: Supermolot;
   font-style: italic;
   font-weight: normal;
@@ -130,10 +131,11 @@ div.category-logo {
   line-height: 36px;
   color: #000000;
 }
-category-logo p.category-logo-description {
-  position: relative;
+.category-logo p.category-logo-description {
+  position: absolute;
   display: block;
-  margin-left: 44px;
+  left: 44px;
+  top: 150px;
   font-family: Supermolot;
   font-style: italic;
   font-weight: normal;
@@ -156,7 +158,7 @@ div.product-preview {
   -moz-box-shadow:    0px 2px 2px 0px rgba(50, 50, 50, 0.12);
   box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.12);
 }
-.product-preview a.feeling {
+.product-preview a.feeling, .category-promo a.feeling {
   display: block;
   position: absolute;
   top: 0px;
@@ -207,7 +209,8 @@ div.price-holder {
 	display:block;
 	float: right;
 	margin-right: 20px;
-    margin-top: 29px;
+  margin-top: 29px;
+
 	font-family: Supermolot;
 	font-weight: lighter;
 	font-style: italic;
@@ -249,5 +252,60 @@ div.category-promo {
   box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.12);
 }
 .category-promo img {
+  position: absolute;
+  top: 0px;
   width: 100%;
+}
+.category-promo div.promo {
+  position: relative;
+  margin-top: 52px;
+  margin-left: 48px;
+  margin-right: 222px;
+  z-index: 1000;
+
+  font-family: Supermolot;
+}
+.promo p.promo-first-line, .promo p.promo-second-line {
+  position: relative;
+  display: block;
+
+  font-size: 36px;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 36px;
+  color: #000000;
+}
+.promo p.promo-third-line {
+  position: relative;
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 86px;
+
+  font-size: 14px;
+  font-weight: lighter;
+  font-style: normal;
+  line-height: 24px;
+  color: #555555;
+}
+.promo p.promo-price {
+  position: relative;
+  display: block;
+  margin-bottom: 13px;
+
+  font-size: 36px;
+  font-weight: bold;
+  font-style: italic;
+  color: #ed1651;
+}
+.promo div.promo-look button {
+
+  height: 50px;
+  width: 173px;
+  border: 3px solid #ed1651;
+  background-color: transparent;
+
+  font-size: 18px;
+  font-weight: normal;
+  font-style: italic;
+  color: #000000;
 }

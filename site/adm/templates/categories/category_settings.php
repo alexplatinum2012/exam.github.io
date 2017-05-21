@@ -1,3 +1,4 @@
+  <form id="cat_settings" name="cat_settings" class="logo" action="script/changeCatSettings.php" method="post"></form>
   <iframe id="iframe" name="iframe" onload="loading(this)"></iframe>
   <div class="category-title">
       <p class="category-title-text">НАСТРОЙКА КАТЕГОРИИ <?php //echo $categoryName; ?></p>
@@ -44,13 +45,10 @@
 
       </td>
       <td class="count">
-        <p><?php// echo $countOfProducts; ?></p>
-      </td>
-      <td class="del">
-        <a href="<?php //echo 'script/delCat.php?cid='.$value['id']; ?>">удалить</a>
-      </td>
-      <td class="view">
-        <a href="<?php //echo 'products_in_category.php?cd='.$value['id']; ?>">просмотр</a>
+        <p class='pre-input'><b>Заголовок лого</b></p>
+        <input form="cat_settings" type="text" name="logo_title" value="<?php echo $logoTitle; ?>" />
+        <p class="pre-input"><b>Описание категории</b></p>
+        <textarea form="cat_settings" name="logo_description"><?php echo $logoDescription; ?></textarea>
       </td>
     </tr>
 
@@ -80,23 +78,30 @@
 
       </td>
       <td class="count">
-        <p><?php// echo $countOfProducts; ?></p>
-      </td>
-      <td class="del">
-        <a href="<?php //echo 'script/delCat.php?cid='.$value['id']; ?>">удалить</a>
-      </td>
-      <td class="view">
-        <a href="<?php //echo 'products_in_category.php?cd='.$value['id']; ?>">просмотр</a>
+        <p class='pre-input'><b>Выфберите продукт, который будет в промо части этой категории</b></p>
+        <select form="cat_settings" name="promo_pr_id">
+          <option value="">-- Не выбирать ничего</option>
+          <?php foreach ($selectArr as $key => $value) {
+            if($value['id'] == $prID) { ?>
+              <option value="<?php echo $value['id']; ?>" selected><?php echo $value['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+          <?php }
+          } ?>
+        </select>
+        <br/>
+        <hr>
+        <p class='pre-input'><b>ЗАГОЛОВОК</b></p>
+        <input form="cat_settings" type="text" name="promo_title1" value="<?php echo $promoTitle1; ?>" />
+        <p class='pre-input'><b>ПРОМО ТОВАРА</b></p>
+        <input form="cat_settings" type="text" name="promo_title2" value="<?php echo $promoTitle2; ?>" />
       </td>
     </tr>
 
 	</table>
   </div>
   <div class="add-cat">
-    <form action="script/createCategory.php" method="post" name="add-cat">
-      <p>Добавить категорию:</p>
-	  <input type="text" name="catName" value="" />
 	  <div class="clearfix"></div>
-	  <button type="submit">добавить категорию</button>
-	</form>
+    <input form="cat_settings" type="hidden" name="catID" value="<?php echo $_GET['cid']; ?>">
+	  <button id="saveCatSettings" form="cat_settings" class="dou" type="submit">Сохранить</button>
   </div>

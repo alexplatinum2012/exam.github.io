@@ -52,7 +52,7 @@
             <p class="num">№<?php echo $value['id']; ?></p>
           <div class="sum">
             <p class="s">(<?php echo number_format($value['sum'], 0, ',', ' '); ?></p>
-            <p class="curr">руб.)</p>
+            <p class="curr"><?php echo $siteSettings['curr']; ?>)</p>
           </div>
           <div class="clearfix"></div>
             <p class="data-time"><?php echo date("d.m.Y в H:i",strtotime($value['date'].' '.$value['time'])); ?></p>

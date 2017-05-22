@@ -83,3 +83,56 @@
 </div>
 
   <!--End wrapper-->
+
+  <script type="text/javascript">
+    var ul = document.querySelector("ul.carousel-list");
+    ul.style.width = "<?php if(isset($width)) echo $width.'px'; else echo '300px'; ?>";
+    var leftArrowDiv = document.querySelector(".photo-list div.arrow-left");
+    var rightArrowDiv = document.querySelector(".photo-list div.arrow-right");
+    if(parseInt(ul.style.width) > 300) {
+      rightArrowDiv.style.color = '#000000';
+      rightArrowDiv.style.cursor = 'pointer';
+    }
+
+    leftArrowDiv.onclick = function(e) {
+      if(e.target.tagName === "DIV") {
+        photoMoover(1);
+      }
+    }
+    rightArrowDiv.onclick = function(e) {
+      if(e.target.tagName === "DIV") {
+        photoMoover(-1);
+      }
+    }
+    function photoMoover(direction) {
+      var width = parseFloat(ul.style.width);
+      var mLeft = (ul.style.marginLeft == "") ? 0 : parseFloat(ul.style.marginLeft);
+      var maxMLeft = width - ((width >= 300) ? 300 : width);
+      if(maxMLeft == 0) return;
+      var minMLeft = 0;
+      var step = 225;
+
+      var newMLeft = mLeft + (step * direction);
+      if(newMLeft >= 0) {
+        newMLeft = 0;
+        rightArrowDiv.style.color = '#000000';
+        rightArrowDiv.style.cursor = 'pointer';
+        leftArrowDiv.style.color = '#cccccc';
+        leftArrowDiv.style.cursor = 'default';
+      }
+      if(newMLeft < 0 && (newMLeft * -1) < maxMLeft) {
+        rightArrowDiv.style.color = '#000000';
+        rightArrowDiv.style.cursor = 'pointer';
+        leftArrowDiv.style.color = '#000000';
+        leftArrowDiv.style.cursor = 'pointer';
+      }
+      if((newMLeft * -1) >= maxMLeft) {
+        newMLeft = maxMLeft * -1;
+        rightArrowDiv.style.color = '#cccccc';
+        rightArrowDiv.style.cursor = 'default';
+        leftArrowDiv.style.color = '#000000';
+        leftArrowDiv.style.cursor = 'pointer';
+      }
+      ul.style.marginLeft = newMLeft + "px";
+    }
+  </script>

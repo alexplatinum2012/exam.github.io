@@ -42,7 +42,7 @@
               <td class="availability-col"><?php if($value['prodcount'] > 0) echo 'Есть в наличии'; else echo 'нет в наличии' ?></td>
               <td class="price-col price-<?php echo $i ?>" name="<?php echo $value['prodcost']; ?>">
                 <div><?php echo number_format($value['prodcost'], 0, ',', ' '); ?></div>
-                <p class="curr">руб.</p>
+                <p class="curr"><?php echo $siteSettings['curr']; ?></p>
               </td>
               <td class="quantity-col">
                 <div class="minus" onclick="operate(this, <?php echo $i; ?>)">
@@ -58,7 +58,7 @@
               </td>
               <td class="total-col total-<?php echo $i ?>">
                 <div><?php echo number_format(($value['prodcost'] * $value['ccc']), 0, ',', ' '); ?></div>
-                <p class="curr">руб.</p>
+                <p class="curr"><?php echo $siteSettings['curr']; ?></p>
               </td>
               <td class="delete-col">
                 <div class="" onclick="del_block(this)">
@@ -86,7 +86,7 @@
             <p class="txt">Итого</p>
             <p class="summ"><?php echo number_format($totalAmount, 0, ',', ' '); ?></p>
             <input form="to-order" type="hidden" name="sum" value="<?php echo $totalAmount; ?>">
-            <p class="curr">руб.</p>
+            <p class="curr"><?php echo $siteSettings['curr']; ?></p>
           </div>
           <div class="button-pay">
             <a href="" onclick="return sbmt()">Оформить заказ</a>

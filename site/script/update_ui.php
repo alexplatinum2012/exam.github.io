@@ -1,4 +1,5 @@
 <?php
+session_start();
 $uid = (isset($_POST['uid'])) ? $_POST['uid'] : '';
 if($uid == '') {
   header("refresh:0; url=../index.php");

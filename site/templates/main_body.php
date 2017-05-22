@@ -1,6 +1,23 @@
+<?php
+  include_once "./script/DB_operations.php";
+  $el = new dba;
+  $el->connect();
+  if($el->database === false) echo "ERROR conect to DB";
+  $q = "SELECT *
+        FROM main_promo
+        ORDER BY id";
+  $q = $el->query($q);
+  $mainPromo = $el->fetch($q);
+  $iPath = "/exam/site/img/main_promo_img/";
+?>
+
+
+
+
 <!--motobyker-->
     <div class="img-wrapper">
-      <img src="img/home_header.jpg" alt="motobyker">
+      <!-- <img src="img/home_header.jpg" alt="motobyker"> -->
+      <img src="<?php echo $iPath.$mainPromo[0]['link']; ?>" alt="motobyker">
     </div>
     <!--end motobyker-->
 

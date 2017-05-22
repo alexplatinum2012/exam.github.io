@@ -6,17 +6,8 @@
   <div class="table-holder">
     <table>
 	  <tr>
-	    <th class="cat-name">
-		  <p>НАЗВАНИЕ КАТЕГОРИИ</p>
-	    </th>
-		<th class="count">
-		  <p>КОЛЛИЧЕСТВО ТОВАРОВ</p>
-	    </th>
-		<th class="del">
-		  <p></p>
-	    </th>
-	    <th class="view">
-		  <p></p>
+	    <th colspan="2" class="cat-name">
+		  <p>НАСТРОЙКА ЛОГО КАТЕГОРИИ</p>
 	    </th>
 	  </tr>
     <tr>
@@ -51,7 +42,13 @@
         <textarea form="cat_settings" name="logo_description"><?php echo $logoDescription; ?></textarea>
       </td>
     </tr>
-
+  </table>
+  <table>
+  <tr>
+    <th colspan="2" class="cat-name">
+    <p>НАСТРОЙКА ПРОМО КАТЕГОРИИ</p>
+    </th>
+  </tr>
     <tr>
       <td class="cat-name">
         <div id="cat_logo_img" class="logo-img">

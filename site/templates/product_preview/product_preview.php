@@ -87,7 +87,7 @@
                   <p class="promo-first-line"><?php echo $promoTitle1; ?></p>
                   <p class="promo-second-line"><?php echo $promoTitle2; ?></p>
                   <p class="promo-third-line"><?php echo $prAbout; ?></p>
-                  <p class="promo-price"><?php echo number_format($prCost, 0, ',', ' ')." руб."; ?></p>
+                  <p class="promo-price"><?php echo number_format($prCost, 0, ',', ' ').$siteSettings['curr']; ?></p>
                   <div class="promo-look">
                     <button type="button" name="button">Посмотреть  +</button>
                   </div>
@@ -118,7 +118,7 @@
             <p class="product-name"><?php if(isset($value['prodname'])) echo $value['prodname']; ?></p>
 			<div class="price-holder">
   			  <div class="product-price">
-			    <p class="curr"><?php if(isset($curr)) echo $curr; ?></p>
+			    <p class="curr"><?php echo $siteSettings['curr']; ?></p>
 			    <p class="product-price"><?php if(isset($value['prodcost'])) echo number_format($value['prodcost'], 0, ',', ' '); ?></p>
 			  </div>
 
@@ -126,7 +126,7 @@
 			  if(isset($value['product_old_price']) && $value['product_old_price'] != "") {
 			  ?>
 			  <div class="product-old-price">
-			    <p class="curr"><?php if(isset($curr)) echo $curr; ?></p>
+			    <p class="curr"><?php echo $siteSettings['curr']; ?></p>
 			    <p class="product-old-price"><?php echo number_format($value['product_old_price'], 0, ',', ' '); ?></p>
 			  </div>
 			  <?php } ?>

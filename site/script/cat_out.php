@@ -65,7 +65,6 @@
         $q = $el->fetch($q)[0];
         $result[$key]['prodphoto'] = $q['name'];
       }
-      //$result = confirm_count($result);
       $query = "SELECT *
                 FROM prod_category_settings
                 WHERE cat_id = '".$catId."'";

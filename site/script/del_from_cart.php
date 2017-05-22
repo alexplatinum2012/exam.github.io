@@ -16,7 +16,7 @@ if(isset($_GET['pid']) && $_GET['pid'] != "" && isset($_GET['vid']) && $_GET['vi
   $delCart = unserialize($_SESSION['cart']);
   $cartInfo = $delCart['info'];
   for ($i = 0; $i < count($cartInfo); $i++) {
-      if($cartInfo[$i]['prid'] == $_GET['pid'] && $cartInfo[$i]['varid'] == $_GET['vid']) 
+      if($cartInfo[$i]['prid'] == $_GET['pid'] && $cartInfo[$i]['varid'] == $_GET['vid'])
           unset($cartInfo[$i]);
   }
   $summ = 0;
@@ -30,19 +30,25 @@ if(isset($_GET['pid']) && $_GET['pid'] != "" && isset($_GET['vid']) && $_GET['vi
     $summ += ($query[0]['cost'] * $value['count']);
     $count += $value['count'];
   }
-  $el->close();
+
   $delCart['info'] = $cartInfo;
   $_SESSION['cart'] = serialize($delCart);
   setcookie('cart', $_SESSION['cart']);
-  
+
   if($count < 1 || $count > 4)  $countText = $count." предметов";
   elseif($count == 1)           $countText = $count.' предмет';
   else                          $countText = $count.' предмета';
+  
+  $query = "SELECT curr
+            FROM site_settings";
+  $query = $el->query($query);
+  $siteSettings = $el->fetch($query)[0];
+  $el->close();
   ?>
     <div id="right-cart" class="right-cart">
       <a class="cart-link" <?php if($count > 0) echo "href = cart.php?uid=$uid"; else echo '';?>></a>
       <div class="cart-price">
-        <p class="sum-price"><?php echo number_format($summ, 0, ',', ' '); ?></p><p class="sum-curr">руб.</p>
+        <p class="sum-price"><?php echo number_format($summ, 0, ',', ' '); ?></p><p class="sum-curr"><?php echo $siteSettings['curr']; ?></p>
         <p class="count-products"><?php echo $countText; ?></p>
       </div>
       <div class="cart-icon">
@@ -50,5 +56,5 @@ if(isset($_GET['pid']) && $_GET['pid'] != "" && isset($_GET['vid']) && $_GET['vi
       </div>
       <div class="clearfix"></div>
     </div>
-    
+
 <?php } ?>

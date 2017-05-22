@@ -34,7 +34,7 @@
                   <a href="#" style="color:<?php echo $arr[$value['status']]; ?>" data-oid="<?php echo $value['id']; ?>" onclick="return createPopup(this)"><?php echo $value['status']; ?></a>
                 </td>
                 <td class="summ">
-                  <p><?php echo number_format($value['sum'], 0, ',', ' '); ?>руб.</p>
+                  <p><?php echo number_format($value['sum'], 0, ',', ' '); ?><?php echo $siteSettings['curr']; ?></p>
                 </td>
                 <td class="order-time">
                   <p><?php echo date("d.m.Y в H:i",strtotime($value['date'].' '.$value['time'])); ?></p>

@@ -25,13 +25,13 @@
         <input form="order-complite" type="hidden" name="<?php echo 'varid|'.$value['varid']; ?>" value="<?php echo $value['varcount']; ?>">
         <tr>
           <td class="prod"><?php echo $value['prodname']; ?></td>
-          <td class="cost"><div><p><?php echo number_format($value['prodcost'], 0, ',', ' '); ?></p><p class="curr">руб.</p></div></td>
+          <td class="cost"><div><p><?php echo number_format($value['prodcost'], 0, ',', ' '); ?></p><p class="curr"><?php echo $siteSettings['curr']; ?></p></div></td>
           <td class="count"><?php echo $value['varcount']; ?></td>
-          <td class="total"><div><p><?php echo number_format(($value['prodcost'] * $value['varcount']), 0, ',', ' '); ?></p><p class="curr">руб.</p></div></td>
+          <td class="total"><div><p><?php echo number_format(($value['prodcost'] * $value['varcount']), 0, ',', ' '); ?></p><p class="curr"><?php echo $siteSettings['curr']; ?></p></div></td>
         </tr>
       <?php } ?>
 	  <tr>
-	    <td class="total-all" colspan=4><div><p>Итого:</p><p class="sum"><?php echo number_format($sum, 0, ',', ' '); ?></p><p class="curr">руб.</p></div></td>
+	    <td class="total-all" colspan=4><div><p>Итого:</p><p class="sum"><?php echo number_format($sum, 0, ',', ' '); ?></p><p class="curr"><?php echo $siteSettings['curr']; ?></p></div></td>
 	  </tr>
 	</table>
 

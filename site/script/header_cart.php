@@ -77,15 +77,21 @@
         $count += $value['count'];
       }
     }
-    $el->close();
+
     if($count < 1 || $count > 4)  $countText = $count." предметов";
     elseif($count == 1)           $countText = $count.' предмет';
     else                          $countText = $count.' предмета';
+
+    $query = "SELECT curr
+              FROM site_settings";
+    $query = $el->query($query);
+    $siteSettings = $el->fetch($query)[0];
+    $el->close();
     ?>
       <div id="right-cart" class="right-cart">
         <a class="cart-link" href="cart.php?uid=<?php echo $uid ?>"></a>
         <div class="cart-price">
-          <p class="sum-price"><?php echo number_format($summ, 0, ',', ' '); ?></p><p class="sum-curr">руб.</p>
+          <p class="sum-price"><?php echo number_format($summ, 0, ',', ' '); ?></p><p class="sum-curr"><?php echo $siteSettings['curr']; ?></p>
           <p class="count-products"><?php echo $countText; ?></p>
         </div>
         <div class="cart-icon">

@@ -23,7 +23,7 @@
       		  <p><?php echo $value['name']; ?></p>
       	    </td>
       		<td class="cost">
-      		  <p><?php echo $value['cost']; ?></p>
+      		  <p><?php echo number_format($value['cost'], 0, ',', ' ').$siteSettings['curr']; ?></p>
       	    </td>
       	    <td class="view">
       		  <a href="<?php echo 'product_information.php?pid='.$value['id']; ?>">просмотр</a>

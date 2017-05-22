@@ -19,13 +19,13 @@
                     <p><a href="<?php echo '../product.php?pid='.$value['prid']; ?>" target="_blank"><?php echo $value['prname']; ?></a></p>
                 </td>
                     <td class="cost">
-                      <p><?php echo number_format($value['prcost'], 0, ',', ' '); ?> руб.</p>
+                      <p><?php echo number_format($value['prcost'], 0, ',', ' ').$siteSettings['curr']; ?></p>
                 </td>
                     <td class="tov-count">
                       <p><?php echo $value['prvarcount']; ?></p>
                 </td>
                     <td class="summ">
-                      <p><?php echo number_format(($value['prcost'] * $value['prvarcount']), 0, ',', ' '); ?> руб.</p>
+                      <p><?php echo number_format(($value['prcost'] * $value['prvarcount']), 0, ',', ' ').$siteSettings['curr']; ?></p>
                 </td>
                 <td class="del">
                       <a href="script/delPrFromOrder.php?<?php echo 'o='.$_GET['oid'].'&p='.$value['prid'].'&v='.$value['prvarid'].'&c='.$value['prvarcount']; ?>">убрать из заказа</a>

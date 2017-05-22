@@ -8,6 +8,11 @@
         WHERE u_id = '".$_SESSION['id']."'";
   $mail = $el->query($mail);
   $mail = $el->fetch($mail)[0];
+
+  $q = "SELECT curr
+        FROM site_settings";
+  $q = $el->query($q);
+  $siteSettings = $el->fetch($q)[0];
   $el->close();
 ?>
 <header class="header">

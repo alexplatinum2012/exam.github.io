@@ -29,8 +29,7 @@
   $query = $el->query($query);
   $product = $el->fetch($query);
   $catID = $product[0]['cat_id'];
-  $width = getKoeff(4, 1, count($product), 300);
-
+  $width1 = getKoeff(4, 1, count($product), 300);
   $query = "SELECT id, var, count
             FROM prod_types
             WHERE pr_id = '".$_GET['pid']."'";
@@ -86,7 +85,7 @@
 
   <script type="text/javascript">
     var ul = document.querySelector("ul.carousel-list");
-    ul.style.width = "<?php if(isset($width)) echo $width.'px'; else echo '300px'; ?>";
+    ul.style.width = "<?php if(isset($width1)) echo $width1.'px'; else echo '300px'; ?>";
     var leftArrowDiv = document.querySelector(".photo-list div.arrow-left");
     var rightArrowDiv = document.querySelector(".photo-list div.arrow-right");
     if(parseInt(ul.style.width) > 300) {

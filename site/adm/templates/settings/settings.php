@@ -96,15 +96,3 @@
       </tr>
   	</table>
 <?php } ?>
-
-
-
-  </div>
-  <div class="add-cat">
-    <form action="script/createCategory.php" method="post" name="add-cat">
-      <p>Добавить категорию:</p>
-	  <input type="text" name="catName" value="" />
-	  <div class="clearfix"></div>
-	  <button type="submit">добавить категорию</button>
-	</form>
-  </div>

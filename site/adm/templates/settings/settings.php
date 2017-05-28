@@ -20,7 +20,8 @@
           <p class='pre-input'><b>Название магазина</b></p>
           <input form="site-settings" form="" type="text" name="name" value="<?php echo $name; ?>" />
           <p class='pre-input'><b>Текст в подвале</b></p>
-          <input form="site-settings" form="" type="text" name="footer_text" value="<?php echo $footerText; ?>" />
+          <!-- <input form="site-settings" form="" type="text" name="footer_text" value="<?php //echo $footerText; ?>" /> -->
+          <textarea form="site-settings" name="footer_text" max-rows="3"><?php echo $footerText; ?></textarea>
           <p class='pre-input'><b>Отображаемая валюта</b></p>
           <input form="site-settings" form="" type="text" name="curr" value="<?php echo $curr; ?>" />
         </td>

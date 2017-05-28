@@ -11,6 +11,7 @@ $query = "UPDATE products
           SET name = '".$strName."',
               about = '".$strAbout."',
               corner = '".$_POST['corner']."',
+              old_cost = '".$_POST['old_cost']."',
               cost = '".$_POST['cost']."'
           WHERE id = '".$_POST['pid']."'";
 $el->query($query);

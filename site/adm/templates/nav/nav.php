@@ -41,6 +41,9 @@
 	  <!--img src="<?php //if($menuActive === 5) { echo 'img/settings_active.png';} else { echo 'img/settings.png';}?>" alt=""/-->
 	  <a href="settings.php" style="margin-left: 10%; width: 100%"> НАСТРОЙКИ САЙТА</a>
 	</li>
+  <li class="<?php if($menuActive === 6) { echo 'nav-list-item active';} else { echo 'nav-list-item';}?>">
+    <a href="blocks.php" style="margin-left: 10%; width: 100%">БЛОКИ В ПРОДУКТАХ</a>
+  </li>
   </ul>
 </div>
 <div class="clearfix"></div>

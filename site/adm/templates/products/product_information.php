@@ -23,6 +23,8 @@
     <input form="form_productADD" type="hidden" name="catID" value="<?php echo $product[0]['cat_id']; ?>">
 	  <p class="pre-input">Название товара:</p>
 	  <input form="form_productADD" type="text" name="name" value="<?php echo $product[0]['name']; ?>" />
+    <p class="pre-input">Старая цена товара:</p>
+    <input form="form_productADD" type="text" name="old_cost" value="<?php echo $product[0]['old_cost']; ?>" />
     <p class="pre-input">Цена товара:</p>
     <input form="form_productADD" type="text" name="cost" value="<?php echo $product[0]['cost']; ?>" />
 	  <p class="pre-input">Описание товара:</p>
@@ -152,7 +154,7 @@
     <button form="form_productADD" class="dou" type="submit" onclick="dou('update')">Изменить товар</a>
     <button form="form_productADD" class="dou" type="submit" onclick="dou('delete')">Удалить товар</a>
 	</div>
-    
+
 <script type="text/javascript">
 $iframeVar = document.getElementById('ifrVar');
 $divVar = document.getElementById('var');

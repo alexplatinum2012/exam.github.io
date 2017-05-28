@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta>
-    <title><?php if(isset($pageTitle)) echo $pageTitle; else echo "CATEGORY"; ?></title>
+    <title>LIST OF PRODUCTS</title>
 	  <?php include "templates/products_css_linker.php"; ?>
   </head>
   <body>

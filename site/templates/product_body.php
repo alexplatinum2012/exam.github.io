@@ -36,13 +36,19 @@
   $query = $el->query($query);
   $types = $el->fetch($query);
 
+
+    $q = "SELECT *
+          FROM product_blocks";
+    $q = $el->query($q);
+    $productBlocks = $el->fetch($q);
+    $iPath = "/exam/site/img/block_img/";
+
   include "templates/product_block/product_block.php";
 ?>
 <div class="frame">
 <?php
 
   $headerTitle = "";
-  $curr = "руб.";
   include_once "script/DB_operations.php";
   $el = new dba;
   $el->connect();
@@ -50,6 +56,7 @@
   $query = "SELECT t1.id as prodId,
                    t1.name as prodName,
                    t1.about as prodAbout,
+                   t1.old_cost as old_cost,
                    t1.cost as prodCost,
                    t1.corner as prodCorner
             FROM products as t1
@@ -67,10 +74,6 @@
     $q = $el->fetch($q)[0];
     $result[$key]['prodphoto'] = $q['name'];
   }
-
-
-
-
   //$result = confirm_count($result);
   $el->close();
   $width = getKoeff(4, 1, count($result), 1170);

@@ -35,11 +35,11 @@ function prnt($q) {
                                            about2,
                                            footer_text,
                                            curr)
-                VALUES ('".$_POST['']."',
-                        '".$_POST['']."',
-                        '".$_POST['']."',
-                        '".$_POST['']."',
-                        '".$_POST['']."')";
+                VALUES ('".$_POST['name']."',
+                        '".$_POST['about1']."',
+                        '".$_POST['about2']."',
+                        '".$_POST['footer_text']."',
+                        '".$_POST['curr']."')";
         }
         $el->query($q);
         header("Refresh:0; url=".$_SERVER['HTTP_REFERER']);

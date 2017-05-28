@@ -59,19 +59,24 @@
   $query = "SELECT t1.id as prodId,
                    t1.name as prodName,
                    t1.about as prodAbout,
+                   t1.old_cost as old_cost,
                    t1.cost as prodCost,
-                   t1.corner as prodCorner,
-                   t2.name as prodPhoto
-            FROM products as t1,
-                 prod_photo as t2
+                   t1.corner as prodCorner
+            FROM products as t1
             WHERE t1.corner <> '1' AND
-                  t2.id in (SELECT DISTINCT pr_id
-                            FROM prod_photo
-                            WHERE pr_id = t1.id) AND
+                  -- t2.id in (SELECT DISTINCT pr_id
+                  --           FROM prod_photo
+                  --           WHERE pr_id = t1.id) AND
                   (SELECT SUM(count) FROM prod_types WHERE pr_id = t1.id) > 0
             ORDER BY t1.id";
   $query = $el->query($query);
   $result = $el->fetch($query);
+  foreach ($result as $key => $value) {
+    $q = "SELECT name FROM prod_photo WHERE pr_id = '".$value['prodid']."'";
+    $q = $el->query($q);
+    $q = $el->fetch($q)[0];
+    $result[$key]['prodphoto'] = $q['name'];
+  }
   //$result = confirm_count($result);
   $width = getKoeff(4, 2, count($result), 1170);
   include "templates/product_preview/product_preview.php";
@@ -89,19 +94,24 @@
   $query = "SELECT t1.id as prodId,
                    t1.name as prodName,
                    t1.about as prodAbout,
+                   t1.old_cost as old_cost,
                    t1.cost as prodCost,
-                   t1.corner as prodCorner,
-                   t2.name as prodPhoto
-            FROM products as t1,
-                 prod_photo as t2
+                   t1.corner as prodCorner
+            FROM products as t1
             WHERE t1.corner = '2' AND
-                  t2.id in (SELECT DISTINCT pr_id
-                            FROM prod_photo
-                            WHERE pr_id = t1.id) AND
+                  -- t2.id in (SELECT DISTINCT pr_id
+                  --           FROM prod_photo
+                  --           WHERE pr_id = t1.id) AND
                   (SELECT SUM(count) FROM prod_types WHERE pr_id = t1.id) > 0
             ORDER BY t1.id";
   $query = $el->query($query);
   $result = $el->fetch($query);
+  foreach ($result as $key => $value) {
+    $q = "SELECT name FROM prod_photo WHERE pr_id = '".$value['prodid']."'";
+    $q = $el->query($q);
+    $q = $el->fetch($q)[0];
+    $result[$key]['prodphoto'] = $q['name'];
+  }
   //$result = confirm_count($result);
   $el->close();
   unset($el);

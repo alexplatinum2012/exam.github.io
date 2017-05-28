@@ -123,11 +123,11 @@
 			  </div>
 
 			  <?php
-			  if(isset($value['product_old_price']) && $value['product_old_price'] != "") {
+			  if(isset($value['old_cost']) && $value['old_cost'] != "") {
 			  ?>
 			  <div class="product-old-price">
 			    <p class="curr"><?php echo $siteSettings['curr']; ?></p>
-			    <p class="product-old-price"><?php echo number_format($value['product_old_price'], 0, ',', ' '); ?></p>
+			    <p class="product-old-price"><?php echo number_format($value['old_cost'], 0, ',', ' '); ?></p>
 			  </div>
 			  <?php } ?>
 

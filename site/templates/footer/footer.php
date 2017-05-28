@@ -7,7 +7,9 @@
          echo "<a class='admin-panel' href='adm/orders.php'>admin panel</a>";
        }
   ?>
-  footer
+  <div class="left-block">
+    <p class="footer-text "><?php echo $siteSettings['footer_text']; ?></p>
+  </div>
   <div class="right-block">
     <a href="#" onclick="return up()">Наверх</a>
     <div class="arrow-up">

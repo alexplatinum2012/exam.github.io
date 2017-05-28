@@ -51,7 +51,7 @@
   </div>
   <div class="price-delivery">
     <div class="product-price-area">
-      <p class="old-price"><?php echo number_format(/*$product[0]['old_cost']*/9990, 0, ',', ' ').$siteSettings['curr']; ?></p>
+      <p class="old-price"><?php echo number_format($product[0]['old_cost'], 0, ',', ' ').$siteSettings['curr']; ?></p>
       <p class="current-price"><?php echo number_format($product[0]['cost'], 0, ',', ' ').$siteSettings['curr']; ?></p>
       <div class="product-status-block">
         <img src="img/in_stock.png" alt="in_stock">
@@ -67,33 +67,22 @@
     </div>
     <div class="info">
       <ul class="info-options-list">
-        <li class="info-options-list-item">
-          <div class="img-holder">
-            <img src="img/delivery.png" alt="">
-          </div>
-          <div class="p-holder">
-            <p>БЕСПЛАТНАЯ ДОСТАВКА</p>
-            <p>по всей России</p>
-          </div>
-        </li>
-        <li class="info-options-list-item">
-          <div class="img-holder">
-            <img src="img/hot_line.png" alt="">
-          </div>
-          <div class="p-holder">
-            <p>ГОРЯЧАЯ ЛИНИЯ</p>
-            <p><a href="tel: 880000000">880000000</a></p>
-          </div>
-        </li>
-        <li class="info-options-list-item">
-          <div class="img-holder">
-            <img src="img/gift.png" alt="">
-          </div>
-          <div class="p-holder">
-            <p>ПОДАРКИ</p>
-            <p>каждому покупателю</p>
-          </div>
-        </li>
+        <?php
+          if(isset($productBlocks) && $productBlocks[0] != '') {
+            foreach ($productBlocks as $key => $value) { ?>
+              <li class="info-options-list-item">
+                <div class="img-holder">
+                  <img src="<?php echo $iPath.$value['link']; ?>" alt="block<?php echo $value['id']; ?>">
+                </div>
+                <div class="p-holder">
+                  <p><?php echo $value['line1']; ?></p>
+                  <p><?php echo $value['line2']; ?></p>
+                </div>
+              </li>
+        <?php
+            }
+          }
+        ?>
       </ul>
     </div>
   </div>

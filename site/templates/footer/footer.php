@@ -1,15 +1,15 @@
 <footer class="footer">
+  <div class="left-block">
+    <p class="footer-text "><?php echo $siteSettings['footer_text']; ?></p>
+  </div>
   <?php
     if(isset($_SESSION['id']) &&
        $_SESSION['id'] != '' &&
        isset($_SESSION['role']) &&
        $_SESSION['role'] == 'admin') {
-         echo "<a class='admin-panel' href='adm/orders.php'>admin panel</a>";
+         echo "<a class='admin-panel' style='display:block; float:left;margin-left:50%; margin-top:1%' href='adm/orders.php'>admin panel</a>";
        }
   ?>
-  <div class="left-block">
-    <p class="footer-text "><?php echo $siteSettings['footer_text']; ?></p>
-  </div>
   <div class="right-block">
     <a href="#" onclick="return up()">Наверх</a>
     <div class="arrow-up">

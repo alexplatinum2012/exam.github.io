@@ -1,6 +1,6 @@
 <?php
   if(isset($_GET['duid']) && $_GET['duid'] != "") {
-    include "script/DB_operations.php";
+    include "DB_operations.php";
     $el = new db;
     $el->connect();
     if($el->database === false) echo "ERROR conect to DB";

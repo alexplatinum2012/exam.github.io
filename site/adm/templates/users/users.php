@@ -28,7 +28,7 @@
       		  <a href="mailto:users@mail.ru"><?php echo $value['email']; ?></a>
       	    </td>
       		<td class="tel">
-      		  <p><?php echo $value['phone']; ?></p>
+      		  <p><a href="tel:<?php echo $value['phone']; ?>"><?php echo $value['phone']; ?></a></p>
       	    </td>
       	    <td class="view">
       		  <a href="user_information.php?uid=<?php echo $value['id']; ?>">просмотр</a>

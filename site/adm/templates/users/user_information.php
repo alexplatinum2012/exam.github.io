@@ -87,4 +87,4 @@
 	  </tr>
 	</table>
   </div>
-  <a class="del-user" href="script/delete.user.php?duid=<?php echo $_GET['uid']; ?>">Удалить пользователя</a>
+  <a class="del-user" href="script/delete_user.php?duid=<?php echo $_GET['uid']; ?>">Удалить пользователя</a>

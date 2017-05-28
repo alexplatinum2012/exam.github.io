@@ -184,6 +184,10 @@ table td.tel p {
 	/*letter-spacing: 25px;*/
 	color: #636363;
 }
+td.tel p a {
+	text-decoration: none;
+	color: #636363;
+}
 table td.view a {
 	display: block;
 	position: relative;
